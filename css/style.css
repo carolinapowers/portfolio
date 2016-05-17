@@ -1325,3 +1325,13 @@
 	body.is-touch .poptrox-popup .closer {
 		opacity: 1.0 !important;
 	}
+
+section#two > h3 {
+    margin-bottom: 0;
+}
+
+section#two > small {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    font-size: 0.9em;
+}

@@ -2,8 +2,8 @@
 
 > A modern, interactive portfolio application built with React and TypeScript, designed to showcase frontend engineering skills through a Buffer-inspired content creation interface.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://your-portfolio-url.vercel.app)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/your-username/portfolio)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://portfolio-cr7dlzyaa-carolinapowers-projects.vercel.app)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/carolinapowers/portfolio)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19.1-blue)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.0-purple)](https://vitejs.dev/)
@@ -20,7 +20,7 @@ This interactive portfolio demonstrates technical skills specifically relevant t
 
 ## 🚀 Live Demo
 
-**[View Live Portfolio →](https://your-portfolio-url.vercel.app)**
+**[View Live Portfolio →](https://portfolio-cr7dlzyaa-carolinapowers-projects.vercel.app)**
 
 ### Key Features Demonstrated
 

@@ -4,6 +4,7 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "outputDirectory": "dist",
+  "alias": ["carolinapowers-portfolio.vercel.app"],
   "rewrites": [
     {
       "source": "/(.*)",

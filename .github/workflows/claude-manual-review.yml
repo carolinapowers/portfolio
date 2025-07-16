@@ -1,0 +1,25 @@
+name: Request Claude Review
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to review'
+        required: true
+        type: string
+
+jobs:
+  prepare-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get PR diff
+        run: |
+          gh pr diff ${{ inputs.pr_number }} > pr_diff.txt
+          echo "📋 PR #${{ inputs.pr_number }} diff saved to pr_diff.txt"
+          echo "👉 Copy this diff to Claude for review"
+          echo "🔗 PR URL: ${{ github.server_url }}/${{ github.repository }}/pull/${{ inputs.pr_number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

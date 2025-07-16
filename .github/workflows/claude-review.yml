@@ -1,0 +1,56 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
+          echo "diff_size=$(wc -l < pr_diff.txt)" >> $GITHUB_OUTPUT
+
+      - name: Claude Review
+        if: steps.diff.outputs.diff_size < 500
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const diff = fs.readFileSync('pr_diff.txt', 'utf8');
+            
+            // For now, create a comment requesting Claude review
+            const prUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${context.issue.number}`;
+            const reviewRequest = `## 🤖 Claude Review Requested
+            
+            This PR is ready for Claude Code review!
+            
+            **Review checklist:**
+            - [ ] Code quality and best practices
+            - [ ] TypeScript type safety
+            - [ ] React patterns and performance
+            - [ ] Test coverage and quality
+            - [ ] Documentation completeness
+            
+            **Diff size:** ${fs.readFileSync('pr_diff.txt', 'utf8').split('\n').length} lines
+            
+            _🏷️ Tagged with: \`claude-assisted\`_`;
+            
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reviewRequest
+            });

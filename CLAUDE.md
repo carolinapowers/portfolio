@@ -2,33 +2,6 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Git Commit Guidelines
-
-**IMPORTANT**: When creating commits, do NOT include Claude co-authoring information. Use clean, professional commit messages without AI attribution.
-
-### Commit Message Format
-```
-feat: add rich text editor with formatting toolbar
-
-- Implement contentEditable with bold, italic, underline support
-- Add character counting with visual feedback
-- Include keyboard shortcuts for common formatting
-```
-
-### Commit Types
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, etc.)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
-
-### Pull Request Guidelines
-- Tag PRs with `claude-assisted` label for AI-assisted development tracking
-- Include comprehensive descriptions with implementation details
-- Reference any issues or requirements being addressed
-
 # Interactive Portfolio Experience - Development Guide
 
 ## Project Overview

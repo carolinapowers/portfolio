@@ -134,13 +134,13 @@ interface Recommendation {
           
           <div className={styles.actions}>
             <a 
-              href="https://portfolio-cr7dlzyaa-carolinapowers-projects.vercel.app/"
+              href="https://github.com/carolinapowers/portfolio"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.actionButton}
             >
               <Code size={16} />
-              View Live Portfolio
+              View Source Code
             </a>
             <a 
               href="https://calendly.com/your-calendar-link"

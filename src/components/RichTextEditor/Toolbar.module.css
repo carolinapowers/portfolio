@@ -1,0 +1,114 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.buttonGroup:not(:last-child) {
+  margin-right: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+  border-right: 1px solid var(--color-border);
+}
+
+.toolbarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.toolbarButton:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.toolbarButton.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.toolbarButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbarButton:disabled:hover {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.separator {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border);
+  margin: 0 var(--spacing-xs);
+}
+
+.linkDialog {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  min-width: 300px;
+}
+
+.linkInput {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.linkInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.linkButton {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.linkButton:hover {
+  background: var(--color-primary-hover);
+}
+
+.linkButton.secondary {
+  background: var(--color-secondary);
+}
+
+.linkButton.secondary:hover {
+  background: var(--color-text-secondary);
+}

@@ -1,0 +1,24 @@
+.displayFlexItem {
+  /* Base flex item styles */
+}
+
+/* Align self */
+.align-auto {
+  align-self: auto;
+}
+
+.align-start {
+  align-self: flex-start;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.align-end {
+  align-self: flex-end;
+}
+
+.align-stretch {
+  align-self: stretch;
+}

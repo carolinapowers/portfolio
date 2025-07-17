@@ -18,26 +18,31 @@ const mockRecommendation: Recommendation = {
 describe('RecommendationCard Component', () => {
   it('renders recommendation name', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
+    // Use heading role since name is in an h3 element
+    expect(screen.getByRole('heading', { name: 'John Doe' })).toBeInTheDocument();
   });
 
   it('renders recommendation title and company', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
+    // Using getByText for non-interactive content (Priority 1)
     expect(screen.getByText('Senior Engineer @ TechCorp')).toBeInTheDocument();
   });
 
   it('renders recommendation content', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
+    // Using getByText with regex for partial content matching (Priority 1)
     expect(screen.getByText(/John is an exceptional developer/)).toBeInTheDocument();
   });
 
   it('renders avatar', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
+    // Avatar text is still the most accessible way to find this content
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
   it('renders all skills', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
+    // Using getByText for skill labels (Priority 1 - non-interactive content)
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
     expect(screen.getByText('GraphQL')).toBeInTheDocument();
@@ -45,6 +50,7 @@ describe('RecommendationCard Component', () => {
 
   it('highlights primary skills', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
+    // Using getByText to find skill elements (Priority 1)
     const reactSkill = screen.getByText('React');
     const typescriptSkill = screen.getByText('TypeScript');
     

@@ -57,8 +57,12 @@ export const Layout: React.FC = () => {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Interactive Portfolio</h1>
-          <p className={styles.subtitle}>Senior Product Frontend Engineer</p>
+          <h1 className={styles.title}>Buffer's Interactive Portfolio</h1>
+          <p className={styles.subtitle}>
+            Senior Product Frontend Engineer
+            <br />
+            <span className={styles.caption}>Carolina Powers</span>
+          </p>
           <p className={styles.description}>
             Built with Buffer-inspired design patterns + modern React
           </p>
@@ -71,7 +75,6 @@ export const Layout: React.FC = () => {
             <span className={styles.tech}>Claude Code</span>
           </div>
         </header>
-
         <main className={styles.mainContent}>
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>
@@ -85,13 +88,11 @@ export const Layout: React.FC = () => {
           </section>
           <RecommendationsSection />
         </main>
-
         <section className={styles.techSection}>
           <h2 className={styles.sectionTitle}>
             <Code size={20} />
             Technical Implementation
           </h2>
-
           <div className={styles.techCategories}>
             {techCategories.map(category => (
               <div className={styles.techCategory} key={category.title}>
@@ -107,34 +108,50 @@ export const Layout: React.FC = () => {
             ))}
           </div>
         </section>
-
         <footer className={styles.footer}>
           <h2 className={styles.footerTitle}>
             Why This Portfolio Approach Works
           </h2>
-          <DisplayFlex className={styles.benefits}>
+          <DisplayFlex className={styles.benefits} justify="around">
             <DisplayFlexItem>
-              <div className={styles.benefitIcon}>🎯</div>
-              <div>
-                <h3>Technical Alignment</h3>
-                <p>Uses Buffer's actual tech stack and design patterns</p>
-              </div>
+              <DisplayFlex align="center" justify="center">
+                <DisplayFlexItem>
+                  <div className={styles.benefitIcon}>🎯</div>
+                </DisplayFlexItem>
+                <DisplayFlexItem>
+                  <h3>Technical Alignment</h3>
+                </DisplayFlexItem>
+              </DisplayFlex>
+              <p className="mt-0">
+                Uses Buffer's actual tech stack and design patterns
+              </p>
             </DisplayFlexItem>
 
             <DisplayFlexItem>
-              <div className={styles.benefitIcon}>🔍</div>
-              <div>
-                <h3>Deep Research</h3>
-                <p>Shows understanding of Buffer's design system evolution</p>
-              </div>
+              <DisplayFlex align="center" justify="center">
+                <DisplayFlexItem>
+                  <div className={styles.benefitIcon}>🔍</div>
+                </DisplayFlexItem>
+                <DisplayFlexItem>
+                  <h3>Deep Research</h3>
+                </DisplayFlexItem>
+              </DisplayFlex>
+              <p className="mt-0">
+                Shows understanding of Buffer's design system evolution
+              </p>
             </DisplayFlexItem>
-
             <DisplayFlexItem>
-              <div className={styles.benefitIcon}>🚀</div>
-              <div>
-                <h3>Ready to Contribute</h3>
-                <p>Demonstrates skills for Buffer's Content Creation team</p>
-              </div>
+              <DisplayFlex align="center" justify="center">
+                <DisplayFlexItem>
+                  <div className={styles.benefitIcon}>🚀</div>
+                </DisplayFlexItem>
+                <DisplayFlexItem>
+                  <h3>Ready to Contribute</h3>
+                </DisplayFlexItem>
+              </DisplayFlex>
+              <p className="mt-0">
+                Demonstrates skills for Buffer's Content Creation team
+              </p>
             </DisplayFlexItem>
           </DisplayFlex>
           <div className={styles.actions}>

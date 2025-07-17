@@ -23,8 +23,8 @@ export const Layout: React.FC = () => {
             <span className={styles.tech}>TypeScript</span>
             <span className={styles.tech}>Tailwind</span>
             <span className={styles.tech}>GraphQL</span>
-            <span className={styles.tech}>MongoDB</span>
-            <span className={styles.tech}>AWS</span>
+            <span className={styles.tech}>Claude Code</span>
+            <span className={styles.tech}>Vercel</span>
           </div>
         </header>
 
@@ -50,7 +50,10 @@ export const Layout: React.FC = () => {
             </p>
             <div className={styles.recommendationsGrid}>
               {portfolioRecommendations.map(recommendation => (
-                <RecommendationCard key={recommendation.id} recommendation={recommendation} />
+                <RecommendationCard
+                  key={recommendation.id}
+                  recommendation={recommendation}
+                />
               ))}
             </div>
           </section>
@@ -74,7 +77,7 @@ export const Layout: React.FC = () => {
             <div className={styles.codeSection}>
               <h3 className={styles.codeTitle}>Buffer Design Patterns</h3>
               <pre className={styles.codeBlock}>
-{`// Buffer-inspired component styling
+                {`// Buffer-inspired component styling
 const BufferCard = ({ children, rounded="md" }) => {
   return (
     <div className="bg-white rounded-md border border-gray-200 shadow-sm">
@@ -86,10 +89,10 @@ const BufferCard = ({ children, rounded="md" }) => {
 // Modern React patterns
 const [editorContent, setEditorContent] = useState('');`}
               </pre>
-              
+
               <h3 className={styles.codeTitle}>Production Ready</h3>
               <pre className={styles.codeBlock}>
-{`// GraphQL + Apollo ready
+                {`// GraphQL + Apollo ready
 const { data } = useQuery(GET_RECOMMENDATIONS);
 
 // TypeScript throughout
@@ -105,7 +108,7 @@ interface Recommendation {
 
         <footer className={styles.footer}>
           <h2 className={styles.footerTitle}>Why This Approach Works</h2>
-          
+
           <div className={styles.benefits}>
             <div className={styles.benefit}>
               <div className={styles.benefitIcon}>🎯</div>
@@ -114,7 +117,7 @@ interface Recommendation {
                 <p>Uses your actual tech stack and design patterns</p>
               </div>
             </div>
-            
+
             <div className={styles.benefit}>
               <div className={styles.benefitIcon}>🔍</div>
               <div>
@@ -122,7 +125,7 @@ interface Recommendation {
                 <p>Shows understanding of your design system evolution</p>
               </div>
             </div>
-            
+
             <div className={styles.benefit}>
               <div className={styles.benefitIcon}>🚀</div>
               <div>
@@ -131,9 +134,9 @@ interface Recommendation {
               </div>
             </div>
           </div>
-          
+
           <div className={styles.actions}>
-            <a 
+            <a
               href="https://carolinapowers-portfolio.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
@@ -142,7 +145,7 @@ interface Recommendation {
               <Code size={16} />
               View Live Portfolio
             </a>
-            <a 
+            <a
               href="https://calendly.com/your-calendar-link"
               target="_blank"
               rel="noopener noreferrer"

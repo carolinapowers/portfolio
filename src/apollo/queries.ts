@@ -28,7 +28,12 @@ export const GET_STICKY_NOTES = gql`
 `;
 
 export const CREATE_STICKY_NOTE = gql`
-  mutation CreateStickyNote($text: String!, $color: String!, $x: Float!, $y: Float!) {
+  mutation CreateStickyNote(
+    $text: String!
+    $color: String!
+    $x: Float!
+    $y: Float!
+  ) {
     createStickyNote(text: $text, color: $color, x: $x, y: $y) {
       id
       text

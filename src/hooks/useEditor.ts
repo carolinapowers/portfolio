@@ -20,14 +20,17 @@ export function useEditor() {
     underline: false,
   });
 
-  const updateContent = useCallback((newContent: string) => {
-    setContent(newContent);
-    setCharacterCount(newContent.length);
-  }, [setContent]);
+  const updateContent = useCallback(
+    (newContent: string) => {
+      setContent(newContent);
+      setCharacterCount(newContent.length);
+    },
+    [setContent]
+  );
 
   const formatText = useCallback((command: string) => {
     document.execCommand(command, false);
-    
+
     // Update format states
     setFormatStates({
       bold: document.queryCommandState('bold'),
@@ -41,7 +44,7 @@ export function useEditor() {
     if (selection && selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
       const selectedText = range.toString();
-      
+
       if (selectedText) {
         document.execCommand('createLink', false, url);
       }
@@ -73,7 +76,8 @@ export function useEditor() {
     };
 
     document.addEventListener('selectionchange', handleSelectionChange);
-    return () => document.removeEventListener('selectionchange', handleSelectionChange);
+    return () =>
+      document.removeEventListener('selectionchange', handleSelectionChange);
   }, []);
 
   return {

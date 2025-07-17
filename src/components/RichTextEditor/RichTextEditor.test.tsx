@@ -66,6 +66,9 @@ describe('RichTextEditor Component', () => {
   it('displays placeholder text', () => {
     render(<RichTextEditor />);
     const editor = screen.getByRole('textbox');
-    expect(editor).toHaveAttribute('data-placeholder', 'Start brainstorming your thoughts...');
+    expect(editor).toHaveAttribute(
+      'data-placeholder',
+      'Start brainstorming your thoughts...'
+    );
   });
 });

@@ -1,12 +1,17 @@
 .brainstormContainer {
   position: relative;
   min-height: 400px;
-  background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%), 
-              linear-gradient(-45deg, #f8f9fa 25%, transparent 25%), 
-              linear-gradient(45deg, transparent 75%, #f8f9fa 75%), 
-              linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+  background:
+    linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
   background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0px;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   overflow: hidden;
@@ -165,9 +170,21 @@
   border-color: var(--color-primary);
 }
 
-.colorOption.yellow { background: #ffd700; }
-.colorOption.pink { background: #ffb6c1; }
-.colorOption.green { background: #98fb98; }
-.colorOption.blue { background: #87ceeb; }
-.colorOption.purple { background: #dda0dd; }
-.colorOption.orange { background: #ffa500; }
+.colorOption.yellow {
+  background: #ffd700;
+}
+.colorOption.pink {
+  background: #ffb6c1;
+}
+.colorOption.green {
+  background: #98fb98;
+}
+.colorOption.blue {
+  background: #87ceeb;
+}
+.colorOption.purple {
+  background: #dda0dd;
+}
+.colorOption.orange {
+  background: #ffa500;
+}

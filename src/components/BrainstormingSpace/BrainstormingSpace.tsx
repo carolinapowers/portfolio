@@ -1,7 +1,12 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Plus, X } from 'lucide-react';
-import { GET_STICKY_NOTES, CREATE_STICKY_NOTE, UPDATE_STICKY_NOTE, DELETE_STICKY_NOTE } from '../../apollo/queries';
+import {
+  GET_STICKY_NOTES,
+  CREATE_STICKY_NOTE,
+  UPDATE_STICKY_NOTE,
+  DELETE_STICKY_NOTE,
+} from '../../apollo/queries';
 import styles from './BrainstormingSpace.module.css';
 
 interface StickyNote {
@@ -35,68 +40,80 @@ export const BrainstormingSpace: React.FC = () => {
   const [updateNote] = useMutation(UPDATE_STICKY_NOTE);
   const [deleteNote] = useMutation(DELETE_STICKY_NOTE);
 
-  const stickyNotes: StickyNote[] = useMemo(() => data?.stickyNotes || [], [data?.stickyNotes]);
+  const stickyNotes: StickyNote[] = useMemo(
+    () => data?.stickyNotes || [],
+    [data?.stickyNotes]
+  );
 
-  const handleContainerClick = useCallback(async (e: React.MouseEvent) => {
-    if (dragState.isDragging) return;
+  const handleContainerClick = useCallback(
+    async (e: React.MouseEvent) => {
+      if (dragState.isDragging) return;
 
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
 
-    const x = e.clientX - rect.left - 80; // Center the note
-    const y = e.clientY - rect.top - 60;
+      const x = e.clientX - rect.left - 80; // Center the note
+      const y = e.clientY - rect.top - 60;
 
-    try {
-      await createNote({
-        variables: {
-          text: 'New idea...',
-          color: selectedColor,
-          x,
-          y,
+      try {
+        await createNote({
+          variables: {
+            text: 'New idea...',
+            color: selectedColor,
+            x,
+            y,
+          },
+        });
+        refetch();
+      } catch (error) {
+        console.error('Error creating note:', error);
+      }
+    },
+    [createNote, selectedColor, dragState.isDragging, refetch]
+  );
+
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent, noteId: string) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      const note = stickyNotes.find(n => n.id === noteId);
+      if (!note) return;
+
+      setDragState({
+        isDragging: true,
+        noteId,
+        offset: {
+          x: e.clientX - rect.left - note.x,
+          y: e.clientY - rect.top - note.y,
         },
       });
-      refetch();
-    } catch (error) {
-      console.error('Error creating note:', error);
-    }
-  }, [createNote, selectedColor, dragState.isDragging, refetch]);
+    },
+    [stickyNotes]
+  );
 
-  const handleMouseDown = useCallback((e: React.MouseEvent, noteId: string) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!dragState.isDragging || !dragState.noteId) return;
 
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
 
-    const note = stickyNotes.find(n => n.id === noteId);
-    if (!note) return;
+      const x = e.clientX - rect.left - dragState.offset.x;
+      const y = e.clientY - rect.top - dragState.offset.y;
 
-    setDragState({
-      isDragging: true,
-      noteId,
-      offset: {
-        x: e.clientX - rect.left - note.x,
-        y: e.clientY - rect.top - note.y,
-      },
-    });
-  }, [stickyNotes]);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!dragState.isDragging || !dragState.noteId) return;
-
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const x = e.clientX - rect.left - dragState.offset.x;
-    const y = e.clientY - rect.top - dragState.offset.y;
-
-    // Update note position immediately for smooth dragging
-    const note = stickyNotes.find(n => n.id === dragState.noteId);
-    if (note) {
-      note.x = Math.max(0, Math.min(x, rect.width - 160));
-      note.y = Math.max(0, Math.min(y, rect.height - 120));
-    }
-  }, [dragState, stickyNotes]);
+      // Update note position immediately for smooth dragging
+      const note = stickyNotes.find(n => n.id === dragState.noteId);
+      if (note) {
+        note.x = Math.max(0, Math.min(x, rect.width - 160));
+        note.y = Math.max(0, Math.min(y, rect.height - 120));
+      }
+    },
+    [dragState, stickyNotes]
+  );
 
   const handleMouseUp = useCallback(async () => {
     if (!dragState.isDragging || !dragState.noteId) return;
@@ -125,35 +142,41 @@ export const BrainstormingSpace: React.FC = () => {
     });
   }, [dragState, stickyNotes, updateNote, refetch]);
 
-  const handleTextChange = useCallback(async (noteId: string, newText: string) => {
-    const note = stickyNotes.find(n => n.id === noteId);
-    if (note) {
+  const handleTextChange = useCallback(
+    async (noteId: string, newText: string) => {
+      const note = stickyNotes.find(n => n.id === noteId);
+      if (note) {
+        try {
+          await updateNote({
+            variables: {
+              id: noteId,
+              text: newText,
+              x: note.x,
+              y: note.y,
+            },
+          });
+          refetch();
+        } catch (error) {
+          console.error('Error updating note text:', error);
+        }
+      }
+    },
+    [stickyNotes, updateNote, refetch]
+  );
+
+  const handleDelete = useCallback(
+    async (noteId: string) => {
       try {
-        await updateNote({
-          variables: {
-            id: noteId,
-            text: newText,
-            x: note.x,
-            y: note.y,
-          },
+        await deleteNote({
+          variables: { id: noteId },
         });
         refetch();
       } catch (error) {
-        console.error('Error updating note text:', error);
+        console.error('Error deleting note:', error);
       }
-    }
-  }, [stickyNotes, updateNote, refetch]);
-
-  const handleDelete = useCallback(async (noteId: string) => {
-    try {
-      await deleteNote({
-        variables: { id: noteId },
-      });
-      refetch();
-    } catch (error) {
-      console.error('Error deleting note:', error);
-    }
-  }, [deleteNote, refetch]);
+    },
+    [deleteNote, refetch]
+  );
 
   const handleAddNoteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -175,10 +198,7 @@ export const BrainstormingSpace: React.FC = () => {
       onMouseLeave={handleMouseUp}
     >
       <div style={{ position: 'relative' }}>
-        <button
-          className={styles.addButton}
-          onClick={handleAddNoteClick}
-        >
+        <button className={styles.addButton} onClick={handleAddNoteClick}>
           <Plus size={16} />
           Add Note
         </button>
@@ -209,7 +229,7 @@ export const BrainstormingSpace: React.FC = () => {
             left: note.x,
             top: note.y,
           }}
-          onMouseDown={(e) => handleMouseDown(e, note.id)}
+          onMouseDown={e => handleMouseDown(e, note.id)}
         >
           <button
             className={styles.deleteButton}
@@ -219,7 +239,7 @@ export const BrainstormingSpace: React.FC = () => {
           </button>
           <textarea
             value={note.text}
-            onChange={(e) => handleTextChange(note.id, e.target.value)}
+            onChange={e => handleTextChange(note.id, e.target.value)}
             className={styles.stickyNote}
             style={{
               position: 'static',
@@ -232,7 +252,7 @@ export const BrainstormingSpace: React.FC = () => {
               padding: 0,
               cursor: dragState.isDragging ? 'grabbing' : 'text',
             }}
-            onMouseDown={(e) => e.stopPropagation()}
+            onMouseDown={e => e.stopPropagation()}
           />
         </div>
       ))}

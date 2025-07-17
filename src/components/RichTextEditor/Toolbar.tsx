@@ -108,7 +108,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 type="url"
                 placeholder="Enter URL..."
                 value={linkUrl}
-                onChange={(e) => setLinkUrl(e.target.value)}
+                onChange={e => setLinkUrl(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className={styles.linkInput}
               />

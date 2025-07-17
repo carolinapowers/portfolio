@@ -5,39 +5,45 @@ import styles from './RichTextEditor.module.css';
 
 export const RichTextEditor: React.FC = () => {
   const editorRef = useRef<HTMLDivElement>(null);
-  const { 
-    content, 
-    setContent, 
-    characterCount, 
-    formatStates, 
-    formatText, 
-    insertLink, 
-    clearFormatting 
+  const {
+    content,
+    setContent,
+    characterCount,
+    formatStates,
+    formatText,
+    insertLink,
+    clearFormatting,
   } = useEditor();
 
-  const handleInput = useCallback((e: React.FormEvent) => {
-    const text = e.currentTarget.textContent || '';
-    setContent(text);
-  }, [setContent]);
+  const handleInput = useCallback(
+    (e: React.FormEvent) => {
+      const text = e.currentTarget.textContent || '';
+      setContent(text);
+    },
+    [setContent]
+  );
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.ctrlKey || e.metaKey) {
-      switch (e.key) {
-        case 'b':
-          e.preventDefault();
-          formatText('bold');
-          break;
-        case 'i':
-          e.preventDefault();
-          formatText('italic');
-          break;
-        case 'u':
-          e.preventDefault();
-          formatText('underline');
-          break;
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case 'b':
+            e.preventDefault();
+            formatText('bold');
+            break;
+          case 'i':
+            e.preventDefault();
+            formatText('italic');
+            break;
+          case 'u':
+            e.preventDefault();
+            formatText('underline');
+            break;
+        }
       }
-    }
-  }, [formatText]);
+    },
+    [formatText]
+  );
 
   const handlePaste = useCallback((e: React.ClipboardEvent) => {
     e.preventDefault();
@@ -47,13 +53,18 @@ export const RichTextEditor: React.FC = () => {
 
   const getCharacterCountClass = () => {
     if (characterCount > 280) return `${styles.characterCount} ${styles.error}`;
-    if (characterCount > 250) return `${styles.characterCount} ${styles.warning}`;
+    if (characterCount > 250)
+      return `${styles.characterCount} ${styles.warning}`;
     return styles.characterCount;
   };
 
   // Initialize content in editor
   useEffect(() => {
-    if (editorRef.current && content && editorRef.current.textContent !== content) {
+    if (
+      editorRef.current &&
+      content &&
+      editorRef.current.textContent !== content
+    ) {
       editorRef.current.textContent = content;
     }
   }, [content]);

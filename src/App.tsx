@@ -1,8 +1,8 @@
-import { Layout } from './components/Layout/Layout'
-import './styles/globals.css'
+import { Layout } from './components/Layout/Layout';
+import './styles/globals.css';
 
 function App() {
-  return <Layout />
+  return <Layout />;
 }
 
-export default App
+export default App;

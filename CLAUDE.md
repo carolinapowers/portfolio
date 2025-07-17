@@ -158,34 +158,40 @@ npm run dev
 
 ```tsx
 // src/components/RichTextEditor/RichTextEditor.tsx
-import React, { useRef, useCallback, useEffect } from 'react';
-import { useEditor } from '../../hooks/useEditor';
-import { Toolbar } from './Toolbar';
-import styles from './RichTextEditor.module.css';
+import React, { useRef, useCallback, useEffect } from "react";
+import { useEditor } from "../../hooks/useEditor";
+import { Toolbar } from "./Toolbar";
+import styles from "./RichTextEditor.module.css";
 
 export const RichTextEditor: React.FC = () => {
   const editorRef = useRef<HTMLDivElement>(null);
   const { content, setContent, formatText, characterCount } = useEditor();
 
-  const handleInput = useCallback((e: React.FormEvent) => {
-    const text = e.currentTarget.textContent || '';
-    setContent(text);
-  }, [setContent]);
+  const handleInput = useCallback(
+    (e: React.FormEvent) => {
+      const text = e.currentTarget.textContent || "";
+      setContent(text);
+    },
+    [setContent],
+  );
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.ctrlKey || e.metaKey) {
-      switch (e.key) {
-        case 'b':
-          e.preventDefault();
-          formatText('bold');
-          break;
-        case 'i':
-          e.preventDefault();
-          formatText('italic');
-          break;
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case "b":
+            e.preventDefault();
+            formatText("bold");
+            break;
+          case "i":
+            e.preventDefault();
+            formatText("italic");
+            break;
+        }
       }
-    }
-  }, [formatText]);
+    },
+    [formatText],
+  );
 
   return (
     <div className={styles.editor}>
@@ -199,7 +205,7 @@ export const RichTextEditor: React.FC = () => {
         placeholder="Start brainstorming your thoughts..."
       />
       <div className={styles.footer}>
-        <span className={characterCount > 250 ? styles.warning : ''}>
+        <span className={characterCount > 250 ? styles.warning : ""}>
           {characterCount}/280 characters
         </span>
         <span className={styles.saved}>✓ Auto-saved</span>
@@ -207,170 +213,173 @@ export const RichTextEditor: React.FC = () => {
     </div>
   );
 };
-
 ```
 
 ### Example Component Test (Colocated)
 
 ```tsx
 // src/components/RichTextEditor/RichTextEditor.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { RichTextEditor } from './RichTextEditor';
+import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { RichTextEditor } from "./RichTextEditor";
 
-describe('RichTextEditor', () => {
-  it('renders with placeholder text', () => {
+describe("RichTextEditor", () => {
+  it("renders with placeholder text", () => {
     render(<RichTextEditor />);
-    expect(screen.getByText('Start brainstorming your thoughts...')).toBeInTheDocument();
+    expect(
+      screen.getByText("Start brainstorming your thoughts..."),
+    ).toBeInTheDocument();
   });
 
-  it('updates character count when typing', async () => {
+  it("updates character count when typing", async () => {
     const user = userEvent.setup();
     render(<RichTextEditor />);
 
-    const editor = screen.getByRole('textbox');
-    await user.type(editor, 'Hello world');
+    const editor = screen.getByRole("textbox");
+    await user.type(editor, "Hello world");
 
-    expect(screen.getByText('11/280 characters')).toBeInTheDocument();
+    expect(screen.getByText("11/280 characters")).toBeInTheDocument();
   });
 
-  it('shows warning when character limit exceeded', async () => {
+  it("shows warning when character limit exceeded", async () => {
     const user = userEvent.setup();
     render(<RichTextEditor />);
 
-    const editor = screen.getByRole('textbox');
-    const longText = 'a'.repeat(281);
+    const editor = screen.getByRole("textbox");
+    const longText = "a".repeat(281);
     await user.type(editor, longText);
 
-    const charCount = screen.getByText('281/280 characters');
-    expect(charCount).toHaveClass('warning');
+    const charCount = screen.getByText("281/280 characters");
+    expect(charCount).toHaveClass("warning");
   });
 
-  it('handles keyboard shortcuts', async () => {
+  it("handles keyboard shortcuts", async () => {
     const user = userEvent.setup();
     render(<RichTextEditor />);
 
-    const editor = screen.getByRole('textbox');
+    const editor = screen.getByRole("textbox");
     await user.click(editor);
 
     // Test Ctrl+B for bold
-    await user.keyboard('{Control>}b{/Control}');
-    expect(screen.getByLabelText('Bold')).toHaveAttribute('aria-pressed', 'true');
+    await user.keyboard("{Control>}b{/Control}");
+    expect(screen.getByLabelText("Bold")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
   });
 
-  it('saves content automatically', async () => {
+  it("saves content automatically", async () => {
     render(<RichTextEditor />);
-    expect(screen.getByText('✓ Auto-saved')).toBeInTheDocument();
+    expect(screen.getByText("✓ Auto-saved")).toBeInTheDocument();
   });
 });
-
 ```
 
 ### Example Hook Test (Colocated)
 
 ```tsx
 // src/hooks/useLocalStorage.test.ts
-import { renderHook, act } from '@testing-library/react';
-import { useLocalStorage } from './useLocalStorage';
+import { renderHook, act } from "@testing-library/react";
+import { useLocalStorage } from "./useLocalStorage";
 
-describe('useLocalStorage', () => {
+describe("useLocalStorage", () => {
   beforeEach(() => {
     localStorage.clear();
   });
 
-  it('returns initial value when localStorage is empty', () => {
-    const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
-    expect(result.current[0]).toBe('initial');
+  it("returns initial value when localStorage is empty", () => {
+    const { result } = renderHook(() => useLocalStorage("test-key", "initial"));
+    expect(result.current[0]).toBe("initial");
   });
 
-  it('updates localStorage when value changes', () => {
-    const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
+  it("updates localStorage when value changes", () => {
+    const { result } = renderHook(() => useLocalStorage("test-key", "initial"));
 
     act(() => {
-      result.current[1]('updated');
+      result.current[1]("updated");
     });
 
-    expect(result.current[0]).toBe('updated');
-    expect(localStorage.getItem('test-key')).toBe('"updated"');
+    expect(result.current[0]).toBe("updated");
+    expect(localStorage.getItem("test-key")).toBe('"updated"');
   });
 
-  it('retrieves value from localStorage on mount', () => {
-    localStorage.setItem('test-key', '"stored-value"');
+  it("retrieves value from localStorage on mount", () => {
+    localStorage.setItem("test-key", '"stored-value"');
 
-    const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
-    expect(result.current[0]).toBe('stored-value');
+    const { result } = renderHook(() => useLocalStorage("test-key", "initial"));
+    expect(result.current[0]).toBe("stored-value");
   });
 
-  it('handles localStorage errors gracefully', () => {
+  it("handles localStorage errors gracefully", () => {
     // Mock localStorage to throw error
-    const mockSetItem = vi.spyOn(Storage.prototype, 'setItem');
+    const mockSetItem = vi.spyOn(Storage.prototype, "setItem");
     mockSetItem.mockImplementation(() => {
-      throw new Error('localStorage error');
+      throw new Error("localStorage error");
     });
 
-    const { result } = renderHook(() => useLocalStorage('test-key', 'initial'));
+    const { result } = renderHook(() => useLocalStorage("test-key", "initial"));
 
     act(() => {
-      result.current[1]('new-value');
+      result.current[1]("new-value");
     });
 
     // Should not throw error
-    expect(result.current[0]).toBe('new-value');
+    expect(result.current[0]).toBe("new-value");
 
     mockSetItem.mockRestore();
   });
 });
-
 ```
 
 ### Example Apollo Component Test
 
 ```tsx
 // src/components/RecommendationCard/RecommendationCard.test.tsx
-import { render, screen } from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing';
-import { RecommendationCard } from './RecommendationCard';
+import { render, screen } from "@testing-library/react";
+import { MockedProvider } from "@apollo/client/testing";
+import { RecommendationCard } from "./RecommendationCard";
 
 const mockRecommendation = {
-  id: '1',
-  name: 'John Doe',
-  title: 'Senior Engineer',
-  company: 'TechCorp',
-  avatar: 'JD',
-  text: 'Great developer with excellent skills.',
-  skills: ['React', 'TypeScript', 'GraphQL'],
+  id: "1",
+  name: "John Doe",
+  title: "Senior Engineer",
+  company: "TechCorp",
+  avatar: "JD",
+  text: "Great developer with excellent skills.",
+  skills: ["React", "TypeScript", "GraphQL"],
 };
 
-describe('RecommendationCard', () => {
-  it('renders recommendation data correctly', () => {
+describe("RecommendationCard", () => {
+  it("renders recommendation data correctly", () => {
     render(
       <MockedProvider>
         <RecommendationCard recommendation={mockRecommendation} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
-    expect(screen.getByText('Senior Engineer @ TechCorp')).toBeInTheDocument();
-    expect(screen.getByText('Great developer with excellent skills.')).toBeInTheDocument();
-    expect(screen.getByText('JD')).toBeInTheDocument();
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
+    expect(screen.getByText("Senior Engineer @ TechCorp")).toBeInTheDocument();
+    expect(
+      screen.getByText("Great developer with excellent skills."),
+    ).toBeInTheDocument();
+    expect(screen.getByText("JD")).toBeInTheDocument();
   });
 
-  it('renders skill tags', () => {
+  it("renders skill tags", () => {
     render(
       <MockedProvider>
         <RecommendationCard recommendation={mockRecommendation} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('GraphQL')).toBeInTheDocument();
+    expect(screen.getByText("React")).toBeInTheDocument();
+    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("GraphQL")).toBeInTheDocument();
   });
 });
-
 ```
 
-```
+````
 
 ### Simple Apollo Setup
 ```typescript
@@ -405,13 +414,13 @@ client.writeQuery({
   },
 });
 
-```
+````
 
 ### Local Storage Integration
 
 ```tsx
 // src/hooks/useLocalStorage.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -425,37 +434,37 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   const setValue = (value: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error('Error saving to localStorage:', error);
+      console.error("Error saving to localStorage:", error);
     }
   };
 
   return [storedValue, setValue] as const;
 }
-
 ```
 
 ## Vite Configuration (Simple)
 
 ```tsx
 // vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   css: {
     modules: {
-      localsConvention: 'camelCase',
+      localsConvention: "camelCase",
     },
   },
   server: {
@@ -463,51 +472,48 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     sourcemap: true,
   },
-})
-
+});
 ```
 
 ## Vitest Configuration
 
 ```tsx
 // vitest.config.ts
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
     globals: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
-})
-
+});
 ```
 
 ## Test Setup
 
 ```tsx
 // src/test/setup.ts
-import { expect, afterEach } from 'vitest'
-import { cleanup } from '@testing-library/react'
-import * as matchers from '@testing-library/jest-dom/matchers'
+import { expect, afterEach } from "vitest";
+import { cleanup } from "@testing-library/react";
+import * as matchers from "@testing-library/jest-dom/matchers";
 
-expect.extend(matchers)
+expect.extend(matchers);
 
 afterEach(() => {
-  cleanup()
-})
-
+  cleanup();
+});
 ```
 
 ## CSS Modules Setup
@@ -517,11 +523,10 @@ afterEach(() => {
 /// <reference types="vite/client" />
 /// <reference types="vitest/globals" />
 
-declare module '*.module.css' {
+declare module "*.module.css" {
   const classes: { [key: string]: string };
   export default classes;
 }
-
 ```
 
 ## Quick Commands
@@ -564,7 +569,6 @@ npm run test:e2e         # Basic Playwright tests
     "lint:fix": "eslint . --ext ts,tsx --fix"
   }
 }
-
 ```
 
 ## Time Estimation (Realistic with Vite + Testing)
@@ -612,6 +616,7 @@ npm run test:e2e         # Basic Playwright tests
 **MANDATORY**: All React Testing Library tests MUST follow the accessibility-focused query priority guide:
 
 ### **Priority 1: Accessible to Everyone**
+
 1. `getByRole()` - Primary choice for interactive elements
 2. `getByLabelText()` - Form elements with labels
 3. `getByPlaceholderText()` - Form inputs with placeholders
@@ -619,42 +624,73 @@ npm run test:e2e         # Basic Playwright tests
 5. `getByDisplayValue()` - Form elements with current values
 
 ### **Priority 2: Semantic Queries**
+
 6. `getByAltText()` - Images with alt text
 7. `getByTitle()` - Elements with title attributes
 
 ### **Priority 3: Test IDs (Last Resort)**
+
 8. `getByTestId()` - Only when semantic queries aren't possible
 
 ### **Examples of Good vs Bad Queries**
 
 ```typescript
 // ❌ BAD: Using test IDs unnecessarily
-expect(screen.getByTestId('submit-button')).toBeInTheDocument();
+expect(screen.getByTestId("submit-button")).toBeInTheDocument();
 
 // ✅ GOOD: Using semantic role
-expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();
+expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
 
 // ❌ BAD: Generic text query
-expect(screen.getByText('Email')).toBeInTheDocument();
+expect(screen.getByText("Email")).toBeInTheDocument();
 
 // ✅ GOOD: Accessible form query
-expect(screen.getByLabelText('Email address')).toBeInTheDocument();
+expect(screen.getByLabelText("Email address")).toBeInTheDocument();
 
 // ❌ BAD: CSS selector or class name
-expect(screen.getByClassName('nav-link')).toBeInTheDocument();
+expect(screen.getByClassName("nav-link")).toBeInTheDocument();
 
 // ✅ GOOD: Navigation role and accessible name
-expect(screen.getByRole('navigation')).toContain(
-  screen.getByRole('link', { name: 'Home' })
+expect(screen.getByRole("navigation")).toContain(
+  screen.getByRole("link", { name: "Home" }),
 );
 ```
 
 ### **Testing Benefits**
+
 - Tests reflect how users actually interact with the app
 - Catches accessibility issues during development
 - More robust tests that don't break with CSS changes
 - Encourages proper semantic HTML and ARIA usage
 
 **All test failures due to inaccessible markup should be fixed by improving the component accessibility, not by using worse queries.**
+
+## Slash Commands
+
+### `/rtl-queries` - React Testing Library Query Priority Guide
+
+Enforce accessibility-first testing approach with proper query selection:
+
+**Priority 1: Accessible to Everyone (Use First)**
+
+1. `getByRole()` - Interactive elements, landmarks, headings
+2. `getByLabelText()` - Form controls with associated labels
+3. `getByPlaceholderText()` - Form inputs with placeholder text
+4. `getByText()` - Non-interactive text content, buttons with text
+5. `getByDisplayValue()` - Form inputs/textareas with current values
+
+**Priority 2: Semantic Queries (Use When Priority 1 Unavailable)** 6. `getByAltText()` - Images and areas with alt attributes 7. `getByTitle()` - Elements with title attributes
+
+**Priority 3: Test IDs (Last Resort Only)** 8. `getByTestId()` - When no semantic query is possible
+
+**Quick Decision Tree:**
+
+- Interactive element? → `getByRole()`
+- Form field? → `getByLabelText()` or `getByPlaceholderText()`
+- Text content? → `getByText()`
+- Image? → `getByAltText()`
+- Nothing else works? → `getByTestId()` (but consider improving markup first)
+
+**Remember:** Tests should reflect how users interact with your app, not implementation details.
 
 This approach is much more realistic for a same-day build while still demonstrating the technical skills Buffer is looking for. The focus is on quality implementation rather than over-engineering.

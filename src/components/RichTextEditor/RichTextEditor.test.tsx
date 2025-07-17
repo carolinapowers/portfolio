@@ -68,7 +68,7 @@ describe('RichTextEditor Component', () => {
     const editor = screen.getByRole('textbox');
     expect(editor).toHaveAttribute(
       'data-placeholder',
-      'Start brainstorming your thoughts...'
+      '✨ Try the AI Assistant button for inspiration!'
     );
   });
 });

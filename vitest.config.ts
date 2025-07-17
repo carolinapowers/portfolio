@@ -5,7 +5,8 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   test: {
-    include: ['**/*.{spec,test}.?(c|m)[jt]s?(x)'],
+    include: ['src/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
+    exclude: ['tests/e2e/**'],
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     globals: true,

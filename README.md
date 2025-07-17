@@ -20,12 +20,11 @@ This interactive portfolio demonstrates technical skills specifically relevant t
 
 ## 🚀 Live Demo
 
-**[View Live Portfolio →](https://portfolio-cr7dlzyaa-carolinapowers-projects.vercel.app)**
+**[View Live Portfolio →](https://carolinapowers-portfolio.vercel.app/)**
 
 ### Key Features Demonstrated
 
 - 📝 **Rich Text Editing** - Custom contentEditable with formatting toolbar
-- 🎨 **Interactive UI** - Drag & drop sticky notes with color selection
 - 💾 **Data Persistence** - LocalStorage integration for user content
 - 🔄 **Real-time Updates** - Apollo Client with GraphQL mutations
 - 📱 **Responsive Design** - Mobile-first approach with modern CSS
@@ -34,6 +33,7 @@ This interactive portfolio demonstrates technical skills specifically relevant t
 ## 🛠️ Technical Stack
 
 ### Core Technologies
+
 - **React 18** - Modern React with hooks and functional components
 - **TypeScript** - Full type safety throughout the application
 - **Vite** - Lightning-fast build tool and development server
@@ -41,12 +41,14 @@ This interactive portfolio demonstrates technical skills specifically relevant t
 - **CSS Modules** - Component-scoped styling with CSS variables
 
 ### Development Tools
+
 - **ESLint** - Code quality and consistency
 - **Vitest** - Unit testing framework
 - **React Testing Library** - Component testing utilities
 - **Lucide React** - Modern icon library
 
 ### Architecture Highlights
+
 - **Component-based** - Modular, reusable React components
 - **Type-safe** - Comprehensive TypeScript interfaces
 - **Performant** - Optimized bundle size and lazy loading
@@ -81,23 +83,27 @@ interactive-portfolio/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm or yarn package manager
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/your-username/portfolio.git
+   git clone https://github.com/carolinapowers/portfolio.git
    cd portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -129,20 +135,15 @@ npm run test:coverage    # Generate coverage report
 ## 💡 Key Features Deep Dive
 
 ### Rich Text Editor
+
 - **Custom Implementation** - Built with contentEditable API
 - **Formatting Toolbar** - Bold, italic, underline, and link insertion
 - **Keyboard Shortcuts** - Standard shortcuts (Ctrl+B, Ctrl+I, etc.)
 - **Character Counting** - Visual feedback with warning states
 - **Auto-save** - Automatic persistence to localStorage
 
-### Interactive Brainstorming
-- **Drag & Drop** - Smooth interaction with sticky notes
-- **Color Selection** - Multiple color themes for organization
-- **Real-time Updates** - Apollo Client mutations for data sync
-- **Persistence** - Notes saved across browser sessions
-- **Responsive** - Touch-friendly on mobile devices
-
 ### LinkedIn Recommendations
+
 - **Real Testimonials** - 16 genuine LinkedIn recommendations
 - **Skill Highlighting** - Technical skills emphasized with styling
 - **Responsive Cards** - Optimized layout for different screen sizes
@@ -151,13 +152,16 @@ npm run test:coverage    # Generate coverage report
 ## 🎨 Design Philosophy
 
 ### Buffer-Inspired Design
+
 The interface draws inspiration from Buffer's clean, professional aesthetic:
+
 - **Consistent Typography** - Clean, readable font hierarchy
 - **Purposeful Color Palette** - Professional blues with accent colors
 - **Intuitive Interactions** - Familiar patterns for content creators
 - **Responsive Grid** - Flexible layout that works on all devices
 
 ### Technical Decisions
+
 - **CSS Modules** - Scoped styling prevents conflicts
 - **CSS Variables** - Consistent theming system
 - **Component Composition** - Reusable, testable components
@@ -166,12 +170,14 @@ The interface draws inspiration from Buffer's clean, professional aesthetic:
 ## 📊 Performance Metrics
 
 ### Bundle Analysis
+
 - **Initial Bundle Size** - 422KB (129KB gzipped)
 - **First Contentful Paint** - <1.5s
 - **Largest Contentful Paint** - <2.5s
 - **Time to Interactive** - <3s
 
 ### Lighthouse Scores
+
 - **Performance** - 95/100
 - **Accessibility** - 100/100
 - **Best Practices** - 100/100
@@ -180,12 +186,14 @@ The interface draws inspiration from Buffer's clean, professional aesthetic:
 ## 🧪 Testing Strategy
 
 ### Unit Testing
+
 - **React Testing Library** - Component behavior testing
 - **Vitest** - Fast, Vite-native test runner
 - **User-Centric Tests** - Focus on user interactions
 - **Mock Data** - Consistent test environments
 
 ### Test Coverage
+
 - **Components** - All interactive components tested
 - **Hooks** - Custom hooks with edge cases
 - **Utilities** - Helper functions and utilities
@@ -194,14 +202,17 @@ The interface draws inspiration from Buffer's clean, professional aesthetic:
 ## 🚀 Deployment
 
 ### Vercel Deployment
+
 The application is deployed on Vercel with automatic deployments:
 
 1. **Production Build**
+
    ```bash
    npm run build
    ```
 
 2. **Deploy to Vercel**
+
    ```bash
    vercel --prod
    ```
@@ -212,9 +223,11 @@ The application is deployed on Vercel with automatic deployments:
    ```
 
 ### Environment Variables
+
 No environment variables required for basic functionality.
 
 ### Build Optimizations
+
 - **Tree Shaking** - Unused code elimination
 - **Code Splitting** - Dynamic imports for optimal loading
 - **Asset Optimization** - Compressed images and fonts
@@ -223,6 +236,7 @@ No environment variables required for basic functionality.
 ## 🔄 Development Workflow
 
 ### Git Workflow
+
 ```bash
 # Feature development
 git checkout -b feature/new-feature
@@ -234,6 +248,7 @@ git push origin feature/new-feature
 ```
 
 ### Code Quality
+
 - **Pre-commit Hooks** - Automatic linting and formatting
 - **TypeScript Strict Mode** - Maximum type safety
 - **ESLint Configuration** - Consistent code style
@@ -242,6 +257,7 @@ git push origin feature/new-feature
 ## 📝 API Documentation
 
 ### GraphQL Schema
+
 ```typescript
 type Recommendation {
   id: ID!
@@ -266,21 +282,23 @@ type StickyNote {
 ```
 
 ### Local Storage Schema
+
 ```typescript
 interface EditorContent {
-  content: string
-  timestamp: number
+  content: string;
+  timestamp: number;
 }
 
 interface BrainstormNotes {
-  notes: StickyNote[]
-  lastUpdated: number
+  notes: StickyNote[];
+  lastUpdated: number;
 }
 ```
 
 ## 🎯 Buffer-Specific Skills Demonstrated
 
 ### Technical Alignment
+
 - **React Expertise** - Modern patterns and best practices
 - **TypeScript Proficiency** - Comprehensive type safety
 - **GraphQL Integration** - Apollo Client setup and usage
@@ -288,6 +306,7 @@ interface BrainstormNotes {
 - **Performance Optimization** - Bundle size and runtime efficiency
 
 ### Content Creation Focus
+
 - **Rich Text Editing** - Core functionality for social media tools
 - **User Experience** - Intuitive interactions for content creators
 - **Real-time Collaboration** - Foundation for team features
@@ -296,7 +315,16 @@ interface BrainstormNotes {
 
 ## 🔮 Future Enhancements
 
+### Interactive Brainstorming
+
+- **Drag & Drop** - Smooth interaction with sticky notes
+- **Color Selection** - Multiple color themes for organization
+- **Real-time Updates** - Apollo Client mutations for data sync
+- **Persistence** - Notes saved across browser sessions
+- **Responsive** - Touch-friendly on mobile devices
+
 ### Potential Features
+
 - **Real-time Collaboration** - Multi-user editing capabilities
 - **Advanced Formatting** - Lists, tables, and media embedding
 - **Export Functionality** - PDF, HTML, and Markdown export
@@ -304,6 +332,7 @@ interface BrainstormNotes {
 - **Integration APIs** - Connect with social media platforms
 
 ### Technical Improvements
+
 - **Service Worker** - Offline functionality
 - **WebRTC** - Real-time collaboration
 - **Progressive Web App** - Native app-like experience
@@ -313,6 +342,7 @@ interface BrainstormNotes {
 ## 🤝 Contributing
 
 ### Development Setup
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -320,6 +350,7 @@ interface BrainstormNotes {
 5. Submit a pull request
 
 ### Code Style
+
 - Follow existing TypeScript conventions
 - Use descriptive variable names
 - Add JSDoc comments for complex functions
@@ -339,11 +370,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 📞 Contact
 
 **Carolina Powers**
-- **Portfolio** - [Live Demo](https://your-portfolio-url.vercel.app)
-- **LinkedIn** - [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
-- **Email** - your.email@example.com
-- **GitHub** - [Your GitHub Profile](https://github.com/your-username)
+
+- **Portfolio** - [Live Demo](https://carolinapowers-portfolio.vercel.app/)
+- **LinkedIn** - [Your LinkedIn Profile](https://www.linkedin.com/in/carolina-p-powers/)
+- **GitHub** - [Your GitHub Profile](https://github.com/carolinapowers)
 
 ---
 
-*Built with ❤️ for Buffer's Content Creation Team*
+_Built with ❤️ for Buffer's Content Creation Team_

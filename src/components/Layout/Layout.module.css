@@ -82,6 +82,30 @@
   font-size: var(--font-size-base);
 }
 
+.recommendationsIntro {
+  margin-bottom: var(--spacing-lg);
+}
+
+.sectionNote {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.linkedinLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.linkedinLink:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
 .recommendationsGrid {
   display: grid;
   gap: var(--spacing-md);

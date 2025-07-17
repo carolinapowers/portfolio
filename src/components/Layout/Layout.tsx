@@ -1,11 +1,9 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { Edit, Users, Code } from 'lucide-react';
+import { Edit, Code } from 'lucide-react';
 import { client } from '../../apollo/client';
 import { RichTextEditor } from '../RichTextEditor/RichTextEditor';
-import { RecommendationCard } from '../RecommendationCard/RecommendationCard';
-
-import { portfolioRecommendations } from '../../data/recommendations';
+import { RecommendationsSection } from './RecommendationsSection';
 import styles from './Layout.module.css';
 
 export const Layout: React.FC = () => {
@@ -13,10 +11,8 @@ export const Layout: React.FC = () => {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Buffer Content Creation Experience</h1>
-          <p className={styles.subtitle}>
-            Senior Product Frontend Engineer Portfolio
-          </p>
+          <h1 className={styles.title}>Interactive Portfolio</h1>
+          <p className={styles.subtitle}>Senior Product Frontend Engineer</p>
           <p className={styles.description}>
             Built with Buffer-inspired design patterns + modern React
           </p>
@@ -42,23 +38,7 @@ export const Layout: React.FC = () => {
             <RichTextEditor />
           </section>
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              <Users className={styles.sectionIcon} size={20} />
-              LinkedIn Recommendations
-            </h2>
-            <p className={styles.sectionDescription}>
-              Actual testimonials from colleagues
-            </p>
-            <div className={styles.recommendationsGrid}>
-              {portfolioRecommendations.map(recommendation => (
-                <RecommendationCard
-                  key={recommendation.id}
-                  recommendation={recommendation}
-                />
-              ))}
-            </div>
-          </section>
+          <RecommendationsSection />
 
           {/* <section className={styles.section}>
             <h2 className={styles.sectionTitle}>

@@ -8,8 +8,11 @@ export const GET_RECOMMENDATIONS = gql`
       title
       company
       avatar
-      text
+      summary
+      content
       skills
+      date
+      relationship
     }
   }
 `;

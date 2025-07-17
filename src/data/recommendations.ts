@@ -15,7 +15,7 @@ export const recommendations: readonly Recommendation[] = [
   {
     id: '1',
     name: 'Noelle Burton',
-    title: 'Intern',
+    title: 'BYU',
     company: 'Podium',
     avatar: 'NB',
     summary:

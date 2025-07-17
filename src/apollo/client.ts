@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { recommendations } from '../data/recommendations';
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -9,8 +10,11 @@ export const client = new ApolloClient({
       title: String!
       company: String!
       avatar: String!
-      text: String!
+      summary: String!
+      content: String!
       skills: [String!]!
+      date: String!
+      relationship: String!
     }
 
     type StickyNote {
@@ -46,8 +50,8 @@ export const client = new ApolloClient({
   resolvers: {
     Query: {
       recommendations: () => {
-        // This will be populated with actual LinkedIn data later
-        return [];
+        // Real LinkedIn recommendations data imported for GraphQL demo
+        return recommendations;
       },
       stickyNotes: () => {
         const stored = localStorage.getItem('brainstorm-notes');
@@ -100,5 +104,28 @@ export const client = new ApolloClient({
         return true;
       },
     },
+  },
+});
+
+// Initialize cache with recommendations data
+client.cache.writeQuery({
+  query: gql`
+    query GetRecommendations {
+      recommendations {
+        id
+        name
+        title
+        company
+        avatar
+        summary
+        content
+        skills
+        date
+        relationship
+      }
+    }
+  `,
+  data: {
+    recommendations: recommendations,
   },
 });

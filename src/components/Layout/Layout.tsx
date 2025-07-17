@@ -13,10 +13,8 @@ export const Layout: React.FC = () => {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Buffer Content Creation Experience</h1>
-          <p className={styles.subtitle}>
-            Senior Product Frontend Engineer Portfolio
-          </p>
+          <h1 className={styles.title}>Interactive Portfolio</h1>
+          <p className={styles.subtitle}>Senior Product Frontend Engineer</p>
           <p className={styles.description}>
             Built with Buffer-inspired design patterns + modern React
           </p>
@@ -45,11 +43,29 @@ export const Layout: React.FC = () => {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>
               <Users className={styles.sectionIcon} size={20} />
-              LinkedIn Recommendations
+              What It's Like to Work With Me
             </h2>
-            <p className={styles.sectionDescription}>
-              Actual testimonials from colleagues
-            </p>
+            <div className={styles.recommendationsIntro}>
+              <p className={styles.sectionDescription}>
+                The best way to understand what it's like to work with me is by
+                reading what the people I've collaborated with have to say about
+                the experience.
+              </p>
+              <p className={styles.sectionNote}>
+                These recommendations are all real testimonials from colleagues
+                and are hard-coded here for this quick prototype. You can find
+                the original recommendations and many more on my{' '}
+                <a
+                  href="https://www.linkedin.com/in/carolina-p-powers/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.linkedinLink}
+                >
+                  LinkedIn profile
+                </a>
+                .
+              </p>
+            </div>
             <div className={styles.recommendationsGrid}>
               {portfolioRecommendations.map(recommendation => (
                 <RecommendationCard

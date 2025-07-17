@@ -81,9 +81,21 @@ export const Layout: React.FC = () => {
               <Edit className={styles.sectionIcon} size={20} />
               Rich Text Editor - Buffer-Style Composer
             </h2>
-            <p className={styles.sectionDescription}>
-              Demonstrates technical skills with Buffer's design patterns
-            </p>
+            <div className={styles.editorIntro}>
+              <p className={styles.sectionDescription}>
+                This interactive rich text editor showcases modern React
+                development patterns and demonstrates how Buffer's content
+                creation tools might be built. Try the formatting controls,
+                keyboard shortcuts, and explore the features.
+              </p>
+              <p className={styles.sectionNote + ' ' + 'mb-lg'}>
+                Built with custom hooks, contentEditable management, and local
+                state persistence. Click the <strong>AI Assistant</strong>{' '}
+                button in the editor to learn how this entire portfolio was
+                created in one day using AI-assisted development with Claude
+                Code.
+              </p>
+            </div>
             <RichTextEditor />
           </section>
           <RecommendationsSection />
@@ -95,14 +107,15 @@ export const Layout: React.FC = () => {
           </h2>
           <div className={styles.techIntro}>
             <p className={styles.sectionDescription}>
-              This portfolio is built with modern development practices and tools to showcase 
-              the technical skills and attention to detail that would be valuable in a frontend 
-              engineering role.
+              This portfolio is built with modern development practices and
+              tools to showcase the technical skills and attention to detail
+              that would be valuable in a frontend engineering role.
             </p>
             <p className={styles.sectionNote}>
-              The implementation demonstrates proficiency with React, TypeScript, GraphQL, and 
-              modern build tools, while following accessibility best practices and maintaining 
-              clean, testable code architecture.
+              The implementation demonstrates proficiency with React,
+              TypeScript, GraphQL, and modern build tools, while following
+              accessibility best practices and maintaining clean, testable code
+              architecture.
             </p>
           </div>
           <div className={styles.techCategories}>

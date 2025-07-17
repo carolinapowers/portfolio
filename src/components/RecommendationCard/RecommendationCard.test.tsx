@@ -9,7 +9,8 @@ const mockRecommendation: Recommendation = {
   company: 'TechCorp',
   avatar: 'JD',
   summary: 'Great developer with excellent skills.',
-  content: 'John is an exceptional developer who consistently delivers high-quality work. His technical expertise and collaborative spirit make him a valuable team member.',
+  content:
+    'John is an exceptional developer who consistently delivers high-quality work. His technical expertise and collaborative spirit make him a valuable team member.',
   skills: ['React', 'TypeScript', 'GraphQL'],
   date: '2024-01-15',
   relationship: 'Colleague',
@@ -19,7 +20,9 @@ describe('RecommendationCard Component', () => {
   it('renders recommendation name', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
     // Use heading role since name is in an h3 element
-    expect(screen.getByRole('heading', { name: 'John Doe' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'John Doe' })
+    ).toBeInTheDocument();
   });
 
   it('renders recommendation title and company', () => {
@@ -31,7 +34,9 @@ describe('RecommendationCard Component', () => {
   it('renders recommendation content', () => {
     render(<RecommendationCard recommendation={mockRecommendation} />);
     // Using getByText with regex for partial content matching (Priority 1)
-    expect(screen.getByText(/John is an exceptional developer/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/John is an exceptional developer/)
+    ).toBeInTheDocument();
   });
 
   it('renders avatar', () => {
@@ -53,7 +58,7 @@ describe('RecommendationCard Component', () => {
     // Using getByText to find skill elements (Priority 1)
     const reactSkill = screen.getByText('React');
     const typescriptSkill = screen.getByText('TypeScript');
-    
+
     // These should be rendered (checking they exist)
     expect(reactSkill).toBeInTheDocument();
     expect(typescriptSkill).toBeInTheDocument();

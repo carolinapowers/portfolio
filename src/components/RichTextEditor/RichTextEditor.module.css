@@ -66,6 +66,6 @@
 }
 
 .saved::before {
-  content: "✓";
+  content: '✓';
   font-weight: bold;
 }

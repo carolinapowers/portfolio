@@ -1,11 +1,9 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { Edit, Users, Code } from 'lucide-react';
+import { Edit, Code } from 'lucide-react';
 import { client } from '../../apollo/client';
 import { RichTextEditor } from '../RichTextEditor/RichTextEditor';
-import { RecommendationCard } from '../RecommendationCard/RecommendationCard';
-
-import { portfolioRecommendations } from '../../data/recommendations';
+import { RecommendationsSection } from './RecommendationsSection';
 import styles from './Layout.module.css';
 
 export const Layout: React.FC = () => {
@@ -40,41 +38,7 @@ export const Layout: React.FC = () => {
             <RichTextEditor />
           </section>
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              <Users className={styles.sectionIcon} size={20} />
-              What It's Like to Work With Me
-            </h2>
-            <div className={styles.recommendationsIntro}>
-              <p className={styles.sectionDescription}>
-                The best way to understand what it's like to work with me is by
-                reading what the people I've collaborated with have to say about
-                the experience.
-              </p>
-              <p className={styles.sectionNote}>
-                These recommendations are all real testimonials from colleagues
-                and are hard-coded here for this quick prototype. You can find
-                the original recommendations and many more on my{' '}
-                <a
-                  href="https://www.linkedin.com/in/carolina-p-powers/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.linkedinLink}
-                >
-                  LinkedIn profile
-                </a>
-                .
-              </p>
-            </div>
-            <div className={styles.recommendationsGrid}>
-              {portfolioRecommendations.map(recommendation => (
-                <RecommendationCard
-                  key={recommendation.id}
-                  recommendation={recommendation}
-                />
-              ))}
-            </div>
-          </section>
+          <RecommendationsSection />
 
           {/* <section className={styles.section}>
             <h2 className={styles.sectionTitle}>

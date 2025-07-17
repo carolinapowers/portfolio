@@ -607,4 +607,54 @@ npm run test:e2e         # Basic Playwright tests
 - **Apollo testing** - Shows you can test GraphQL integrations
 - **Coverage reporting** - Professional approach to code quality
 
+## React Testing Library Query Priority Rules
+
+**MANDATORY**: All React Testing Library tests MUST follow the accessibility-focused query priority guide:
+
+### **Priority 1: Accessible to Everyone**
+1. `getByRole()` - Primary choice for interactive elements
+2. `getByLabelText()` - Form elements with labels
+3. `getByPlaceholderText()` - Form inputs with placeholders
+4. `getByText()` - Non-interactive text content
+5. `getByDisplayValue()` - Form elements with current values
+
+### **Priority 2: Semantic Queries**
+6. `getByAltText()` - Images with alt text
+7. `getByTitle()` - Elements with title attributes
+
+### **Priority 3: Test IDs (Last Resort)**
+8. `getByTestId()` - Only when semantic queries aren't possible
+
+### **Examples of Good vs Bad Queries**
+
+```typescript
+// ❌ BAD: Using test IDs unnecessarily
+expect(screen.getByTestId('submit-button')).toBeInTheDocument();
+
+// ✅ GOOD: Using semantic role
+expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();
+
+// ❌ BAD: Generic text query
+expect(screen.getByText('Email')).toBeInTheDocument();
+
+// ✅ GOOD: Accessible form query
+expect(screen.getByLabelText('Email address')).toBeInTheDocument();
+
+// ❌ BAD: CSS selector or class name
+expect(screen.getByClassName('nav-link')).toBeInTheDocument();
+
+// ✅ GOOD: Navigation role and accessible name
+expect(screen.getByRole('navigation')).toContain(
+  screen.getByRole('link', { name: 'Home' })
+);
+```
+
+### **Testing Benefits**
+- Tests reflect how users actually interact with the app
+- Catches accessibility issues during development
+- More robust tests that don't break with CSS changes
+- Encourages proper semantic HTML and ARIA usage
+
+**All test failures due to inaccessible markup should be fixed by improving the component accessibility, not by using worse queries.**
+
 This approach is much more realistic for a same-day build while still demonstrating the technical skills Buffer is looking for. The focus is on quality implementation rather than over-engineering.

@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { RichTextEditor } from './RichTextEditor';
 
 // Mock hooks
@@ -15,9 +14,17 @@ vi.mock('../../hooks/useEditor', () => ({
   }),
 }));
 
+interface ToolbarProps {
+  formatStates: {
+    bold: boolean;
+    italic: boolean;
+    underline: boolean;
+  };
+}
+
 // Mock Toolbar component
 vi.mock('./Toolbar', () => ({
-  Toolbar: ({ formatStates }: any) => (
+  Toolbar: ({ formatStates }: ToolbarProps) => (
     <div data-testid="toolbar">
       Toolbar - Bold: {formatStates.bold ? 'active' : 'inactive'}
     </div>

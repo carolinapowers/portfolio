@@ -1,7 +1,11 @@
 /// <reference types="vite/client" />
 /// <reference types="vitest/globals" />
+/// <reference types="@testing-library/jest-dom" />
 
-declare module '*.module.css' {
-  const classes: { [key: string]: string };
-  export default classes;
+// Global test utilities
+declare global {
+  const vi: typeof import('vitest').vi;
+  const jest: typeof vi;
 }
+
+export {};

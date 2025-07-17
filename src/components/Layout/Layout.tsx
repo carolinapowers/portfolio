@@ -1,10 +1,10 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { Edit, Users, Lightbulb, Code } from 'lucide-react';
+import { Edit, Users, Code } from 'lucide-react';
 import { client } from '../../apollo/client';
 import { RichTextEditor } from '../RichTextEditor/RichTextEditor';
 import { RecommendationCard } from '../RecommendationCard/RecommendationCard';
-import { BrainstormingSpace } from '../BrainstormingSpace/BrainstormingSpace';
+
 import { portfolioRecommendations } from '../../data/recommendations';
 import styles from './Layout.module.css';
 
@@ -60,7 +60,7 @@ export const Layout: React.FC = () => {
             </div>
           </section>
 
-          <section className={styles.section}>
+          {/* <section className={styles.section}>
             <h2 className={styles.sectionTitle}>
               <Lightbulb className={styles.sectionIcon} size={20} />
               Collaborative Brainstorming
@@ -69,7 +69,8 @@ export const Layout: React.FC = () => {
               Interactive space for your thoughts
             </p>
             <BrainstormingSpace />
-          </section>
+          </section> 
+          */}
 
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>

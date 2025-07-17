@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Bold, Italic, Underline, Link, RotateCcw } from 'lucide-react';
+import * as Dialog from '@radix-ui/react-dialog';
 import styles from './Toolbar.module.css';
 
 interface ToolbarProps {
@@ -91,43 +92,55 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       </div>
 
       <div className={styles.buttonGroup}>
-        <div style={{ position: 'relative' }}>
-          <button
-            className={styles.toolbarButton}
-            onClick={handleLinkClick}
-            title="Insert Link"
-            aria-label="Insert Link"
-            disabled={!window.getSelection()?.toString()}
-          >
-            <Link size={16} />
-          </button>
-          {showLinkDialog && (
-            <div className={styles.linkDialog}>
-              <input
-                ref={linkInputRef}
-                type="url"
-                placeholder="Enter URL..."
-                value={linkUrl}
-                onChange={e => setLinkUrl(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className={styles.linkInput}
-              />
-              <button
-                onClick={handleLinkSubmit}
-                className={styles.linkButton}
-                disabled={!linkUrl.trim()}
-              >
-                Apply
-              </button>
-              <button
-                onClick={handleLinkCancel}
-                className={`${styles.linkButton} ${styles.secondary}`}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
-        </div>
+        <Dialog.Root open={showLinkDialog} onOpenChange={setShowLinkDialog}>
+          <Dialog.Trigger asChild>
+            <button
+              className={styles.toolbarButton}
+              onClick={handleLinkClick}
+              title="Insert Link"
+              aria-label="Insert Link"
+              disabled={!window.getSelection()?.toString()}
+            >
+              <Link size={16} />
+            </button>
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className={styles.dialogOverlay} />
+            <Dialog.Content className={styles.dialogContent}>
+              <Dialog.Title className={styles.dialogTitle}>
+                Insert Link
+              </Dialog.Title>
+              <Dialog.Description className={styles.dialogDescription}>
+                Enter a URL to create a link from the selected text.
+              </Dialog.Description>
+              <div className={styles.dialogForm}>
+                <input
+                  ref={linkInputRef}
+                  type="url"
+                  placeholder="Enter URL..."
+                  value={linkUrl}
+                  onChange={e => setLinkUrl(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className={styles.linkInput}
+                />
+                <div className={styles.dialogActions}>
+                  <Dialog.Close asChild>
+                    <button className={`${styles.linkButton} ${styles.secondary}`}>
+                      Cancel
+                    </button>
+                  </Dialog.Close>
+                  <button
+                    onClick={handleLinkSubmit}
+                    className={styles.linkButton}
+                    disabled={!linkUrl.trim()}
+                  >
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
 
       <div className={styles.buttonGroup}>

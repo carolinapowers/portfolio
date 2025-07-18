@@ -137,42 +137,31 @@ export const Layout: React.FC = () => {
           <h2 className={styles.footerTitle}>
             Why This Portfolio Approach Works
           </h2>
-          <DisplayFlex className={styles.benefits} justify="around">
-            <DisplayFlexItem>
-              <DisplayFlex align="center" justify="center">
-                <DisplayFlexItem>
-                  <div className={styles.benefitIcon}>🎯</div>
-                </DisplayFlexItem>
-                <DisplayFlexItem>
-                  <h3>Technical Alignment</h3>
-                </DisplayFlexItem>
-              </DisplayFlex>
+          <DisplayFlex
+            className={styles.benefits}
+            justify="around"
+            align="start"
+          >
+            <DisplayFlexItem shrink={1}>
+              <h3>
+                <span aria-hidden="true">🎯</span> Technical Alignment
+              </h3>
               <p className="mt-0">
                 Uses Buffer's actual tech stack and design patterns
               </p>
             </DisplayFlexItem>
-            <DisplayFlexItem>
-              <DisplayFlex align="center" justify="center">
-                <DisplayFlexItem>
-                  <div className={styles.benefitIcon}>🔍</div>
-                </DisplayFlexItem>
-                <DisplayFlexItem>
-                  <h3>Deep Research</h3>
-                </DisplayFlexItem>
-              </DisplayFlex>
+            <DisplayFlexItem shrink={1}>
+              <h3>
+                <span aria-hidden="true">🔍</span> Deep Research
+              </h3>
               <p className="mt-0">
                 Shows understanding of Buffer's design system evolution
               </p>
             </DisplayFlexItem>
-            <DisplayFlexItem>
-              <DisplayFlex align="center" justify="center">
-                <DisplayFlexItem>
-                  <div className={styles.benefitIcon}>🚀</div>
-                </DisplayFlexItem>
-                <DisplayFlexItem>
-                  <h3>Ready to Contribute</h3>
-                </DisplayFlexItem>
-              </DisplayFlex>
+            <DisplayFlexItem shrink={1}>
+              <h3>
+                <span aria-hidden="true">🚀</span> Ready to Contribute
+              </h3>
               <p className="mt-0">
                 Demonstrates skills for Buffer's Content Creation team
               </p>

@@ -165,6 +165,41 @@
 .benefits {
   gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-xl);
+  flex-wrap: nowrap;
+}
+
+.benefits h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: white;
+  margin-bottom: var(--spacing-xs);
+  text-align: center;
+}
+
+.benefits p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .benefits {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--spacing-lg);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefits > * {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .benefit {

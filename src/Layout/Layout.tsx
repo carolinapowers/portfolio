@@ -1,11 +1,11 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Edit, Code } from 'lucide-react';
-import { client } from '../../apollo/client';
-import { RichTextEditor } from '../RichTextEditor/RichTextEditor';
+import { client } from '../apollo/client';
+import { RichTextEditor } from '../components/RichTextEditor/RichTextEditor';
 import { RecommendationsSection } from './RecommendationsSection';
 import styles from './Layout.module.css';
-import { DisplayFlex, DisplayFlexItem } from '../DisplayFlex';
+import { DisplayFlex, DisplayFlexItem } from '../components/DisplayFlex';
 
 export const Layout: React.FC = () => {
   const techCategories = [
@@ -151,7 +151,6 @@ export const Layout: React.FC = () => {
                 Uses Buffer's actual tech stack and design patterns
               </p>
             </DisplayFlexItem>
-
             <DisplayFlexItem>
               <DisplayFlex align="center" justify="center">
                 <DisplayFlexItem>

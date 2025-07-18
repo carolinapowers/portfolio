@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { RecommendationsSection } from './RecommendationsSection';
-import { GET_RECOMMENDATIONS } from '../../apollo/queries';
+import { GET_RECOMMENDATIONS } from '../apollo/queries';
 
 const mockRecommendations = [
   {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Users } from 'lucide-react';
-import { GET_RECOMMENDATIONS } from '../../apollo/queries';
-import { RecommendationCard } from '../RecommendationCard/RecommendationCard';
-import type { Recommendation } from '../../data/recommendations';
+import { GET_RECOMMENDATIONS } from '../apollo/queries';
+import { RecommendationCard } from '../components/RecommendationCard/RecommendationCard';
+import type { Recommendation } from '../data/recommendations';
 import styles from './Layout.module.css';
 
 export const RecommendationsSection: React.FC = () => {

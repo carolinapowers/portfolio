@@ -117,34 +117,6 @@
   gap: var(--spacing-md);
 }
 
-.codeSection {
-  background: #f8f9fa;
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-lg);
-}
-
-.codeTitle {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: var(--spacing-md);
-}
-
-.codeBlock {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-sm);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-sm);
-  overflow-x: auto;
-  margin-bottom: var(--spacing-lg);
-}
-
-.codeBlock:last-child {
-  margin-bottom: 0;
-}
-
 .footer {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -202,30 +174,6 @@
   }
 }
 
-.benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-md);
-  text-align: left;
-}
-
-.benefitIcon {
-  font-size: var(--font-size-2xl);
-  flex-shrink: 0;
-}
-
-.benefit h3 {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: var(--spacing-xs);
-}
-
-.benefit p {
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
 .actions {
   display: flex;
   gap: var(--spacing-md);
@@ -251,16 +199,6 @@
 .actionButton:hover {
   background: var(--color-surface);
   border-color: var(--color-primary);
-}
-
-.actionButton.primary {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-}
-
-.actionButton.primary:hover {
-  background: var(--color-primary-hover);
 }
 
 .actionButton.github {
@@ -317,47 +255,6 @@
   white-space: nowrap;
 }
 
-.brainstormArea {
-  position: relative;
-  min-height: 400px;
-  background:
-    linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
-    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
-    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
-  background-size: 20px 20px;
-  background-position:
-    0 0,
-    0 10px,
-    10px -10px,
-    -10px 0px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-}
-
-.addNoteButton {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-sm);
-  cursor: pointer;
-  transition: background 0.2s ease;
-  z-index: 10;
-}
-
-.addNoteButton:hover {
-  background: var(--color-primary-hover);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
@@ -376,9 +273,5 @@
 
   .section {
     padding: var(--spacing-md);
-  }
-
-  .brainstormArea {
-    min-height: 300px;
   }
 }

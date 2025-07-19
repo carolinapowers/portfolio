@@ -14,6 +14,29 @@ export interface Recommendation {
 export const recommendations: readonly Recommendation[] = [
   {
     id: '1',
+    name: 'Margo Schaedel',
+    title: 'Software Engineer',
+    company: 'Articulate',
+    avatar: 'MS',
+    summary:
+      'Brought technical excellence and generous spirit, making meaningful improvements to developer experience.',
+    content: `Carolina made an immediate and lasting impression as an engineer at Articulate, bringing both technical excellence and a generous spirit to the team from day one. I joined Articulate around the same time she did, and even though she was still new herself, she reached out to help during my onboarding—guiding me through setup and smoothing over those often confusing and overwhelming first few weeks. Decidedly proactive, she also spent time updating legacy documentation, which streamlined the setup process for future team members, myself included.
+Carolina brought a rare blend of curiosity, technical skill, and a strong sense of teamwork. She wasn't content to simply patch an issue—she always wanted to understand why things behaved the way they did. Her enthusiasm for digging into the root of a problem made her a stronger engineer, and she consistently shared her learnings with the team. I especially appreciated her initiative in experimenting with Cypress testing in our stack and then documenting and sharing her process—an example of her natural gift for knowledge-sharing, which is all too often undervalued in this industry.
+
+She also made meaningful improvements to the developer experience at Articulate, including updating internal tooling to allow developers to test message publishing flows directly in the local environment—no need to navigate through the UI. These behind-the-scenes enhancements saved time, reduced friction, and reflected her deep commitment to making things better for everyone.
+
+Carolina was always eager to lend a hand—whether pairing on a tricky bug, reviewing a pull request, or offering thoughtful support in Slack. Her collaborative spirit, technical acumen, and empathy made her a standout teammate, and any team would be incredibly fortunate to work with her.`,
+    skills: [
+      'Cypress Testing',
+      'Developer Experience',
+      'Knowledge Sharing',
+      'Technical Documentation',
+    ],
+    date: 'July 18, 2025',
+    relationship: 'Margo worked with Carolina on the same team',
+  },
+  {
+    id: '2',
     name: 'Noelle Burton',
     title: 'BYU',
     company: 'Podium',
@@ -33,10 +56,10 @@ export const recommendations: readonly Recommendation[] = [
       "Carolina was senior to Noelle but didn't manage her directly",
   },
   {
-    id: '2',
+    id: '3',
     name: 'Kelly Furness',
     title: 'Software Engineering Manager',
-    company: 'Undisclosed',
+    company: 'Articulate',
     avatar: 'KF',
     summary:
       'Exceptional at cross-team collaboration and uplifting team environments.',
@@ -52,7 +75,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Kelly worked with Carolina but on different teams',
   },
   {
-    id: '3',
+    id: '4',
     name: 'Paulius Juskevicius',
     title: 'Senior Software Engineer',
     company: 'Articulate',
@@ -66,7 +89,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Paulius worked with Carolina on the same team',
   },
   {
-    id: '4',
+    id: '5',
     name: 'Jessica Poémape',
     title: 'Software Engineer',
     company: 'Articulate',
@@ -80,7 +103,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Jessica worked with Carolina on the same team',
   },
   {
-    id: '5',
+    id: '6',
     name: 'AJ Foster',
     title: 'Software Engineer',
     company: 'CodeSandbox',
@@ -99,7 +122,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'AJ worked with Carolina on the same team',
   },
   {
-    id: '6',
+    id: '7',
     name: 'Mariah Hay',
     title: 'CEO & Co-Founder',
     company: 'Allboarder',
@@ -113,7 +136,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Mariah managed Carolina directly',
   },
   {
-    id: '7',
+    id: '8',
     name: 'Jaron Thatcher',
     title: 'Senior Software Engineer',
     company: 'Pluralsight',
@@ -127,7 +150,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Jaron worked with Carolina on the same team',
   },
   {
-    id: '8',
+    id: '9',
     name: 'Matt Owens',
     title: 'Software Engineer',
     company: 'Dropbox',
@@ -146,7 +169,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: "Carolina was senior to Matt but didn't manage him directly",
   },
   {
-    id: '9',
+    id: '10',
     name: 'Gary Eimerman',
     title: 'Chief Learning/Product Officer',
     company: 'Pluralsight',
@@ -165,7 +188,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Gary managed Carolina directly',
   },
   {
-    id: '10',
+    id: '11',
     name: 'Kevin Law',
     title: 'Software Engineer',
     company: 'Pluralsight',
@@ -184,7 +207,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Kevin worked with Carolina on the same team',
   },
   {
-    id: '11',
+    id: '12',
     name: 'Jon Friskics',
     title: 'Product & Learning Leader',
     company: 'Code School / Pluralsight',
@@ -198,7 +221,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Jon worked with Carolina but on different teams',
   },
   {
-    id: '12',
+    id: '13',
     name: 'Fangwen Zhao',
     title: 'Product Design Manager',
     company: 'Twilio',
@@ -212,7 +235,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Fangwen worked with Carolina on the same team',
   },
   {
-    id: '13',
+    id: '14',
     name: 'Merilee Benson',
     title: 'Lead Product Designer',
     company: 'BILL',
@@ -230,7 +253,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Merilee worked with Carolina on the same team',
   },
   {
-    id: '14',
+    id: '15',
     name: 'Jared Loosli',
     title: 'Director of Software Development',
     company: 'Pluralsight',
@@ -243,7 +266,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: 'Jared managed Carolina directly',
   },
   {
-    id: '15',
+    id: '16',
     name: 'Mary Hoag',
     title: 'IT Project Manager',
     company: 'UCF Coding Bootcamp',
@@ -261,7 +284,7 @@ export const recommendations: readonly Recommendation[] = [
     relationship: "Carolina was senior to Mary but didn't manage her directly",
   },
   {
-    id: '16',
+    id: '17',
     name: 'Mike Marrow',
     title: 'Manager, Software Engineering',
     company: 'Deloitte Digital',
@@ -275,6 +298,8 @@ export const recommendations: readonly Recommendation[] = [
   },
 ] as const;
 
+
+// 
 // Use the real recommendations for the portfolio
 export const portfolioRecommendations = recommendations;
 

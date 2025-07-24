@@ -2,6 +2,19 @@
 
 > A modern, interactive portfolio application built with React and TypeScript, designed to showcase frontend engineering skills through a Buffer-inspired content creation interface.
 
+## 🚧 Work in Progress
+
+This portfolio is a **work in progress** that began as a rapid prototype created in partnership with Claude Code and Cursor AI. As the developer, I've been systematically reviewing all co-authored code and refactoring it to meet my professional standards when time constraints during the initial creation didn't allow for optimal implementation.
+
+### Current Status
+
+- **Tests**: Being added iteratively with focus on React Testing Library best practices
+- **Code Quality**: Ongoing refactoring to improve patterns, architecture, and maintainability
+- **Design System**: Exploring a separate design system prototype that could potentially be integrated
+- **AI Integration**: Investigating modern AI workflows and tooling as demonstrated through Buffer's innovation
+
+This iterative approach reflects real-world development where initial prototypes are refined and enhanced over time, demonstrating both rapid prototyping skills and the discipline to improve code quality through careful review and refactoring.
+
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://portfolio-cr7dlzyaa-carolinapowers-projects.vercel.app)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/carolinapowers/portfolio)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue)](https://www.typescriptlang.org/)

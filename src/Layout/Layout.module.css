@@ -201,10 +201,17 @@
   border-color: var(--color-primary);
 }
 
-.actionButton.github {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.githubBtn {
+  background: #444950;
+  color: #fff;
+  border: 1px solid #444950;
+  transition:
+    background 0.2s,
+    border 0.2s;
+}
+.githubBtn:hover {
+  background: #24292f;
+  border-color: #24292f;
 }
 
 /* Tech Section */

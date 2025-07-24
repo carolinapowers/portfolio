@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, startTransition } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 export interface EditorState {
@@ -13,17 +13,22 @@ export interface EditorState {
 
 export function useEditor() {
   const [content, setContent] = useLocalStorage('editor-content', '');
-  const [characterCount, setCharacterCount] = useState(0);
   const [formatStates, setFormatStates] = useState({
     bold: false,
     italic: false,
     underline: false,
   });
 
+  // Derived state - no need for separate useState and useEffect
+  const characterCount = content.length;
+
   const updateContent = useCallback(
     (newContent: string) => {
-      setContent(newContent);
-      setCharacterCount(newContent.length);
+      // Use startTransition for localStorage updates (non-urgent)
+      startTransition(() => {
+        setContent(newContent);
+      });
+      // Character count is derived from content length during render
     },
     [setContent]
   );
@@ -59,11 +64,6 @@ export function useEditor() {
       underline: false,
     });
   }, []);
-
-  // Update character count when content changes
-  useEffect(() => {
-    setCharacterCount(content.length);
-  }, [content]);
 
   // Update format states on selection change
   useEffect(() => {

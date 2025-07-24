@@ -96,15 +96,18 @@ describe('RichTextEditor', () => {
       const textbox = screen.getByRole('textbox', { name: 'Rich text editor' });
       await user.click(textbox);
       
-      // Test keyboard shortcuts - these will work in jsdom
+      // Test that keyboard shortcuts are handled without throwing errors
+      // Note: In jsdom, document.execCommand doesn't actually change formatting states,
+      // so we verify the events are processed rather than state changes
       await user.keyboard('{Control>}b{/Control}');
       await user.keyboard('{Control>}i{/Control}');
       await user.keyboard('{Control>}u{/Control}');
       
-      // We can't easily test execCommand results in jsdom, but we can verify
-      // the keyboard events are handled without errors
+      // Verify component remains functional after keyboard events
       expect(textbox).toBeInTheDocument();
+      expect(textbox).toHaveFocus();
     });
+
 
     it('restores content from localStorage on mount', () => {
       localStorage.setItem('editor-content', JSON.stringify('Saved content'));

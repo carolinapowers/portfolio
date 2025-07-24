@@ -49,6 +49,7 @@ export const Layout: React.FC = () => {
         'Claude Code',
         'AI-Assisted Development',
         'Auto Documentation',
+        'Cursor',
       ],
     },
   ];

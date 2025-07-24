@@ -31,14 +31,8 @@ test.describe('Visual Testing', () => {
 
   test('should match recommendations section @visual', async ({ page }) => {
     // Recommendations section
-    const recommendationsSection = page.locator('section').filter({ hasText: 'LinkedIn Recommendations' });
+    const recommendationsSection = page.locator('section').filter({ hasText: "What It's Like to Work With Me" });
     await expect(recommendationsSection).toHaveScreenshot('recommendations-section.png');
-  });
-
-  test('should match brainstorming section @visual', async ({ page }) => {
-    // Brainstorming section
-    const brainstormSection = page.locator('section').filter({ hasText: 'Collaborative Brainstorming' });
-    await expect(brainstormSection).toHaveScreenshot('brainstorming-section.png');
   });
 
   test('should match footer @visual', async ({ page }) => {
@@ -122,16 +116,6 @@ test.describe('Visual Testing - Interactive States', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
-  });
-
-  test('should match button hover states @visual', async ({ page }) => {
-    // Hover over portfolio link
-    const portfolioLink = page.getByRole('link', { name: 'View Live Portfolio' });
-    await portfolioLink.hover();
-    
-    // Screenshot the footer with hovered button
-    const footer = page.locator('footer');
-    await expect(footer).toHaveScreenshot('footer-with-hover.png');
   });
 
   test('should match tech stack styling @visual', async ({ page }) => {

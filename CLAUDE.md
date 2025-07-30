@@ -750,3 +750,279 @@ describe('ComponentName', () => {
 4. Only uses `getByTestId()` when semantic queries aren't possible
 
 This approach is much more realistic for a same-day build while still demonstrating the technical skills Buffer is looking for. The focus is on quality implementation rather than over-engineering.
+
+# Segment Analytics Implementation Plan
+
+## Overview
+
+This plan outlines implementing Segment analytics tracking in the React/TypeScript portfolio to capture user interactions and behavioral data. The implementation will use the modern `@segment/analytics-react` package for optimal React integration.
+
+## Prerequisites
+
+- Segment account (free tier supports 1,000 monthly visitors)
+- Write key from Segment source configuration
+- Existing React 18 + TypeScript + Vite setup (✅ already in place)
+
+## Implementation Strategy
+
+### Phase 1: Basic Setup (15-30 minutes)
+
+1. **Install Dependencies**
+
+   ```bash
+   npm install @segment/analytics-react @segment/analytics-next
+   ```
+
+2. **Environment Configuration**
+   - Add `VITE_SEGMENT_WRITE_KEY` to `.env` file
+   - Update `.env.example` with the new variable
+   - Ensure `.env` is in `.gitignore`
+
+3. **Provider Setup**
+   - Wrap main App component with `AnalyticsProvider`
+   - Initialize Segment client with write key
+   - Configure for development vs production environments
+
+### Phase 2: Core Tracking Implementation (30-45 minutes)
+
+#### Page View Tracking
+
+- Implement automatic page view tracking for navigation
+- Track route changes and section transitions
+- Capture page metadata (title, path, referrer)
+
+#### User Identification
+
+- Track anonymous users by default
+- Optional: Add user identification for returning visitors
+- Capture basic user traits (device, browser, location)
+
+### Phase 3: Feature-Specific Event Tracking (45-60 minutes)
+
+#### Rich Text Editor Events
+
+- **Text Input Tracking**
+  - Character count milestones (100, 500, 1000+ characters)
+  - Formatting usage (bold, italic, underline, links)
+  - Auto-save triggers
+  - Content clear/reset actions
+
+- **Editor Interactions**
+  - Toolbar button clicks
+  - Keyboard shortcut usage
+  - Focus/blur events with session duration
+
+#### Brainstorming Space Events
+
+- **Sticky Note Actions**
+  - Note creation with color selection
+  - Note editing and text updates
+  - Note deletion
+  - Drag and drop positioning
+  - Color changes
+
+- **Workspace Interactions**
+  - Workspace clearing
+  - Bulk note operations
+  - Session duration in brainstorming mode
+
+#### Navigation & Engagement
+
+- **Section Transitions**
+  - Time spent in each portfolio section
+  - Scroll depth tracking
+  - Navigation method (menu, scroll, direct)
+
+- **Recommendation Interactions**
+  - LinkedIn recommendation card views
+  - Skill tag clicks
+  - Recommendation filtering/sorting
+
+### Phase 4: Advanced Analytics (30-45 minutes)
+
+#### Custom Properties
+
+- **User Context**
+  - Device type (mobile, tablet, desktop)
+  - Browser and OS information
+  - Screen resolution and viewport size
+  - Geographic location (if permitted)
+
+- **Session Properties**
+  - Session duration
+  - Pages per session
+  - Return visitor vs new visitor
+  - Traffic source and referrer
+
+#### Performance Metrics
+
+- **User Experience**
+  - Time to first interaction
+  - Feature adoption rates
+  - Error tracking and recovery
+  - Accessibility feature usage
+
+## Technical Implementation Details
+
+### File Structure
+
+```
+src/
+├── analytics/
+│   ├── index.ts              # Main analytics exports
+│   ├── client.ts             # Segment client configuration
+│   ├── events.ts             # Event definitions and types
+│   ├── hooks/
+│   │   ├── usePageTracking.ts    # Page view tracking hook
+│   │   ├── useEditorTracking.ts  # Rich text editor tracking
+│   │   └── useBrainstormTracking.ts # Brainstorm space tracking
+│   └── utils/
+│       ├── eventHelpers.ts   # Event utility functions
+│       └── userTraits.ts     # User trait collection
+```
+
+### TypeScript Interfaces
+
+```typescript
+// Event property interfaces
+interface EditorEvent {
+  action: 'format' | 'input' | 'save' | 'clear';
+  characterCount: number;
+  formatType?: 'bold' | 'italic' | 'underline' | 'link';
+  sessionDuration: number;
+}
+
+interface BrainstormEvent {
+  action: 'create' | 'edit' | 'delete' | 'move' | 'color_change';
+  noteId: string;
+  color: string;
+  position?: { x: number; y: number };
+  noteCount: number;
+}
+
+interface NavigationEvent {
+  section: string;
+  previousSection?: string;
+  timeSpent: number;
+  scrollDepth: number;
+}
+```
+
+### Key Components to Modify
+
+1. **Main App Component** - Add AnalyticsProvider wrapper
+2. **RichTextEditor Components** - Add editor event tracking
+3. **BrainstormingSpace Components** - Add sticky note tracking
+4. **Navigation Components** - Add section transition tracking
+5. **RecommendationCard Components** - Add interaction tracking
+
+### Event Naming Convention
+
+Use consistent, descriptive event names:
+
+- `page_viewed` - For page/section views
+- `editor_text_formatted` - For text formatting actions
+- `brainstorm_note_created` - For sticky note creation
+- `recommendation_viewed` - For recommendation card interactions
+- `session_started` / `session_ended` - For session tracking
+
+## Testing & Validation
+
+### Development Testing
+
+- Use Segment debugger to verify events in real-time
+- Test all interactive elements and user flows
+- Validate event properties and user traits
+- Ensure no PII (personally identifiable information) is collected
+
+### Quality Assurance
+
+- Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- Mobile responsiveness testing
+- Performance impact assessment
+- Error handling and fallback scenarios
+
+## Privacy & Compliance
+
+### Data Collection Guidelines
+
+- Collect only necessary behavioral data
+- Respect user privacy preferences
+- Implement opt-out mechanisms if required
+- Follow GDPR/CCPA guidelines for data handling
+
+### Data Retention
+
+- Configure appropriate data retention policies in Segment
+- Document what data is collected and why
+- Ensure compliance with privacy policies
+
+## Deployment Strategy
+
+### Environment Configuration
+
+- **Development**: Use test Segment source
+- **Staging**: Use production Segment source with debug mode
+- **Production**: Full production tracking with error monitoring
+
+### Rollout Plan
+
+1. Deploy with analytics disabled initially
+2. Enable basic page tracking first
+3. Gradually enable feature-specific tracking
+4. Monitor for performance impact and errors
+
+## Success Metrics
+
+### Implementation Success
+
+- All planned events firing correctly
+- No performance degradation
+- Clean event data in Segment debugger
+- Successful data flow to destination tools
+
+### Analytics Insights Goals
+
+- Understand user engagement patterns
+- Identify most-used portfolio features
+- Track user journey through portfolio sections
+- Measure content effectiveness and user retention
+
+## Maintenance & Monitoring
+
+### Ongoing Tasks
+
+- Regular review of event data quality
+- Update tracking as new features are added
+- Monitor Segment MTU usage (free tier: 1,000/month)
+- Performance impact assessment
+
+### Analytics Review Schedule
+
+- Weekly: Event data quality check
+- Monthly: User behavior analysis
+- Quarterly: Tracking strategy review and optimization
+
+## Resources & Documentation
+
+### Segment Resources
+
+- [Analytics React Documentation](https://segment.com/docs/connections/sources/catalog/libraries/website/react/)
+- [Event Tracking Best Practices](https://segment.com/docs/protocols/tracking-plan/best-practices/)
+- [Segment Debugger Guide](https://segment.com/docs/connections/find-writekey/#debugging)
+
+### Implementation References
+
+- TypeScript integration examples
+- React hooks for analytics
+- Event naming conventions
+- Privacy-compliant tracking patterns
+
+---
+
+## Ready for Implementation
+
+This plan provides a comprehensive roadmap for implementing Segment analytics in the portfolio. The phased approach allows for incremental implementation and testing, ensuring a robust and privacy-compliant analytics solution.
+
+**Estimated Total Implementation Time: 2.5-3 hours**
+**Maintenance Time: 30 minutes/month**

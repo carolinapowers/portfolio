@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { useEditor } from '../../hooks/useEditor';
+import { useEditorTracking } from '../../analytics';
 import { Toolbar } from './Toolbar';
 
 import styles from './RichTextEditor.module.css';
@@ -20,12 +21,22 @@ export const RichTextEditor: React.FC = () => {
     clearFormatting,
   } = useEditor();
 
+  // Initialize analytics tracking
+  const {
+    trackInput,
+    trackFormatting,
+    trackClear,
+  } = useEditorTracking();
+
   const handleInput = useCallback(
     (e: React.FormEvent) => {
       const text = e.currentTarget.textContent || '';
       setContent(text);
+      
+      // Track input analytics
+      trackInput(text.length);
     },
-    [setContent]
+    [setContent, trackInput]
   );
 
   const handleKeyDown = useCallback(
@@ -35,19 +46,22 @@ export const RichTextEditor: React.FC = () => {
           case 'b':
             e.preventDefault();
             formatText('bold');
+            trackFormatting('bold', characterCount);
             break;
           case 'i':
             e.preventDefault();
             formatText('italic');
+            trackFormatting('italic', characterCount);
             break;
           case 'u':
             e.preventDefault();
             formatText('underline');
+            trackFormatting('underline', characterCount);
             break;
         }
       }
     },
-    [formatText]
+    [formatText, trackFormatting, characterCount]
   );
 
   const handlePaste = useCallback((e: React.ClipboardEvent) => {
@@ -77,9 +91,18 @@ export const RichTextEditor: React.FC = () => {
   return (
     <div className={styles.editor}>
       <Toolbar
-        onFormat={formatText}
-        onInsertLink={insertLink}
-        onClearFormatting={clearFormatting}
+        onFormat={(command) => {
+          formatText(command);
+          trackFormatting(command as 'bold' | 'italic' | 'underline', characterCount);
+        }}
+        onInsertLink={(url) => {
+          insertLink(url);
+          trackFormatting('link', characterCount);
+        }}
+        onClearFormatting={() => {
+          trackClear(characterCount);
+          clearFormatting();
+        }}
         formatStates={formatStates}
       />
       <div

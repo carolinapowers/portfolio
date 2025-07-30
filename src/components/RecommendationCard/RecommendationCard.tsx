@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { Recommendation } from '../../data/recommendations';
+import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
 import styles from './RecommendationCard.module.css';
 
 interface RecommendationCardProps {
@@ -10,6 +11,14 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   recommendation,
 }) => {
   const primarySkills = ['React', 'TypeScript', 'JavaScript', 'Frontend'];
+
+  // Track recommendation view on mount
+  useEffect(() => {
+    trackRecommendationEvent({
+      action: 'view',
+      recommendationId: recommendation.id,
+    });
+  }, [recommendation.id]);
 
   return (
     <div className={styles.card}>
@@ -30,6 +39,14 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
           <span
             key={index}
             className={`${styles.skill} ${primarySkills.includes(skill) ? styles.primary : ''}`}
+            onClick={() => {
+              trackRecommendationEvent({
+                action: 'skill_click',
+                recommendationId: recommendation.id,
+                skillTag: skill,
+              });
+            }}
+            style={{ cursor: 'pointer' }}
           >
             {skill}
           </span>

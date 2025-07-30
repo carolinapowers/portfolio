@@ -4,10 +4,17 @@ import { Edit, Code } from 'lucide-react';
 import { client } from '../apollo/client';
 import { RichTextEditor } from '../components/RichTextEditor/RichTextEditor';
 import { RecommendationsSection } from './RecommendationsSection';
+import { usePageTracking } from '../analytics';
 import styles from './Layout.module.css';
 import { DisplayFlex, DisplayFlexItem } from '../components/DisplayFlex';
 
 export const Layout: React.FC = () => {
+  // Track page views and scroll behavior
+  usePageTracking({ 
+    pageName: 'portfolio_home',
+    trackScrollDepth: true,
+  });
+
   const techCategories = [
     {
       title: 'Frontend & Build',

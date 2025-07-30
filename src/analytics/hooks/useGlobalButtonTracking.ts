@@ -1,10 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { safeTrack } from '../client';
 
 export const useGlobalButtonTracking = () => {
-  useEffect(() => {
-    const handleGlobalClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
+  const lastClickTime = useRef<number>(0);
+  const debounceDelay = 100; // Prevent excessive events within 100ms
+
+  const handleGlobalClick = useCallback((event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    
+    // Debouncing: prevent rapid successive clicks
+    const now = Date.now();
+    if (now - lastClickTime.current < debounceDelay) {
+      return;
+    }
+    lastClickTime.current = now;
       
       // Check if the clicked element is a button or link
       const isButton = target.tagName === 'BUTTON' || 
@@ -74,8 +83,9 @@ export const useGlobalButtonTracking = () => {
         elementId: target.id || undefined,
         elementClass: target.className || undefined,
       });
-    };
+    }, []);
 
+  useEffect(() => {
     // Add the global click listener
     document.addEventListener('click', handleGlobalClick, { passive: true });
 
@@ -83,5 +93,5 @@ export const useGlobalButtonTracking = () => {
     return () => {
       document.removeEventListener('click', handleGlobalClick);
     };
-  }, []);
+  }, [handleGlobalClick]);
 };

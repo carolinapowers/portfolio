@@ -15,8 +15,31 @@ export const analyticsConfig = {
   environment: isDevelopment ? 'development' : 'production',
 };
 
-// Initialize analytics instance
-export const initializeAnalytics = async (): Promise<Analytics | null> => {
+// Environment validation
+const validateEnvironment = () => {
+  if (typeof window === 'undefined') {
+    throw new Error('Analytics can only be initialized in browser environment');
+  }
+  
+  if (!writeKey && !isDevelopment) {
+    console.warn('[Analytics] No write key provided in production environment');
+  }
+  
+  if (!writeKey && isDevelopment) {
+    console.info('[Analytics] Running in development mode without write key - analytics disabled');
+  }
+};
+
+// Initialize analytics instance with retry logic
+export const initializeAnalytics = async (retries = 3): Promise<Analytics | null> => {
+  // Validate environment before attempting initialization
+  try {
+    validateEnvironment();
+  } catch (error) {
+    console.error('[Analytics] Environment validation failed:', error);
+    return null;
+  }
+
   if (!writeKey) {
     if (analyticsConfig.debug) {
       console.log('[Analytics] No write key provided, analytics disabled');
@@ -28,22 +51,39 @@ export const initializeAnalytics = async (): Promise<Analytics | null> => {
     return analyticsInstance;
   }
 
-  try {
-    const [analytics] = await AnalyticsBrowser.load({
-      writeKey,
-    });
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const [analytics] = await AnalyticsBrowser.load({
+        writeKey,
+      });
 
-    analyticsInstance = analytics;
-    
-    if (analyticsConfig.debug) {
-      console.log('[Analytics] Initialized successfully');
+      analyticsInstance = analytics;
+      
+      if (analyticsConfig.debug) {
+        console.log('[Analytics] Initialized successfully on attempt', attempt);
+      }
+
+      return analytics;
+    } catch (error) {
+      const isLastAttempt = attempt === retries;
+      
+      if (isLastAttempt) {
+        console.error('[Analytics] Failed to initialize after', retries, 'attempts:', error);
+        return null;
+      }
+      
+      // Exponential backoff: wait 1s, then 2s, then 4s
+      const delayMs = 1000 * Math.pow(2, attempt - 1);
+      
+      if (analyticsConfig.debug) {
+        console.warn(`[Analytics] Initialization attempt ${attempt} failed, retrying in ${delayMs}ms:`, error);
+      }
+      
+      await new Promise(resolve => setTimeout(resolve, delayMs));
     }
-
-    return analytics;
-  } catch (error) {
-    console.error('[Analytics] Failed to initialize:', error);
-    return null;
   }
+
+  return null;
 };
 
 // Get current analytics instance

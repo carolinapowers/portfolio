@@ -30,6 +30,15 @@ export const useEditorTracking = ({
     formattingUsage.current.clear();
   }, []);
 
+  // Memory cleanup utility
+  const cleanupMemory = useCallback(() => {
+    trackedMilestones.current.clear();
+    formattingUsage.current.clear();
+    totalKeystrokes.current = 0;
+    sessionStartTime.current = Date.now();
+    lastInputTime.current = Date.now();
+  }, []);
+
   // Track text input events
   const trackInput = useCallback((characterCount: number) => {
     if (!enableInput) return;
@@ -123,7 +132,7 @@ export const useEditorTracking = ({
     resetSession();
   }, [resetSession]);
 
-  // Track session end when component unmounts
+  // Track session end when component unmounts and cleanup memory
   useEffect(() => {
     const startTime = sessionStartTime.current;
     const keystrokes = totalKeystrokes;
@@ -144,8 +153,11 @@ export const useEditorTracking = ({
           formattingUsage: formattingUsageSnapshot,
         } as EditorEvent & { sessionEnded: boolean; totalKeystrokes: number; formattingUsage: Record<string, number> });
       }
+      
+      // Memory cleanup: clear all refs to prevent memory leaks
+      cleanupMemory();
     };
-  }, []);
+  }, [cleanupMemory]);
 
   return {
     trackInput,

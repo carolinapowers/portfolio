@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
 import { Layout } from './Layout/Layout';
 import { AnalyticsProvider } from './components/AnalyticsWrapper';
+import { useGlobalButtonTracking } from './analytics/hooks/useGlobalButtonTracking';
 import { safeIdentify, trackSessionStart } from './analytics';
 import { getUserTraits, getSessionProperties } from './analytics/utils/userTraits';
-import { useGlobalButtonTracking } from './analytics/hooks/useGlobalButtonTracking';
 import './styles/globals.css';
 
 function AppContent() {
-  // Enable global button click tracking
-  useGlobalButtonTracking();
-
+  // Initialize analytics on app start
   useEffect(() => {
-    // Initialize user traits and session tracking
     const userTraits = getUserTraits();
     const sessionProperties = getSessionProperties();
     
@@ -24,6 +21,9 @@ function AppContent() {
     // Track session start
     trackSessionStart();
   }, []);
+
+  // Enable global button tracking
+  useGlobalButtonTracking();
 
   return <Layout />;
 }

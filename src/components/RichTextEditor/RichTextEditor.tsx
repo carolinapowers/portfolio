@@ -77,6 +77,27 @@ export const RichTextEditor: React.FC = () => {
     return styles.characterCount;
   };
 
+  const handleFormat = useCallback(
+    (command: string) => {
+      formatText(command);
+      trackFormatting(command as 'bold' | 'italic' | 'underline', characterCount);
+    },
+    [formatText, trackFormatting, characterCount]
+  );
+
+  const handleInsertLink = useCallback(
+    (url: string) => {
+      insertLink(url);
+      trackFormatting('link', characterCount);
+    },
+    [insertLink, trackFormatting, characterCount]
+  );
+
+  const handleClearFormatting = useCallback(() => {
+    trackClear(characterCount);
+    clearFormatting();
+  }, [trackClear, clearFormatting, characterCount]);
+
   // Initialize content in editor
   useEffect(() => {
     if (
@@ -91,18 +112,9 @@ export const RichTextEditor: React.FC = () => {
   return (
     <div className={styles.editor}>
       <Toolbar
-        onFormat={(command) => {
-          formatText(command);
-          trackFormatting(command as 'bold' | 'italic' | 'underline', characterCount);
-        }}
-        onInsertLink={(url) => {
-          insertLink(url);
-          trackFormatting('link', characterCount);
-        }}
-        onClearFormatting={() => {
-          trackClear(characterCount);
-          clearFormatting();
-        }}
+        onFormat={handleFormat}
+        onInsertLink={handleInsertLink}
+        onClearFormatting={handleClearFormatting}
         formatStates={formatStates}
       />
       <div

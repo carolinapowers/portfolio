@@ -35,9 +35,9 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       <p className={styles.text}>{recommendation.content}</p>
 
       <div className={styles.skills}>
-        {recommendation.skills.map((skill, index) => (
+        {recommendation.skills.map((skill) => (
           <span
-            key={index}
+            key={skill}
             className={`${styles.skill} ${primarySkills.includes(skill) ? styles.primary : ''}`}
             onClick={() => {
               trackRecommendationEvent({

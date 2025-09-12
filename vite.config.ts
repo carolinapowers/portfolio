@@ -23,13 +23,25 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks(id) {
           // Keep React and React DOM together to avoid breaking dependencies
-          'react-vendor': ['react', 'react-dom'],
-          // Analytics can be separate since it's loaded conditionally
-          'analytics': ['@segment/analytics-next'],
-          // UI components can be separate
-          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-select', 'lucide-react'],
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            // Group all @radix-ui packages together automatically
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            // Icons
+            if (id.includes('lucide-react')) {
+              return 'ui';
+            }
+            // Analytics
+            if (id.includes('@segment')) {
+              return 'analytics';
+            }
+          }
         },
       },
     },

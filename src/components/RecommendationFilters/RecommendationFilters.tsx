@@ -25,66 +25,88 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
   const { filters: filterState, results, actions, metrics } = filters;
 
   // Search handlers
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    actions.updateSearch(e.target.value);
-  }, [actions]);
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      actions.updateSearch(e.target.value);
+    },
+    [actions]
+  );
 
-  const handleSearchFieldToggle = useCallback((field: SearchableField) => {
-    const currentFields = filterState.search.fields;
-    const newFields = currentFields.includes(field)
-      ? currentFields.filter(f => f !== field)
-      : [...currentFields, field];
-    
-    if (newFields.length > 0) {
-      actions.updateSearch(filterState.search.query, newFields);
-    }
-  }, [filterState.search, actions]);
+  const handleSearchFieldToggle = useCallback(
+    (field: SearchableField) => {
+      const currentFields = filterState.search.fields;
+      const newFields = currentFields.includes(field)
+        ? currentFields.filter(f => f !== field)
+        : [...currentFields, field];
+
+      if (newFields.length > 0) {
+        actions.updateSearch(filterState.search.query, newFields);
+      }
+    },
+    [filterState.search, actions]
+  );
 
   // Filter creation helpers
-  const createSkillFilter = useCallback((category: SkillCategory): SkillFilter => {
-    const categoryInfo = SKILL_CATEGORIES[category];
-    return {
-      id: `skill-${category}`,
-      type: 'skill',
-      label: categoryInfo.name,
-      description: categoryInfo.description,
-      category,
-      keywords: categoryInfo.keywords,
-      priority: 'high',
-    };
-  }, []);
+  const createSkillFilter = useCallback(
+    (category: SkillCategory): SkillFilter => {
+      const categoryInfo = SKILL_CATEGORIES[category];
+      return {
+        id: `skill-${category}`,
+        type: 'skill',
+        label: categoryInfo.name,
+        description: categoryInfo.description,
+        category,
+        keywords: categoryInfo.keywords,
+        priority: 'high',
+      };
+    },
+    []
+  );
 
-  const handleSkillFilterToggle = useCallback((category: SkillCategory) => {
-    const filterId = `skill-${category}`;
-    const existingFilter = filterState.activeFilters.find(f => f.id === filterId);
-    
-    if (existingFilter) {
-      actions.removeFilter(filterId);
-    } else {
-      const newFilter = createSkillFilter(category);
-      actions.addFilter(newFilter);
-    }
-  }, [filterState.activeFilters, actions, createSkillFilter]);
+  const handleSkillFilterToggle = useCallback(
+    (category: SkillCategory) => {
+      const filterId = `skill-${category}`;
+      const existingFilter = filterState.activeFilters.find(
+        f => f.id === filterId
+      );
+
+      if (existingFilter) {
+        actions.removeFilter(filterId);
+      } else {
+        const newFilter = createSkillFilter(category);
+        actions.addFilter(newFilter);
+      }
+    },
+    [filterState.activeFilters, actions, createSkillFilter]
+  );
 
   // Sort handlers
-  const handleSortChange = useCallback((sortBy: SortOption) => {
-    const currentOrder = filterState.sortBy === sortBy ? 
-      (filterState.sortOrder === 'asc' ? 'desc' : 'asc') : 
-      'desc';
-    actions.updateSort(sortBy, currentOrder);
-  }, [filterState.sortBy, filterState.sortOrder, actions]);
+  const handleSortChange = useCallback(
+    (sortBy: SortOption) => {
+      const currentOrder =
+        filterState.sortBy === sortBy
+          ? filterState.sortOrder === 'asc'
+            ? 'desc'
+            : 'asc'
+          : 'desc';
+      actions.updateSort(sortBy, currentOrder);
+    },
+    [filterState.sortBy, filterState.sortOrder, actions]
+  );
 
   // Get active filter count
-  const activeFilterCount = filterState.activeFilters.length + (filterState.search.query ? 1 : 0);
+  const activeFilterCount =
+    filterState.activeFilters.length + (filterState.search.query ? 1 : 0);
 
   // Sort options configuration
-  const sortOptions: Array<{ value: SortOption; label: string; icon: string }> = [
-    { value: 'date', label: 'Date', icon: '📅' },
-    { value: 'name', label: 'Name', icon: '👤' },
-    { value: 'company', label: 'Company', icon: '🏢' },
-    { value: 'skills', label: 'Skills', icon: '🛠️' },
-    { value: 'relevance', label: 'Relevance', icon: '⭐' },
-  ];
+  const sortOptions: Array<{ value: SortOption; label: string; icon: string }> =
+    [
+      { value: 'date', label: 'Date', icon: '📅' },
+      { value: 'name', label: 'Name', icon: '👤' },
+      { value: 'company', label: 'Company', icon: '🏢' },
+      { value: 'skills', label: 'Skills', icon: '🛠️' },
+      { value: 'relevance', label: 'Relevance', icon: '⭐' },
+    ];
 
   const searchFields: Array<{ field: SearchableField; label: string }> = [
     { field: 'name', label: 'Name' },
@@ -106,7 +128,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
             <span className={styles.filterCount}>{activeFilterCount}</span>
           )}
         </div>
-        
+
         <div className={styles.filtersActions}>
           <button
             onClick={() => setShowPerformanceMetrics(!showPerformanceMetrics)}
@@ -115,7 +137,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
           >
             <BarChart3 size={16} />
           </button>
-          
+
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className={styles.expandButton}
@@ -125,14 +147,40 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
         </div>
       </div>
 
+      {/* Performance Metrics */}
+      {showPerformanceMetrics && metrics.length > 0 && (
+        <div className={styles.performanceMetrics}>
+          <h4>Performance Metrics</h4>
+          <div className={styles.metricsGrid}>
+            {metrics.slice(-3).map(metric => (
+              <div
+                key={`${metric.filterType}-${metric.executionTime}`}
+                className={styles.metric}
+              >
+                <span className={styles.metricLabel}>{metric.filterType}</span>
+                <span className={styles.metricValue}>
+                  {metric.executionTime.toFixed(1)}ms
+                </span>
+                <span className={styles.metricMatch}>
+                  {metric.matchCount} matches
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Results Summary */}
       <div className={styles.resultsSummary}>
-        Showing {results.recommendations.length} of {results.totalMatches} recommendations
-        {results.totalMatches !== totalRecommendations && (
-          <span className={styles.filteredCount}>
-            (filtered from {totalRecommendations} total)
-          </span>
-        )}
+        <b>
+          Showing {results.recommendations.length} of {results.totalMatches}{' '}
+          recommendations
+          {results.totalMatches !== totalRecommendations && (
+            <span className={styles.filteredCount}>
+              (filtered from {totalRecommendations} total)
+            </span>
+          )}
+        </b>
         {results.executionTime > 0 && (
           <span className={styles.executionTime}>
             <Clock size={12} />
@@ -141,78 +189,64 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
         )}
       </div>
 
-      {/* Performance Metrics */}
-      {showPerformanceMetrics && metrics.length > 0 && (
-        <div className={styles.performanceMetrics}>
-          <h4>Performance Metrics</h4>
-          <div className={styles.metricsGrid}>
-            {metrics.slice(-3).map((metric) => (
-              <div key={`${metric.filterType}-${metric.executionTime}`} className={styles.metric}>
-                <span className={styles.metricLabel}>{metric.filterType}</span>
-                <span className={styles.metricValue}>{metric.executionTime.toFixed(1)}ms</span>
-                <span className={styles.metricMatch}>{metric.matchCount} matches</span>
-              </div>
-            ))}
-          </div>
+      {/* Search Section */}
+      <div className={styles.searchSection}>
+        <div className={styles.searchInput}>
+          <Search size={16} className={styles.searchIcon} />
+          <input
+            type="text"
+            placeholder="Search recommendations..."
+            value={filterState.search.query}
+            onChange={handleSearchChange}
+            className={styles.searchField}
+          />
+          {filterState.search.query && (
+            <button
+              onClick={() => actions.updateSearch('')}
+              className={styles.clearSearch}
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
-      )}
+
+        {/* Search Fields Selector */}
+        <div className={styles.searchFields}>
+          <span className={styles.searchFieldsLabel}>Search in:</span>
+          {searchFields.map(({ field, label }) => (
+            <label key={field} className={styles.searchFieldOption}>
+              <input
+                type="checkbox"
+                checked={filterState.search.fields.includes(field)}
+                onChange={() => handleSearchFieldToggle(field)}
+              />
+              <span>{label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
 
       {isExpanded && (
         <div className={styles.filtersContent}>
-          {/* Search Section */}
-          <div className={styles.searchSection}>
-            <div className={styles.searchInput}>
-              <Search size={16} className={styles.searchIcon} />
-              <input
-                type="text"
-                placeholder="Search recommendations..."
-                value={filterState.search.query}
-                onChange={handleSearchChange}
-                className={styles.searchField}
-              />
-              {filterState.search.query && (
-                <button
-                  onClick={() => actions.updateSearch('')}
-                  className={styles.clearSearch}
-                >
-                  <X size={16} />
-                </button>
-              )}
-            </div>
-            
-            {/* Search Fields Selector */}
-            <div className={styles.searchFields}>
-              <span className={styles.searchFieldsLabel}>Search in:</span>
-              {searchFields.map(({ field, label }) => (
-                <label key={field} className={styles.searchFieldOption}>
-                  <input
-                    type="checkbox"
-                    checked={filterState.search.fields.includes(field)}
-                    onChange={() => handleSearchFieldToggle(field)}
-                  />
-                  <span>{label}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
           {/* Skill Categories Filter */}
           <div className={styles.skillFiltersSection}>
             <h3 className={styles.sectionTitle}>Filter by Skills</h3>
             <div className={styles.skillCategories}>
               {Object.entries(SKILL_CATEGORIES).map(([category, info]) => {
                 const typedCategory = category as SkillCategory;
-                const isActive = filterState.activeFilters.some(f => 
-                  f.type === 'skill' && f.id === `skill-${category}`
+                const isActive = filterState.activeFilters.some(
+                  f => f.type === 'skill' && f.id === `skill-${category}`
                 );
-                
+
                 return (
                   <div key={category} className={styles.skillCategory}>
                     <button
                       onClick={() => handleSkillFilterToggle(typedCategory)}
                       className={`${styles.skillCategoryButton} ${isActive ? styles.active : ''}`}
                     >
-                      <span className={styles.skillCategoryName}>{info.name}</span>
+                      <span className={styles.skillCategoryName}>
+                        {info.name}
+                      </span>
                       <span className={styles.skillCategoryCount}>
                         {getSkillsByCategory(typedCategory).length} skills
                       </span>
@@ -260,9 +294,11 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
                 </button>
               </div>
               <div className={styles.activeFilters}>
-                {filterState.activeFilters.map((filter) => (
+                {filterState.activeFilters.map(filter => (
                   <div key={filter.id} className={styles.activeFilter}>
-                    <span className={styles.activeFilterLabel}>{filter.label}</span>
+                    <span className={styles.activeFilterLabel}>
+                      {filter.label}
+                    </span>
                     <button
                       onClick={() => actions.removeFilter(filter.id)}
                       className={styles.removeFilterButton}

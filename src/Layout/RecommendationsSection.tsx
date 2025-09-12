@@ -58,10 +58,13 @@ export const RecommendationsSection: React.FC = () => {
           experience.
         </p>
         <p className={styles.sectionNote}>
-          These recommendations are loaded via <strong>GraphQL</strong> from real LinkedIn testimonials 
-          (demonstrating Apollo Client integration). Use the filters below to search and explore by skills, companies, or keywords. You can find the original recommendations and more information about me on my{' '}
+          These recommendations are loaded via <strong>GraphQL</strong> from
+          real LinkedIn testimonials (demonstrating Apollo Client integration).
+          Use the filters below to search and explore by skills, companies, or
+          keywords. You can find the original recommendations and more
+          information about me on my{' '}
           <a
-            href="https://www.linkedin.com/in/carolina-p-powers/"
+            href="https://www.linkedin.com/in/carolina-p-powers/details/recommendations/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.linkedinLink}
@@ -73,7 +76,7 @@ export const RecommendationsSection: React.FC = () => {
       </div>
 
       {/* Advanced Filtering System */}
-      <RecommendationFilters 
+      <RecommendationFilters
         filters={filters}
         totalRecommendations={data?.recommendations?.length || 0}
       />
@@ -94,19 +97,21 @@ export const RecommendationsSection: React.FC = () => {
 
       {/* Recommendations Grid */}
       <div className={styles.recommendationsGrid}>
-        {filters.results.recommendations.map((recommendation: Recommendation) => (
-          <RecommendationCard
-            key={recommendation.id}
-            recommendation={recommendation}
-          />
-        ))}
+        {filters.results.recommendations.map(
+          (recommendation: Recommendation) => (
+            <RecommendationCard
+              key={recommendation.id}
+              recommendation={recommendation}
+            />
+          )
+        )}
       </div>
 
       {/* No results state */}
       {filters.results.recommendations.length === 0 && !filters.isLoading && (
         <div className={styles.noResults}>
           <p>No recommendations match your current filters.</p>
-          <button 
+          <button
             onClick={filters.actions.clearAllFilters}
             className={styles.clearFiltersButton}
           >
@@ -116,7 +121,7 @@ export const RecommendationsSection: React.FC = () => {
       )}
 
       {/* Pagination */}
-      <Pagination 
+      <Pagination
         filters={filters}
         itemsPerPageOptions={[6, 12, 24]}
         showQuickJumper={true}

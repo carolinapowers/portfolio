@@ -595,7 +595,7 @@ npm run test:e2e         # Basic Playwright tests
 
 - **Modern React patterns** (hooks, functional components)
 - **TypeScript proficiency** (proper typing throughout)
-- **Apollo Client knowledge** (relevant to Buffer's GraphQL stack)
+- **Apollo Client knowledge** (relevant for GraphQL implementations)
 - **Component architecture** (clean, reusable components)
 - **CSS Modules** (scoped styling approach)
 - **Testing best practices** (colocated tests, React Testing Library)
@@ -749,7 +749,7 @@ describe('ComponentName', () => {
 3. `getByText()` for content
 4. Only uses `getByTestId()` when semantic queries aren't possible
 
-This approach is much more realistic for a same-day build while still demonstrating the technical skills Buffer is looking for. The focus is on quality implementation rather than over-engineering.
+This approach is much more realistic for a same-day build while still demonstrating strong technical skills. The focus is on quality implementation rather than over-engineering.
 
 # Segment Analytics Implementation Plan
 

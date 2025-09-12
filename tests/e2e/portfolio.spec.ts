@@ -5,7 +5,7 @@ test.describe('Portfolio E2E Tests', () => {
     await page.goto('/');
     
     // Check if the main title is visible
-    await expect(page.getByRole('heading', { name: "Buffer's Interactive Portfolio" })).toBeVisible();
+    await expect(page.getByRole('heading', { name: "Interactive Portfolio" })).toBeVisible();
     await expect(page.getByText('Senior Product Frontend Engineer')).toBeVisible();
   });
 
@@ -30,8 +30,8 @@ test.describe('Portfolio E2E Tests', () => {
   test('should show rich text editor section', async ({ page }) => {
     await page.goto('/');
     
-    await expect(page.getByText('Rich Text Editor - Buffer-Style Composer')).toBeVisible();
-    await expect(page.getByText("This interactive rich text editor showcases modern React development patterns and demonstrates how Buffer's content creation tools might be built. Try the formatting controls, keyboard shortcuts, and explore the features.")).toBeVisible();
+    await expect(page.getByText('Rich Text Editor - Modern Composer')).toBeVisible();
+    await expect(page.getByText("This interactive rich text editor showcases modern React development patterns and demonstrates how modern content creation tools might be built. Try the formatting controls, keyboard shortcuts, and explore the features.")).toBeVisible();
   });
 
   test('should show recommendations section', async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('Portfolio E2E Tests', () => {
 
   test('should show design system section', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByText('Buffer-Inspired Design System')).toBeVisible();
+    await expect(page.getByText('Modern Design System')).toBeVisible();
     const storybookBtn = page.getByRole('link', { name: /Storybook Demo/i });
     const githubBtn = page.getByRole('link', { name: /GitHub Repo/i });
     await expect(storybookBtn).toBeVisible();
@@ -56,10 +56,10 @@ test.describe('Portfolio E2E Tests', () => {
     
     // Test mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
-    await expect(page.getByRole('heading', { name: "Buffer's Interactive Portfolio" })).toBeVisible();
+    await expect(page.getByRole('heading', { name: "Interactive Portfolio" })).toBeVisible();
     
     // Test desktop viewport
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await expect(page.getByRole('heading', { name: "Buffer's Interactive Portfolio" })).toBeVisible();
+    await expect(page.getByRole('heading', { name: "Interactive Portfolio" })).toBeVisible();
   });
 });

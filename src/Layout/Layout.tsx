@@ -65,14 +65,14 @@ export const Layout: React.FC = () => {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Buffer's Interactive Portfolio</h1>
+          <h1 className={styles.title}>Interactive Portfolio</h1>
           <p className={styles.subtitle}>
             Senior Product Frontend Engineer
             <br />
             <span className={styles.caption}>Carolina Powers</span>
           </p>
           <p className={styles.description}>
-            Built with Buffer-inspired design patterns + modern React
+            Built with modern React patterns and clean design
           </p>
           <div className={styles.techStack}>
             <span className={styles.tech}>React</span>
@@ -87,12 +87,12 @@ export const Layout: React.FC = () => {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>
               <Edit className={styles.sectionIcon} size={20} />
-              Rich Text Editor - Buffer-Style Composer
+              Rich Text Editor - Modern Composer
             </h2>
             <div className={styles.editorIntro}>
               <p className={styles.sectionDescription}>
                 This interactive rich text editor showcases modern React
-                development patterns and demonstrates how Buffer's content
+                development patterns and demonstrates how modern content
                 creation tools might be built. Try the formatting controls,
                 keyboard shortcuts, and explore the features.
               </p>
@@ -109,11 +109,11 @@ export const Layout: React.FC = () => {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>
               <Code className={styles.sectionIcon} size={20} />
-              Buffer-Inspired Design System
+              Modern Design System
             </h2>
             <div className={styles.editorIntro}>
               <p className={styles.sectionDescription}>
-                Explore my in-progress, open-source design system inspired by Buffer’s UI library. Built with Radix UI, TypeScript, and CSS Modules, it provides accessible, reusable components and design tokens for modern product teams.
+                Explore my in-progress, open-source design system. Built with Radix UI, TypeScript, and CSS Modules, it provides accessible, reusable components and design tokens for modern product teams.
               </p>
               <p className={styles.sectionNote + ' ' + 'mb-lg'}>
                 <strong>Features:</strong> Primitives, composite components, design tokens, Storybook docs, and full accessibility support. <br />
@@ -190,7 +190,7 @@ export const Layout: React.FC = () => {
                 <span aria-hidden="true">🎯</span> Technical Alignment
               </h3>
               <p className="mt-0">
-                Uses Buffer's actual tech stack and design patterns
+                Uses modern tech stack and design patterns
               </p>
             </DisplayFlexItem>
             <DisplayFlexItem shrink={1}>
@@ -198,7 +198,7 @@ export const Layout: React.FC = () => {
                 <span aria-hidden="true">🔍</span> Deep Research
               </h3>
               <p className="mt-0">
-                Shows understanding of Buffer's design system evolution
+                Shows understanding of modern design system evolution
               </p>
             </DisplayFlexItem>
             <DisplayFlexItem shrink={1}>
@@ -206,7 +206,7 @@ export const Layout: React.FC = () => {
                 <span aria-hidden="true">🚀</span> Ready to Contribute
               </h3>
               <p className="mt-0">
-                Demonstrates skills for Buffer's Content Creation team
+                Demonstrates skills for content creation and collaboration
               </p>
             </DisplayFlexItem>
           </DisplayFlex>

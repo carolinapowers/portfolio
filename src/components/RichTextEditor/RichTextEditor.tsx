@@ -155,7 +155,7 @@ export const RichTextEditor: React.FC = () => {
                           <p>
                             Claude Code generated complete React components with
                             TypeScript, including proper prop interfaces and
-                            styling patterns that match Buffer's design
+                            styling patterns that follow modern design
                             philosophy.
                           </p>
                         </div>
@@ -182,7 +182,7 @@ export const RichTextEditor: React.FC = () => {
                         <div className={styles.aiFeature}>
                           <h4>📋 Architecture Decisions</h4>
                           <p>
-                            Analyzed Buffer's tech stack requirements and
+                            Analyzed modern tech stack requirements and
                             implemented matching patterns: GraphQL with Apollo,
                             Radix UI primitives, and accessibility-first
                             component design.

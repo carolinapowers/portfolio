@@ -1,12 +1,13 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { Edit, Code } from 'lucide-react';
+import { Code } from 'lucide-react';
 import { client } from '../apollo/client';
-import { RichTextEditor } from '../components/RichTextEditor/RichTextEditor';
 import { RecommendationsSection } from './RecommendationsSection';
 import { usePageTracking } from '../analytics';
 import styles from './Layout.module.css';
 import { DisplayFlex, DisplayFlexItem } from '../components/DisplayFlex';
+import { DesignSystemSection } from '../components/DesignSystemSection';
+// import { EditorSection } from '../components/EditorSection';
 
 export const Layout: React.FC = () => {
   // Track page views and scroll behavior
@@ -15,7 +16,7 @@ export const Layout: React.FC = () => {
     trackScrollDepth: true,
   });
 
-  const techCategories = [
+  const techCategories: { title: string; tags: string[] }[] = [
     {
       title: 'Frontend & Build',
       tags: ['React 18', 'TypeScript', 'Vite', 'CSS Modules'],
@@ -65,14 +66,14 @@ export const Layout: React.FC = () => {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Buffer's Interactive Portfolio</h1>
+          <h1 className={styles.title}>Interactive Portfolio</h1>
           <p className={styles.subtitle}>
             Senior Product Frontend Engineer
             <br />
             <span className={styles.caption}>Carolina Powers</span>
           </p>
           <p className={styles.description}>
-            Built with Buffer-inspired design patterns + modern React
+            Built with modern React patterns and clean design
           </p>
           <div className={styles.techStack}>
             <span className={styles.tech}>React</span>
@@ -84,64 +85,9 @@ export const Layout: React.FC = () => {
           </div>
         </header>
         <main className={styles.mainContent}>
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              <Edit className={styles.sectionIcon} size={20} />
-              Rich Text Editor - Buffer-Style Composer
-            </h2>
-            <div className={styles.editorIntro}>
-              <p className={styles.sectionDescription}>
-                This interactive rich text editor showcases modern React
-                development patterns and demonstrates how Buffer's content
-                creation tools might be built. Try the formatting controls,
-                keyboard shortcuts, and explore the features.
-              </p>
-              <p className={styles.sectionNote + ' ' + 'mb-lg'}>
-                Built with custom hooks, contentEditable management, and local
-                state persistence. Click the <strong>AI Assistant</strong>{' '}
-                button in the editor to learn how this entire portfolio was
-                created in one day using AI-assisted development with Claude
-                Code.
-              </p>
-            </div>
-            <RichTextEditor />
-          </section>
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              <Code className={styles.sectionIcon} size={20} />
-              Buffer-Inspired Design System
-            </h2>
-            <div className={styles.editorIntro}>
-              <p className={styles.sectionDescription}>
-                Explore my in-progress, open-source design system inspired by Buffer’s UI library. Built with Radix UI, TypeScript, and CSS Modules, it provides accessible, reusable components and design tokens for modern product teams.
-              </p>
-              <p className={styles.sectionNote + ' ' + 'mb-lg'}>
-                <strong>Features:</strong> Primitives, composite components, design tokens, Storybook docs, and full accessibility support. <br />
-                <strong>Tech:</strong> React, Radix UI, TypeScript, Vite, Vitest, Chromatic, and more.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <a
-                  href="https://design-system-iota-five.vercel.app/?path=/docs/components-composite-modal--docs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.actionButton}
-                >
-                  <Code size={16} />
-                  Storybook Demo
-                </a>
-                <a
-                  href="https://github.com/carolinapowers/design-system"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.actionButton + ' ' + styles.githubBtn}
-                >
-                  <Code size={16} />
-                  GitHub Repo
-                </a>
-              </div>
-            </div>
-          </section>
+          {/* <EditorSection /> */}
           <RecommendationsSection />
+          <DesignSystemSection />
         </main>
         <section className={styles.techSection}>
           <h2 className={styles.sectionTitle}>
@@ -189,16 +135,14 @@ export const Layout: React.FC = () => {
               <h3>
                 <span aria-hidden="true">🎯</span> Technical Alignment
               </h3>
-              <p className="mt-0">
-                Uses Buffer's actual tech stack and design patterns
-              </p>
+              <p className="mt-0">Uses modern tech stack and design patterns</p>
             </DisplayFlexItem>
             <DisplayFlexItem shrink={1}>
               <h3>
                 <span aria-hidden="true">🔍</span> Deep Research
               </h3>
               <p className="mt-0">
-                Shows understanding of Buffer's design system evolution
+                Shows understanding of modern design system evolution
               </p>
             </DisplayFlexItem>
             <DisplayFlexItem shrink={1}>
@@ -206,7 +150,7 @@ export const Layout: React.FC = () => {
                 <span aria-hidden="true">🚀</span> Ready to Contribute
               </h3>
               <p className="mt-0">
-                Demonstrates skills for Buffer's Content Creation team
+                Demonstrates skills for content creation and collaboration
               </p>
             </DisplayFlexItem>
           </DisplayFlex>

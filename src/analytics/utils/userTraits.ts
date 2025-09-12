@@ -32,19 +32,19 @@ export const getUserTraits = (): UserTraits => {
     if (userAgent.includes('Chrome') && !userAgent.includes('Edge')) {
       browserName = 'Chrome';
       const match = userAgent.match(/Chrome\/([0-9.]+)/);
-      browserVersion = match ? match[1] : 'Unknown';
+      browserVersion = match?.[1] ?? 'Unknown';
     } else if (userAgent.includes('Firefox')) {
       browserName = 'Firefox';
       const match = userAgent.match(/Firefox\/([0-9.]+)/);
-      browserVersion = match ? match[1] : 'Unknown';
+      browserVersion = match?.[1] ?? 'Unknown';
     } else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
       browserName = 'Safari';
       const match = userAgent.match(/Version\/([0-9.]+)/);
-      browserVersion = match ? match[1] : 'Unknown';
+      browserVersion = match?.[1] ?? 'Unknown';
     } else if (userAgent.includes('Edge')) {
       browserName = 'Edge';
       const match = userAgent.match(/Edge\/([0-9.]+)/);
-      browserVersion = match ? match[1] : 'Unknown';
+      browserVersion = match?.[1] ?? 'Unknown';
     }
 
     return { browserName, browserVersion };

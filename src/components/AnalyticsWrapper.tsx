@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Analytics } from '@segment/analytics-next';
 import { initializeAnalytics } from '../analytics/client';
 import { AnalyticsContext } from '../analytics/context/AnalyticsContext';
@@ -29,10 +29,13 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     init();
   }, []);
 
-  const contextValue: AnalyticsContextType = {
-    analytics,
-    isReady,
-  };
+  const contextValue: AnalyticsContextType = useMemo(
+    () => ({
+      analytics,
+      isReady,
+    }),
+    [analytics, isReady]
+  );
 
   return (
     <AnalyticsContext.Provider value={contextValue}>

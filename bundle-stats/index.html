@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundle Analysis Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .info-section {
+            margin-bottom: 35px;
+        }
+        
+        .info-section h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-section h2::before {
+            content: "📊";
+            font-size: 1.2em;
+        }
+        
+        .info-section.how-to h2::before {
+            content: "🔧";
+        }
+        
+        .info-section.features h2::before {
+            content: "✨";
+        }
+        
+        .info-section.requirements h2::before {
+            content: "📋";
+        }
+        
+        .info-section p, .info-section li {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .info-section ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        
+        .info-section li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.95em;
+            color: #24292e;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: "Terminal";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 8px;
+            font-size: 0.85em;
+            color: #586069;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f6f8fa;
+            color: #24292e;
+            border: 2px solid #e1e4e8;
+        }
+        
+        .btn-secondary:hover {
+            background: #e1e4e8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-generate {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .status.info {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            color: #1565c0;
+        }
+        
+        .status.success {
+            background: #e8f5e9;
+            border: 1px solid #81c784;
+            color: #2e7d32;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            border: 1px solid #ef5350;
+            color: #c62828;
+        }
+        
+        .status.loading {
+            background: #fff3e0;
+            border: 1px solid #ffb74d;
+            color: #e65100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffb74d;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .files-list {
+            background: #f6f8fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .files-list h3 {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .files-list ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .files-list li {
+            padding: 8px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .files-list li::before {
+            content: "📄";
+        }
+        
+        .files-list a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .files-list a:hover {
+            text-decoration: underline;
+        }
+        
+        .timestamp {
+            color: #999;
+            font-size: 0.85em;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bundle Analysis Tool</h1>
+            <p>Compare bundle sizes between branches to track optimization progress</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-section">
+                <h2>What is this?</h2>
+                <p>
+                    This tool helps you visualize and compare JavaScript bundle sizes between different Git branches. 
+                    It uses Rollup Plugin Visualizer to create interactive treemap visualizations that show exactly 
+                    which packages and modules are taking up space in your production build.
+                </p>
+            </div>
+            
+            <div class="info-section features">
+                <h2>Features</h2>
+                <ul>
+                    <li><strong>Side-by-side comparison:</strong> View main branch and current branch bundles simultaneously</li>
+                    <li><strong>Interactive treemaps:</strong> Click and hover to explore bundle composition</li>
+                    <li><strong>Gzip sizes:</strong> See actual download sizes, not just raw file sizes</li>
+                    <li><strong>Automatic branch detection:</strong> Compares your current branch against main</li>
+                    <li><strong>Persistent stats:</strong> Generated reports are saved for future reference</li>
+                </ul>
+            </div>
+            
+            <div class="info-section how-to">
+                <h2>How to Use</h2>
+                <p>You can generate bundle comparisons in two ways:</p>
+                
+                <div class="code-block">npm run analyze:compare</div>
+                
+                <p>Or click the button below to generate a new comparison right now:</p>
+            </div>
+            
+            <div class="info-section requirements">
+                <h2>Requirements</h2>
+                <ul>
+                    <li>Your changes should be committed or stashed (the script will handle this)</li>
+                    <li>You need to be on a feature branch to compare against main</li>
+                    <li>The build process must succeed on both branches</li>
+                </ul>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-generate" onclick="generateComparison()">
+                    <span>🚀</span>
+                    Generate New Comparison
+                </button>
+                <a href="compare.html" class="btn btn-primary">
+                    <span>📊</span>
+                    View Last Comparison
+                </a>
+            </div>
+            
+            <div id="status" class="status"></div>
+            
+            <div id="existingFiles" class="files-list" style="display: none;">
+                <h3>Available Stats Files</h3>
+                <ul id="filesList"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check for existing stats files
+        function checkExistingFiles() {
+            const files = [
+                { name: 'compare.html', label: 'Comparison View' },
+                { name: 'stats-main.html', label: 'Main Branch Stats' },
+                { name: 'stats-current.html', label: 'Current Branch Stats' }
+            ];
+            
+            const filesList = document.getElementById('filesList');
+            const existingFiles = document.getElementById('existingFiles');
+            filesList.innerHTML = '';
+            
+            let hasFiles = false;
+            
+            files.forEach(file => {
+                // Try to check if file exists (this is a simple approach)
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = file.name;
+                link.textContent = file.label;
+                link.target = '_blank';
+                li.appendChild(link);
+                
+                // Add timestamp if we can detect it
+                const timestamp = document.createElement('span');
+                timestamp.className = 'timestamp';
+                timestamp.textContent = 'Check file for details';
+                li.appendChild(timestamp);
+                
+                filesList.appendChild(li);
+                hasFiles = true;
+            });
+            
+            if (hasFiles) {
+                existingFiles.style.display = 'block';
+            }
+        }
+        
+        function showStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            if (type === 'loading') {
+                status.innerHTML = `<div class="spinner"></div>${message}`;
+            } else {
+                status.innerHTML = message;
+            }
+        }
+        
+        async function generateComparison() {
+            showStatus('Generating bundle comparison... This may take a minute.', 'loading');
+            
+            try {
+                // This would need a backend endpoint or local server to actually run the script
+                // For now, we'll show instructions
+                showStatus(
+                    `⚠️ To generate a new comparison, please run the following command in your terminal:<br><br>` +
+                    `<code style="background: #f6f8fa; padding: 10px; border-radius: 5px; display: block; margin-top: 10px;">npm run analyze:compare</code><br>` +
+                    `This will:<br>` +
+                    `1. Save your current changes<br>` +
+                    `2. Build stats for the main branch<br>` +
+                    `3. Build stats for your current branch<br>` +
+                    `4. Open the comparison view automatically`,
+                    'info'
+                );
+                
+                // In a real implementation, you could:
+                // 1. Set up a local Node.js server endpoint
+                // 2. Use child_process.exec to run the script
+                // 3. Return the result to the frontend
+                
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Check for existing files on load
+        window.addEventListener('load', checkExistingFiles);
+    </script>
+</body>
+</html>

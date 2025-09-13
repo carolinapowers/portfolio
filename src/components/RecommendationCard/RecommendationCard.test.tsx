@@ -18,7 +18,7 @@ const mockRecommendation: Recommendation = {
 
 describe('RecommendationCard Component', () => {
   it('renders recommendation name', () => {
-    render(<RecommendationCard recommendation={mockRecommendation} activeFilters={[]} />);
+    render(<RecommendationCard recommendation={mockRecommendation} activeFilters={[]} sortBy="date" sortOrder="desc" />);
     // Use heading role since name is in an h3 element
     expect(
       screen.getByRole('heading', { name: 'John Doe' })

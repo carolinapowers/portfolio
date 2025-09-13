@@ -63,7 +63,7 @@ export interface FilterState {
 }
 
 // Sorting configuration
-export type SortOption = 'date' | 'name' | 'company' | 'relevance' | 'skills';
+export type SortOption = 'date' | 'name' | 'company' | 'relevance' | 'skills' | 'role';
 export type SortOrder = 'asc' | 'desc';
 
 export interface SortConfig {

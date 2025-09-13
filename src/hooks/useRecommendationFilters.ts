@@ -151,6 +151,35 @@ export const useRecommendationFilters = (
     },
   }), [filterState]);
 
+  // Helper to categorize relationships for role-based sorting
+  const getRelationshipCategory = useCallback((relationship: string): number => {
+    const rel = relationship.toLowerCase();
+    
+    // Manager/Leadership roles (highest priority)
+    if (rel.includes('managed') || rel.includes('director') || rel.includes('manager')) {
+      return 1;
+    }
+    
+    // Senior/Mentor roles  
+    if (rel.includes('senior') || rel.includes('lead') || 
+        rel.includes('mentor') || (rel.includes('worked with') && rel.includes('different teams'))) {
+      return 2;
+    }
+    
+    // Peer/Same team roles
+    if (rel.includes('same team') || rel.includes('colleague')) {
+      return 3;
+    }
+    
+    // Junior/Mentee roles
+    if (rel.includes('junior') || rel.includes('didn\'t manage')) {
+      return 4;
+    }
+    
+    // Default category
+    return 3;
+  }, []);
+
   // Sorting logic with type safety
   const sortRecommendations = useCallback((
     items: readonly Recommendation[],
@@ -178,6 +207,13 @@ export const useRecommendationFilters = (
           const scoreA = a.skills.length * 0.3 + a.content.length * 0.001;
           const scoreB = b.skills.length * 0.3 + b.content.length * 0.001;
           comparison = scoreA - scoreB;
+          break;
+        }
+        case 'role': {
+          // Sort by relationship category (manager -> peer -> junior)
+          const categoryA = getRelationshipCategory(a.relationship);
+          const categoryB = getRelationshipCategory(b.relationship);
+          comparison = categoryA - categoryB;
           break;
         }
         default:

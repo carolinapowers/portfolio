@@ -5,10 +5,35 @@
   padding: var(--spacing-md);
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease;
+  position: relative;
 }
 
 .card:hover {
   box-shadow: var(--shadow-md);
+}
+
+.sortIndicator {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+}
+
+.sortIcon {
+  font-size: 14px;
+}
+
+.sortArrow {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-weight: 600;
 }
 
 .header {

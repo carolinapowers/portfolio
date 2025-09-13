@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { Search, Filter, X, ChevronDown, ChevronUp, Clock, BarChart3 } from 'lucide-react';
 import type { 
   SkillFilter, 
-  SortOption, 
   SearchableField,
   UseFiltersReturn 
 } from '../../types/filtering';
@@ -101,33 +100,11 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
     [filterState.activeFilters, actions, createSkillFilter]
   );
 
-  // Sort handlers
-  const handleSortChange = useCallback(
-    (sortBy: SortOption) => {
-      const currentOrder =
-        filterState.sortBy === sortBy
-          ? filterState.sortOrder === 'asc'
-            ? 'desc'
-            : 'asc'
-          : 'desc';
-      actions.updateSort(sortBy, currentOrder);
-    },
-    [filterState.sortBy, filterState.sortOrder, actions]
-  );
 
   // Get active filter count
   const activeFilterCount =
     filterState.activeFilters.length + (filterState.search.query ? 1 : 0);
 
-  // Sort options configuration
-  const sortOptions: Array<{ value: SortOption; label: string; icon: string }> =
-    [
-      { value: 'date', label: 'Date', icon: '📅' },
-      { value: 'name', label: 'Name', icon: '👤' },
-      { value: 'company', label: 'Company', icon: '🏢' },
-      { value: 'skills', label: 'Skills', icon: '🛠️' },
-      { value: 'relevance', label: 'Relevance', icon: '⭐' },
-    ];
 
   const searchFields: Array<{ field: SearchableField; label: string }> = [
     { field: 'name', label: 'Name' },
@@ -308,29 +285,6 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
             </div>
           )}
 
-          {/* Sort Section */}
-          <div className={styles.sortSection}>
-            <h3 className={styles.sectionTitle}>Sort By</h3>
-            <div className={styles.sortOptions}>
-              {sortOptions.map(({ value, label, icon }) => (
-                <button
-                  key={value}
-                  onClick={() => handleSortChange(value)}
-                  className={`${styles.sortOption} ${
-                    filterState.sortBy === value ? styles.active : ''
-                  }`}
-                >
-                  <span className={styles.sortIcon}>{icon}</span>
-                  <span>{label}</span>
-                  {filterState.sortBy === value && (
-                    <span className={styles.sortOrder}>
-                      {filterState.sortOrder === 'asc' ? '↑' : '↓'}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       )}
     </div>

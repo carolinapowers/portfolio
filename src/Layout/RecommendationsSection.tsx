@@ -4,6 +4,7 @@ import { Users } from 'lucide-react';
 import { GET_RECOMMENDATIONS } from '../apollo/queries';
 import { RecommendationCard } from '../components/RecommendationCard/RecommendationCard';
 import { RecommendationFilters } from '../components/RecommendationFilters/RecommendationFilters';
+import { SortingControls } from '../components/SortingControls/SortingControls';
 import { Pagination } from '../components/Pagination/Pagination';
 import { useRecommendationFilters } from '../hooks/useRecommendationFilters';
 import type { Recommendation } from '../data/recommendations';
@@ -81,6 +82,9 @@ export const RecommendationsSection: React.FC = () => {
         totalRecommendations={data?.recommendations?.length || 0}
       />
 
+      {/* Sorting Controls */}
+      <SortingControls filters={filters} />
+
       {/* Loading state for filtering */}
       {filters.isLoading && (
         <div className={styles.loadingState}>
@@ -103,6 +107,8 @@ export const RecommendationsSection: React.FC = () => {
               key={recommendation.id}
               recommendation={recommendation}
               activeFilters={filters.filters.activeFilters}
+              sortBy={filters.filters.sortBy}
+              sortOrder={filters.filters.sortOrder}
             />
           )
         )}

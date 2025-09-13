@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import type { Recommendation } from '../../data/recommendations';
-import type { Filter } from '../../types/filtering';
+import type { Filter, SortOption, SortOrder } from '../../types/filtering';
 import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
 import { SKILL_TO_CATEGORY_MAP } from '../../data/skills';
 import { HighlightedText } from '../HighlightedText/HighlightedText';
@@ -9,11 +9,15 @@ import styles from './RecommendationCard.module.css';
 interface RecommendationCardProps {
   recommendation: Recommendation;
   activeFilters?: Filter[];
+  sortBy?: SortOption;
+  sortOrder?: SortOrder;
 }
 
 export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   recommendation,
   activeFilters = [],
+  sortBy = 'date',
+  sortOrder = 'desc',
 }) => {
   const primarySkills = [
     'React',
@@ -25,6 +29,19 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
     'Leadership',
     'Code Reviews',
   ];
+
+  // Get the sorting icon to display
+  const getSortIcon = () => {
+    const icons: Record<SortOption, string> = {
+      date: '📅',
+      name: '👤',
+      company: '🏢',
+      skills: '🛠️',
+      role: '👥',
+      relevance: '⭐',
+    };
+    return icons[sortBy] || '📅';
+  };
 
   // Get terms that should be highlighted in the text based on active filters
   const highlightedTerms = useMemo(() => {
@@ -134,6 +151,9 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
 
   return (
     <div className={styles.card}>
+      <div className={styles.sortIndicator}>
+        <span className={styles.sortIcon}>{getSortIcon()}</span>
+      </div>
       <div className={styles.header}>
         <div className={styles.avatar}>{recommendation.avatar}</div>
         <div className={styles.info}>

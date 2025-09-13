@@ -20,6 +20,10 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const CHARACTER_LIMIT = 300; // Adjust this value as needed
+  
+  // Show full content if there are active filters (user is searching for specific content)
+  const hasActiveFilters = activeFilters && activeFilters.length > 0;
+  const shouldShowFullContent = hasActiveFilters || isExpanded || recommendation.content.length <= CHARACTER_LIMIT;
   const primarySkills = [
     'React',
     'TypeScript',
@@ -168,13 +172,13 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       <div className={styles.textContainer}>
         <p className={styles.text}>
           <HighlightedText
-            text={isExpanded || recommendation.content.length <= CHARACTER_LIMIT 
+            text={shouldShowFullContent 
               ? recommendation.content 
               : `${recommendation.content.slice(0, CHARACTER_LIMIT)}...`}
             highlightTerms={highlightedTerms}
           />
         </p>
-        {recommendation.content.length > CHARACTER_LIMIT && (
+        {recommendation.content.length > CHARACTER_LIMIT && !hasActiveFilters && (
           <button
             className={styles.readMoreBtn}
             onClick={() => setIsExpanded(!isExpanded)}

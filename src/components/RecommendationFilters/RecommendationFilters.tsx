@@ -1,11 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
   Filter,
   X,
-  ChevronDown,
-  ChevronUp,
-  Clock,
-  BarChart3,
 } from 'lucide-react';
 import type { SkillFilter, UseFiltersReturn } from '../../types/filtering';
 import {
@@ -18,14 +14,12 @@ import styles from './RecommendationFilters.module.css';
 
 interface RecommendationFiltersProps {
   filters: UseFiltersReturn;
-  totalRecommendations: number;
 }
 
 export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
   filters,
-  totalRecommendations,
 }) => {
-  const { filters: filterState, results, actions, metrics } = filters;
+  const { filters: filterState, actions } = filters;
 
   // Count unique skills that appear in recommendations for each category
   const getSkillCountForCategory = useCallback(
@@ -87,7 +81,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
       <div className={styles.filtersHeader}>
         <div className={styles.filtersTitle}>
           <Filter size={18} />
-          <span>Filter Recommendations</span>
+          <span>Filters</span>
           {activeFilterCount > 0 && (
             <span className={styles.filterCount}>{activeFilterCount}</span>
           )}
@@ -98,7 +92,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
       <div className={styles.filtersContent}>
         {/* Skill Categories Filter */}
         <div className={styles.skillFiltersSection}>
-          <h3 className={styles.sectionTitle}>Filter by Skills</h3>
+          <h3 className={styles.sectionTitle}>By Skills</h3>
           <div className={styles.skillCategories}>
             {Object.entries(SKILL_CATEGORIES).map(([category, info]) => {
               const typedCategory = category as SkillCategory;
@@ -108,17 +102,22 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
 
               return (
                 <div key={category} className={styles.skillCategory}>
-                  <button
-                    onClick={() => handleSkillFilterToggle(typedCategory)}
-                    className={`${styles.skillCategoryButton} ${isActive ? styles.active : ''}`}
-                  >
-                    <span className={styles.skillCategoryName}>
-                      {info.name}
-                    </span>
-                    <span className={styles.skillCategoryCount}>
-                      {getSkillCountForCategory(typedCategory)} skills
-                    </span>
-                  </button>
+                  <label className={`${styles.skillCategoryLabel} ${isActive ? styles.active : ''}`}>
+                    <div className={styles.skillCategoryInfo}>
+                      <input
+                        type="checkbox"
+                        checked={isActive}
+                        onChange={() => handleSkillFilterToggle(typedCategory)}
+                        className={styles.skillCheckbox}
+                      />
+                      <div className={styles.skillCategoryName}>
+                        <span>{info.name}</span>
+                        <p className={styles.skillCategoryCount}>
+                          {getSkillCountForCategory(typedCategory)} skills
+                        </p>
+                      </div>
+                    </div>
+                  </label>
                 </div>
               );
             })}

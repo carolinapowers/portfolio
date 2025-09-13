@@ -49,7 +49,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ filters }) => {
       <div className={styles.searchHeader}>
         <div className={styles.searchTitle}>
           <Search size={18} />
-          <span>Search Recommendations</span>
+          <span>Search</span>
         </div>
       </div>
 

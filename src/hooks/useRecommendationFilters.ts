@@ -224,7 +224,7 @@ export const useRecommendationFilters = (
     });
     
     return sortedItems;
-  }, []);
+  }, [getRelationshipCategory]);
 
   // Main filtering logic with performance tracking
   const filteredResults = useMemo((): FilterResult => {

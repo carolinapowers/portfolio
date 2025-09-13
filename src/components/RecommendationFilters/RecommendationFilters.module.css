@@ -178,52 +178,62 @@
   display: flex;
 }
 
-.skillCategoryButton {
+.skillCategoryLabel {
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: 0.25rem;
-  padding: 0.75rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
-  text-align: left;
 }
 
-.skillCategoryButton:hover {
-  background: var(--surface-hover);
-  border-color: var(--border-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.skillCategoryLabel:hover {
+  background: var(--color-background);
+  border-color: var(--color-primary);
 }
 
-.skillCategoryButton.active {
-  background: var(--primary-light);
-  border-color: var(--primary);
-  color: var(--primary);
+.skillCategoryLabel.active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.skillCategoryLabel.active:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-dark);
+}
+
+.skillCheckbox {
+  margin: 0;
+  margin-top: 5px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.skillCategoryInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  flex: 1;
 }
 
 .skillCategoryName {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   font-weight: 500;
-  font-size: 0.875rem;
-  color: var(--text-primary);
-}
-
-.skillCategoryButton.active .skillCategoryName {
-  color: var(--primary);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
 }
 
 .skillCategoryCount {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-
-.skillCategoryButton.active .skillCategoryCount {
-  color: var(--primary);
-  opacity: 0.8;
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
 }
 
 /* Sort Section */

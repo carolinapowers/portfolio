@@ -43,13 +43,13 @@ export const HighlightedText: React.FC<HighlightedTextProps> = ({
         
         if (isHighlighted) {
           return (
-            <mark key={index} className={styles.highlight}>
+            <mark key={`highlight-${part}-${parts.slice(0, index).join('')}`} className={styles.highlight}>
               {part}
             </mark>
           );
         }
         
-        return <React.Fragment key={index}>{part}</React.Fragment>;
+        return <React.Fragment key={`text-${part}-${parts.slice(0, index).join('')}`}>{part}</React.Fragment>;
       })}
     </span>
   );

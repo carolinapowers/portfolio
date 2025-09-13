@@ -35,13 +35,15 @@ export const SortingControls: React.FC<SortingControlsProps> = ({ filters }) => 
       <div className={styles.sortingHeader}>
         <div className={styles.sortingTitle}>
           <ArrowUpDown size={18} />
-          <span>Sort Recommendations</span>
+          <span>Sort</span>
         </div>
         <span className={styles.currentSort}>
-          Currently: {sortOptions.find(opt => opt.value === filterState.sortBy)?.label} {filterState.sortOrder === 'asc' ? '↑' : '↓'}
+          Currently:{' '}
+          {sortOptions.find(opt => opt.value === filterState.sortBy)?.label}{' '}
+          {filterState.sortOrder === 'asc' ? '↑' : '↓'}
         </span>
       </div>
-      
+
       <div className={styles.sortOptions}>
         {sortOptions.map(({ value, label, icon }) => (
           <button

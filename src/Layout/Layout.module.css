@@ -146,6 +146,17 @@
   margin-bottom: var(--spacing-xs);
 }
 
+.recommendationsHeader {
+  margin-bottom: var(--spacing-md);
+}
+
+.recommendationsTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
 .resultsSummary {
   margin-bottom: var(--spacing-sm);
   padding: var(--spacing-xs) 0;

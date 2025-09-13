@@ -83,7 +83,6 @@ export const RecommendationsSection: React.FC = () => {
         <aside className={styles.filtersSidebar}>
           <RecommendationFilters
             filters={filters}
-            totalRecommendations={data?.recommendations?.length || 0}
           />
         </aside>
 
@@ -95,6 +94,11 @@ export const RecommendationsSection: React.FC = () => {
           {/* Sorting Controls */}
           <div className={styles.contentControls}>
             <SortingControls filters={filters} />
+          </div>
+
+          {/* Recommendations Heading */}
+          <div className={styles.recommendationsHeader}>
+            <h3 className={styles.recommendationsTitle}>Recommendations</h3>
           </div>
 
           {/* Results Summary */}

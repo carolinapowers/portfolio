@@ -112,8 +112,60 @@
   text-decoration: underline;
 }
 
+/* Recommendations Layout with Sidebar */
+.recommendationsLayout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+.filtersSidebar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  height: fit-content;
+  position: sticky;
+  top: var(--spacing-lg);
+  min-width: 280px;
+}
+
+.mainContentArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  min-width: 0; /* Allow content to shrink */
+}
+
+.contentControls {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xs);
+}
+
+.resultsSummary {
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resultsSummary p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.filteredNote {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
 .recommendationsGrid {
   display: grid;
+  grid-template-columns: 1fr;
   gap: var(--spacing-md);
 }
 
@@ -306,6 +358,36 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .recommendationsLayout {
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .filtersSidebar {
+    min-width: 260px;
+  }
+}
+
+@media (max-width: 900px) {
+  .recommendationsLayout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .filtersSidebar {
+    position: static;
+    margin-bottom: var(--spacing-lg);
+    min-width: auto;
+    order: -1; /* Show filters at top on mobile */
+  }
+
+  .contentControls {
+    justify-content: flex-start;
+  }
+
+}
+
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
@@ -323,5 +405,15 @@
 
   .section {
     padding: var(--spacing-md);
+  }
+
+  .filtersSidebar {
+    padding: var(--spacing-md);
+  }
+
+
+  .contentControls {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

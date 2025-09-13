@@ -62,22 +62,50 @@
 }
 
 .name {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
 }
 
 .title {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   margin: 0;
+}
+
+.textContainer {
+  margin-bottom: var(--spacing-md);
 }
 
 .text {
   color: var(--color-text);
   line-height: 1.5;
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+  margin-bottom: var(--spacing-xs);
+}
+
+.readMoreBtn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.readMoreBtn:hover {
+  color: var(--color-primary-hover);
+  text-decoration: none;
+}
+
+.readMoreBtn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
 }
 
 .skills {
@@ -92,7 +120,7 @@
   background: var(--color-surface);
   color: var(--color-text-secondary);
   border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 500;
   border: 1px solid var(--color-border);
 }

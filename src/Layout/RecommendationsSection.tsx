@@ -4,6 +4,7 @@ import { Users } from 'lucide-react';
 import { GET_RECOMMENDATIONS } from '../apollo/queries';
 import { RecommendationCard } from '../components/RecommendationCard/RecommendationCard';
 import { RecommendationFilters } from '../components/RecommendationFilters/RecommendationFilters';
+import { SearchBar } from '../components/SearchBar/SearchBar';
 import { SortingControls } from '../components/SortingControls/SortingControls';
 import { Pagination } from '../components/Pagination/Pagination';
 import { useRecommendationFilters } from '../hooks/useRecommendationFilters';
@@ -61,7 +62,7 @@ export const RecommendationsSection: React.FC = () => {
         <p className={styles.sectionNote}>
           These recommendations are loaded via <strong>GraphQL</strong> from
           real LinkedIn testimonials (demonstrating Apollo Client integration).
-          Use the filters below to search and explore by skills, companies, or
+          Use the search and filters to explore by skills, companies, or
           keywords. You can find the original recommendations and more
           information about me on my{' '}
           <a
@@ -76,64 +77,90 @@ export const RecommendationsSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Advanced Filtering System */}
-      <RecommendationFilters
-        filters={filters}
-        totalRecommendations={data?.recommendations?.length || 0}
-      />
+      {/* Main Layout with Sidebar */}
+      <div className={styles.recommendationsLayout}>
+        {/* Sidebar with Filters */}
+        <aside className={styles.filtersSidebar}>
+          <RecommendationFilters
+            filters={filters}
+            totalRecommendations={data?.recommendations?.length || 0}
+          />
+        </aside>
 
-      {/* Sorting Controls */}
-      <SortingControls filters={filters} />
+        {/* Main Content Area */}
+        <div className={styles.mainContentArea}>
+          {/* Search Bar */}
+          <SearchBar filters={filters} />
+          
+          {/* Sorting Controls */}
+          <div className={styles.contentControls}>
+            <SortingControls filters={filters} />
+          </div>
 
-      {/* Loading state for filtering */}
-      {filters.isLoading && (
-        <div className={styles.loadingState}>
-          <p>Filtering recommendations...</p>
+          {/* Results Summary */}
+          <div className={styles.resultsSummary}>
+            <p>
+              Showing <strong>{filters.results.recommendations.length}</strong> of{' '}
+              <strong>{filters.results.totalMatches}</strong> recommendations
+              {filters.results.totalMatches !== (data?.recommendations?.length || 0) && (
+                <span className={styles.filteredNote}>
+                  {' '}(filtered from {data?.recommendations?.length || 0} total)
+                </span>
+              )}
+            </p>
+          </div>
+
+          {/* Loading state for filtering */}
+          {filters.isLoading && (
+            <div className={styles.loadingState}>
+              <p>Filtering recommendations...</p>
+            </div>
+          )}
+
+          {/* Error state for filtering */}
+          {filters.error && (
+            <div className={styles.errorState}>
+              <p>Error filtering recommendations: {filters.error.message}</p>
+            </div>
+          )}
+
+          {/* Recommendations Grid */}
+          <div className={styles.recommendationsGrid}>
+            {filters.results.recommendations.map(
+              (recommendation: Recommendation) => (
+                <RecommendationCard
+                  key={recommendation.id}
+                  recommendation={recommendation}
+                  activeFilters={filters.filters.activeFilters}
+                  sortBy={filters.filters.sortBy}
+                  sortOrder={filters.filters.sortOrder}
+                />
+              )
+            )}
+          </div>
+
+          {/* No results state */}
+          {filters.results.recommendations.length === 0 && !filters.isLoading && (
+            <div className={styles.noResults}>
+              <p>No recommendations match your current filters.</p>
+              <button
+                onClick={filters.actions.clearAllFilters}
+                className={styles.clearFiltersButton}
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+
+          {/* Pagination */}
+          <Pagination
+            filters={filters}
+            itemsPerPageOptions={[6, 12, 24]}
+            showQuickJumper={true}
+            showSizeChanger={true}
+          />
         </div>
-      )}
-
-      {/* Error state for filtering */}
-      {filters.error && (
-        <div className={styles.errorState}>
-          <p>Error filtering recommendations: {filters.error.message}</p>
-        </div>
-      )}
-
-      {/* Recommendations Grid */}
-      <div className={styles.recommendationsGrid}>
-        {filters.results.recommendations.map(
-          (recommendation: Recommendation) => (
-            <RecommendationCard
-              key={recommendation.id}
-              recommendation={recommendation}
-              activeFilters={filters.filters.activeFilters}
-              sortBy={filters.filters.sortBy}
-              sortOrder={filters.filters.sortOrder}
-            />
-          )
-        )}
       </div>
-
-      {/* No results state */}
-      {filters.results.recommendations.length === 0 && !filters.isLoading && (
-        <div className={styles.noResults}>
-          <p>No recommendations match your current filters.</p>
-          <button
-            onClick={filters.actions.clearAllFilters}
-            className={styles.clearFiltersButton}
-          >
-            Clear all filters
-          </button>
-        </div>
-      )}
-
-      {/* Pagination */}
-      <Pagination
-        filters={filters}
-        itemsPerPageOptions={[6, 12, 24]}
-        showQuickJumper={true}
-        showSizeChanger={true}
-      />
     </section>
   );
 };

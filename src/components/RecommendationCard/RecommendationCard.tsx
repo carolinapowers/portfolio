@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import type { Recommendation } from '../../data/recommendations';
 import type { Filter, SortOption, SortOrder } from '../../types/filtering';
 import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
@@ -17,8 +17,9 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   recommendation,
   activeFilters = [],
   sortBy = 'date',
-  sortOrder = 'desc',
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const CHARACTER_LIMIT = 300; // Adjust this value as needed
   const primarySkills = [
     'React',
     'TypeScript',
@@ -164,12 +165,24 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
         </div>
       </div>
 
-      <p className={styles.text}>
-        <HighlightedText
-          text={recommendation.content}
-          highlightTerms={highlightedTerms}
-        />
-      </p>
+      <div className={styles.textContainer}>
+        <p className={styles.text}>
+          <HighlightedText
+            text={isExpanded || recommendation.content.length <= CHARACTER_LIMIT 
+              ? recommendation.content 
+              : `${recommendation.content.slice(0, CHARACTER_LIMIT)}...`}
+            highlightTerms={highlightedTerms}
+          />
+        </p>
+        {recommendation.content.length > CHARACTER_LIMIT && (
+          <button
+            className={styles.readMoreBtn}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {isExpanded ? 'Read less' : 'Read more'}
+          </button>
+        )}
+      </div>
 
       <div className={styles.skills}>
         {recommendation.skills.map(skill => (

@@ -137,7 +137,7 @@ export const RecommendationsSection: React.FC = () => {
                 <RecommendationCard
                   key={recommendation.id}
                   recommendation={recommendation}
-                  activeFilters={filters.filters.activeFilters}
+                  activeFilters={[...filters.filters.activeFilters]}
                   sortBy={filters.filters.sortBy}
                   sortOrder={filters.filters.sortOrder}
                 />

@@ -24,7 +24,7 @@ export const useSkillHighlighting = ({
     // Get all skills that should be highlighted based on active filters
     const skillsToHighlight = skills.filter(skillName => {
       const skillCategory = SKILL_TO_CATEGORY_MAP[skillName];
-      return skillFilters.some(filter => 
+      return skillCategory && skillFilters.some(filter => 
         filter.keywords.includes(skillCategory)
       );
     });

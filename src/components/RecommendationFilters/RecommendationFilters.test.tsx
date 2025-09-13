@@ -1,9 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { RecommendationFilters } from './RecommendationFilters';
 import type { UseFiltersReturn } from '../../types/filtering';
+import type { Recommendation } from '../../data/recommendations';
+import type { SkillCategory } from '../../data/skills';
 
 // Mock the useRecommendationFilters hook behavior
 const mockFilters: UseFiltersReturn = {
@@ -77,7 +78,18 @@ describe('RecommendationFilters', () => {
       ...mockFilters,
       results: {
         ...mockFilters.results,
-        recommendations: Array(6).fill(null).map((_, i) => ({ id: i.toString() })),
+        recommendations: Array(6).fill(null).map((_, i) => ({
+          id: i.toString(),
+          name: `Test Person ${i}`,
+          title: `Test Title ${i}`,
+          company: `Test Company ${i}`,
+          avatar: `TP${i}`,
+          summary: `Test summary ${i}`,
+          content: `Test recommendation content ${i}`,
+          skills: ['React', 'TypeScript'],
+          date: '2023-01-01',
+          relationship: 'Colleague'
+        } as Recommendation)),
         totalMatches: 15,
         executionTime: 12.3,
       },
@@ -142,7 +154,7 @@ describe('RecommendationFilters', () => {
             id: 'skill-frontend',
             type: 'skill' as const,
             label: 'Frontend Excellence',
-            category: 'frontend' as const,
+            category: 'frontend' as SkillCategory,
             keywords: ['React', 'TypeScript'],
             priority: 'high' as const,
           }],
@@ -158,7 +170,8 @@ describe('RecommendationFilters', () => {
       
       // Click the already active filter (from the skill categories section, not active filters)
       const frontendButtons = screen.getAllByText('Frontend Excellence');
-      const technicalButton = frontendButtons[0]; // First one is from skill categories
+      const technicalButton = frontendButtons[0]!; // First one is from skill categories
+      expect(technicalButton).toBeDefined();
       await user.click(technicalButton);
       
       expect(mockFilters.actions.removeFilter).toHaveBeenCalledWith('skill-frontend');
@@ -177,7 +190,7 @@ describe('RecommendationFilters', () => {
             id: 'skill-frontend',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'technical' as const,
+            category: 'frontend' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],
@@ -203,7 +216,7 @@ describe('RecommendationFilters', () => {
             id: 'skill-frontend',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'technical' as const,
+            category: 'frontend' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],
@@ -231,7 +244,7 @@ describe('RecommendationFilters', () => {
             id: 'skill-frontend',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'technical' as const,
+            category: 'frontend' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],

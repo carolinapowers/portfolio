@@ -78,7 +78,7 @@ describe('useRecommendationFilters', () => {
     });
     
     expect(result.current.results.recommendations).toHaveLength(1);
-    expect(result.current.results.recommendations[0].name).toBe('John Doe');
+    expect(result.current.results.recommendations[0]!.name).toBe('John Doe');
     expect(result.current.results.searchQuery).toBe('React');
   });
 
@@ -91,7 +91,7 @@ describe('useRecommendationFilters', () => {
     });
     
     expect(result.current.results.recommendations).toHaveLength(1);
-    expect(result.current.results.recommendations[0].name).toBe('Jane Smith');
+    expect(result.current.results.recommendations[0]!.name).toBe('Jane Smith');
     
     // Search in company
     act(() => {
@@ -110,17 +110,17 @@ describe('useRecommendationFilters', () => {
     });
     
     expect(result.current.results.recommendations).toHaveLength(1);
-    expect(result.current.results.recommendations[0].name).toBe('John Doe');
+    expect(result.current.results.recommendations[0]!.name).toBe('John Doe');
   });
 
   it('should filter by skill categories', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-technical',
+      id: 'skill-frontend',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'technical',
+      category: 'frontend',
       keywords: ['React', 'TypeScript', 'DevOps'],
       priority: 'high'
     };
@@ -131,17 +131,17 @@ describe('useRecommendationFilters', () => {
     
     expect(result.current.results.recommendations).toHaveLength(2);
     expect(result.current.results.appliedFilters).toHaveLength(1);
-    expect(result.current.results.appliedFilters[0].id).toBe('skill-technical');
+    expect(result.current.results.appliedFilters[0]!.id).toBe('skill-frontend');
   });
 
   it('should handle multiple filters (AND logic)', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-technical',
+      id: 'skill-frontend',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'technical',
+      category: 'frontend',
       keywords: ['React', 'TypeScript'],
       priority: 'high'
     };
@@ -152,17 +152,17 @@ describe('useRecommendationFilters', () => {
     });
     
     expect(result.current.results.recommendations).toHaveLength(1);
-    expect(result.current.results.recommendations[0].name).toBe('John Doe');
+    expect(result.current.results.recommendations[0]!.name).toBe('John Doe');
   });
 
   it('should remove filters correctly', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-technical',
+      id: 'skill-frontend',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'technical',
+      category: 'frontend',
       keywords: ['React'],
       priority: 'high'
     };
@@ -174,7 +174,7 @@ describe('useRecommendationFilters', () => {
     expect(result.current.results.appliedFilters).toHaveLength(1);
     
     act(() => {
-      result.current.actions.removeFilter('skill-technical');
+      result.current.actions.removeFilter('skill-frontend');
     });
     
     expect(result.current.results.appliedFilters).toHaveLength(0);
@@ -185,10 +185,10 @@ describe('useRecommendationFilters', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-technical',
+      id: 'skill-frontend',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'technical',
+      category: 'frontend',
       keywords: ['React'],
       priority: 'high'
     };
@@ -215,9 +215,9 @@ describe('useRecommendationFilters', () => {
       const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
       
       const recommendations = result.current.results.recommendations;
-      expect(recommendations[0].name).toBe('John Doe'); // 2023-07-01
-      expect(recommendations[1].name).toBe('Jane Smith'); // 2023-06-15
-      expect(recommendations[2].name).toBe('Bob Wilson'); // 2023-05-20
+      expect(recommendations[0]!.name).toBe('John Doe'); // 2023-07-01
+      expect(recommendations[1]!.name).toBe('Jane Smith'); // 2023-06-15
+      expect(recommendations[2]!.name).toBe('Bob Wilson'); // 2023-05-20
     });
 
     it('should sort by date ascending when changed', () => {
@@ -228,9 +228,9 @@ describe('useRecommendationFilters', () => {
       });
       
       const recommendations = result.current.results.recommendations;
-      expect(recommendations[0].name).toBe('Bob Wilson'); // 2023-05-20
-      expect(recommendations[1].name).toBe('Jane Smith'); // 2023-06-15
-      expect(recommendations[2].name).toBe('John Doe'); // 2023-07-01
+      expect(recommendations[0]!.name).toBe('Bob Wilson'); // 2023-05-20
+      expect(recommendations[1]!.name).toBe('Jane Smith'); // 2023-06-15
+      expect(recommendations[2]!.name).toBe('John Doe'); // 2023-07-01
     });
 
     it('should sort by name', () => {
@@ -241,9 +241,9 @@ describe('useRecommendationFilters', () => {
       });
       
       const recommendations = result.current.results.recommendations;
-      expect(recommendations[0].name).toBe('Bob Wilson');
-      expect(recommendations[1].name).toBe('Jane Smith');
-      expect(recommendations[2].name).toBe('John Doe');
+      expect(recommendations[0]!.name).toBe('Bob Wilson');
+      expect(recommendations[1]!.name).toBe('Jane Smith');
+      expect(recommendations[2]!.name).toBe('John Doe');
     });
 
     it('should sort by company', () => {
@@ -254,9 +254,9 @@ describe('useRecommendationFilters', () => {
       });
       
       const recommendations = result.current.results.recommendations;
-      expect(recommendations[0].company).toBe('InnovateLab');
-      expect(recommendations[1].company).toBe('TechCorp');
-      expect(recommendations[2].company).toBe('TechCorp');
+      expect(recommendations[0]!.company).toBe('InnovateLab');
+      expect(recommendations[1]!.company).toBe('TechCorp');
+      expect(recommendations[2]!.company).toBe('TechCorp');
     });
 
     it('should sort by skills count', () => {
@@ -267,9 +267,9 @@ describe('useRecommendationFilters', () => {
       });
       
       const recommendations = result.current.results.recommendations;
-      expect(recommendations[0].skills.length).toBe(4); // John Doe
-      expect(recommendations[1].skills.length).toBe(3); // Jane Smith or Bob Wilson
-      expect(recommendations[2].skills.length).toBe(3); // Jane Smith or Bob Wilson
+      expect(recommendations[0]!.skills.length).toBe(4); // John Doe
+      expect(recommendations[1]!.skills.length).toBe(3); // Jane Smith or Bob Wilson
+      expect(recommendations[2]!.skills.length).toBe(3); // Jane Smith or Bob Wilson
     });
   });
 
@@ -338,8 +338,8 @@ describe('useRecommendationFilters', () => {
       
       expect(result.current.results.executionTime).toBeGreaterThanOrEqual(0);
       expect(result.current.metrics.length).toBeGreaterThan(0);
-      expect(result.current.metrics[result.current.metrics.length - 1].filterType).toBe('search');
-      expect(result.current.metrics[result.current.metrics.length - 1].itemCount).toBe(3);
+      expect(result.current.metrics[result.current.metrics.length - 1]!.filterType).toBe('search');
+      expect(result.current.metrics[result.current.metrics.length - 1]!.itemCount).toBe(3);
     });
 
     it('should track metrics for different operations', () => {
@@ -352,7 +352,7 @@ describe('useRecommendationFilters', () => {
       
       expect(result.current.metrics.length).toBeGreaterThan(initialMetricsCount);
       const latestMetric = result.current.metrics[result.current.metrics.length - 1];
-      expect(latestMetric.matchCount).toBe(1);
+      expect(latestMetric!.matchCount).toBe(1);
     });
   });
 
@@ -383,10 +383,10 @@ describe('useRecommendationFilters', () => {
       const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
       
       const technicalFilter: SkillFilter = {
-        id: 'skill-technical',
+        id: 'skill-frontend',
         type: 'skill',
         label: 'Technical Skills',
-        category: 'technical',
+        category: 'frontend',
         keywords: ['React', 'DevOps'],
         priority: 'high'
       };
@@ -442,7 +442,7 @@ describe('useRecommendationFilters', () => {
       
       // Should match Jane Smith (has both Leadership and collaboration)
       expect(result.current.results.recommendations).toHaveLength(1);
-      expect(result.current.results.recommendations[0].name).toBe('Jane Smith');
+      expect(result.current.results.recommendations[0]!.name).toBe('Jane Smith');
     });
   });
 });

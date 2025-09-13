@@ -7,7 +7,8 @@ import {
   type SkillFilter,
   type CompanyFilter,
   type RoleFilter,
-  type DateRangeFilter
+  type DateRangeFilter,
+  type Filter
 } from './filtering';
 
 describe('Filter Type Guards', () => {
@@ -15,7 +16,7 @@ describe('Filter Type Guards', () => {
     id: 'skill-1',
     type: 'skill',
     label: 'Technical Skills',
-    category: 'technical',
+    category: 'frontend',
     keywords: ['React', 'TypeScript'],
     priority: 'high'
   };
@@ -55,7 +56,7 @@ describe('Filter Type Guards', () => {
 
     it('should provide correct type narrowing', () => {
       if (isSkillFilter(skillFilter)) {
-        expect(skillFilter.category).toBe('technical');
+        expect(skillFilter.category).toBe('frontend');
         expect(skillFilter.keywords).toEqual(['React', 'TypeScript']);
         expect(skillFilter.priority).toBe('high');
       }

@@ -2,61 +2,49 @@
 // Based on what employers value most in engineering roles
 
 export type SkillCategory = 
-  | 'technical'
+  | 'frontend'
+  | 'integration'
+  | 'process'
   | 'leadership'
-  | 'mentorship'
-  | 'teamwork'
-  | 'initiative'
-  | 'code-quality'
-  | 'communication'
-  | 'product'
-  | 'culture';
+  | 'collaboration'
+  | 'delivery'
+  | 'personality';
 
 export const SKILL_CATEGORIES = {
-  technical: {
-    name: 'Technical Skills',
-    description: 'Programming, architecture, and technical problem-solving',
-    keywords: ['React', 'TypeScript', 'JavaScript', 'Node.js', 'SQL', 'Testing', 'Architecture', 'Developer Experience']
+  frontend: {
+    name: 'Frontend Excellence',
+    description: 'Modern web development, UI frameworks, and accessibility',
+    keywords: ['React', 'TypeScript', 'JavaScript', 'CSS', 'HTML', 'Web Accessibility']
+  },
+  integration: {
+    name: 'API & Integration',
+    description: 'Backend integration, APIs, build tools, and testing',
+    keywords: ['GraphQL', 'REST APIs', 'Node.js', 'Testing', 'Build Tools', 'SQL']
+  },
+  process: {
+    name: 'Process Excellence',
+    description: 'Agile development, CI/CD, and engineering practices',
+    keywords: ['Agile', 'CI/CD', 'GitHub Actions', 'Code Quality']
   },
   leadership: {
-    name: 'Leadership',
-    description: 'Leading teams, technical decisions, and driving initiatives',
-    keywords: ['Technical Leadership', 'Initiative', 'Ownership', 'Team Development']
+    name: 'Team Leadership',
+    description: 'Mentorship, code reviews, and knowledge sharing',
+    keywords: ['Mentorship', 'Code Reviews', 'Technical Leadership', 'Knowledge Sharing']
   },
-  mentorship: {
-    name: 'Mentorship',
-    description: 'Teaching, developing others, and knowledge sharing',
-    keywords: ['Mentorship', 'Knowledge Sharing', 'Teaching', 'Documentation', 'Student Success']
+  collaboration: {
+    name: 'Cross-functional Collaboration',
+    description: 'Working effectively across teams and disciplines',
+    keywords: ['Cross-Team Collaboration', 'Technical Communication', 'Remote Teams', 'Design Collaboration']
   },
-  teamwork: {
-    name: 'Collaboration',
-    description: 'Cross-team work, partnership, and collective problem-solving',
-    keywords: ['Cross-team Communication', 'Team Collaboration', 'Partnership', 'Support']
+  delivery: {
+    name: 'Delivery & Quality',
+    description: 'Code quality, maintainability, and consistent delivery',
+    keywords: ['Code Quality', 'Problem Solving', 'Ownership', 'Scalable Solutions']
   },
-  initiative: {
-    name: 'Proactivity',
-    description: 'Taking ownership, driving improvements, and self-direction',
-    keywords: ['Initiative', 'Proactive', 'Innovation', 'Improvement', 'Ownership']
-  },
-  'code-quality': {
-    name: 'Code Quality',
-    description: 'Clean code, testing, reviews, and engineering excellence',
-    keywords: ['Clean Code', 'Code Reviews', 'Testing', 'Quality', 'Maintainable']
-  },
-  communication: {
-    name: 'Communication',
-    description: 'Technical communication, documentation, and clarity',
-    keywords: ['Technical Communication', 'Documentation', 'Clear Communication']
-  },
-  product: {
-    name: 'Product Focus',
-    description: 'User-centered thinking, customer focus, and business impact',
-    keywords: ['Customer Focus', 'User Research', 'Product', 'Business Impact']
-  },
-  culture: {
-    name: 'Culture & Values',
-    description: 'Kindness, empathy, positive team impact, and inclusive collaboration',
-    keywords: ['Kindness', 'Empathy', 'Culture', 'Inclusive', 'Positive Impact']
+  personality: {
+    name: 'Personality & Culture',
+    description: 'Positive team impact, kindness, and collaborative spirit',
+    keywords: ['Empathy', 'Kindness', 'Positivity', 'Passion', 'Fun']
   }
 } as const;
 

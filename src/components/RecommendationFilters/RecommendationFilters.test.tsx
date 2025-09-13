@@ -169,7 +169,6 @@ describe('RecommendationFilters', () => {
 
   describe('Active filters display', () => {
     it('should show active filters section when filters are applied', async () => {
-      const user = userEvent.setup();
       const filtersWithActive = {
         ...mockFilters,
         filters: {

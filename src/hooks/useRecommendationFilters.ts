@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import type { Recommendation } from '../data/recommendations';
 import type {
   FilterState,
@@ -260,7 +260,7 @@ export const useRecommendationFilters = (
         executionTime: 0,
       };
     }
-  }, [recommendations, filterState, filterPredicates, sortRecommendations]);
+  }, [recommendations, filterState, filterPredicates, sortRecommendations, trackPerformance]);
 
   // Calculate pagination separately
   const paginationInfo = useMemo(() => {

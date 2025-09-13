@@ -119,18 +119,18 @@ describe('Filter Type Guards', () => {
 
   describe('Type Guard Edge Cases', () => {
     it('should handle malformed objects gracefully', () => {
-      const malformedObject = { type: 'skill' } as unknown;
+      const malformedObject = { type: 'skill' } as Filter;
       expect(isSkillFilter(malformedObject)).toBe(true);
       expect(isCompanyFilter(malformedObject)).toBe(false);
     });
 
     it('should handle null and undefined', () => {
-      expect(isSkillFilter(null as unknown)).toBe(false);
-      expect(isSkillFilter(undefined as unknown)).toBe(false);
+      expect(isSkillFilter(null)).toBe(false);
+      expect(isSkillFilter(undefined)).toBe(false);
     });
 
     it('should handle objects with wrong type property', () => {
-      const wrongType = { type: 'unknown' } as unknown;
+      const wrongType = { type: 'unknown' } as unknown as Filter;
       expect(isSkillFilter(wrongType)).toBe(false);
       expect(isCompanyFilter(wrongType)).toBe(false);
       expect(isRoleFilter(wrongType)).toBe(false);

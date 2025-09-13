@@ -102,6 +102,7 @@ export const RecommendationsSection: React.FC = () => {
             <RecommendationCard
               key={recommendation.id}
               recommendation={recommendation}
+              activeFilters={filters.filters.activeFilters}
             />
           )
         )}

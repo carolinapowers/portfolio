@@ -1,0 +1,9 @@
+.highlight {
+  background-color: #ffeb3b;
+  color: #1a1a1a;
+  padding: 2px 3px;
+  border-radius: 2px;
+  font-weight: 500;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}

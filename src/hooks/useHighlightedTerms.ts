@@ -1,33 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
-import type { Recommendation } from '../../data/recommendations';
-import type { Filter } from '../../types/filtering';
-import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
-import { SKILL_TO_CATEGORY_MAP } from '../../data/skills';
-import { HighlightedText } from '../HighlightedText/HighlightedText';
-import styles from './RecommendationCard.module.css';
+import { useMemo } from 'react';
+import type { Filter } from '../types/filtering';
+import { SKILL_TO_CATEGORY_MAP } from '../data/skills';
 
-interface RecommendationCardProps {
-  recommendation: Recommendation;
-  activeFilters?: Filter[];
-}
-
-export const RecommendationCard: React.FC<RecommendationCardProps> = ({
-  recommendation,
-  activeFilters = [],
-}) => {
-  const primarySkills = [
-    'React',
-    'TypeScript',
-    'JavaScript',
-    'Node.js',
-    'GraphQL',
-    'Mentorship',
-    'Leadership',
-    'Code Reviews',
-  ];
-
-  // Get terms that should be highlighted in the text based on active filters
-  const highlightedTerms = useMemo(() => {
+/**
+ * Custom hook to get terms that should be highlighted based on active skill filters
+ */
+export const useHighlightedTerms = (activeFilters: Filter[] = []): string[] => {
+  return useMemo(() => {
     if (!activeFilters || activeFilters.length === 0) return [];
 
     const skillFilters = activeFilters.filter(
@@ -66,7 +45,10 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
             'collaboration',
             'team',
             'teammates',
-            'teamwork'
+            'teamwork',
+            'design',
+            'designer',
+            'users'
           );
         } else if (category === 'frontend') {
           termsToHighlight.push(
@@ -112,7 +94,19 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
             'lighter',
             'lucky',
             'invaluable',
-            'generous'
+            'generous',
+            'integrity'
+          );
+        } else if (category === 'process') {
+          termsToHighlight.push(
+            'agile',
+            'CI/CD',
+            'continuous',
+            'deployment',
+            'integration',
+            'code quality',
+            'maintainable',
+            'clean code'
           );
         }
       }
@@ -123,52 +117,4 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       ...new Set(termsToHighlight.filter(term => term && term.length > 0)),
     ];
   }, [activeFilters]);
-
-  // Track recommendation view on mount
-  useEffect(() => {
-    trackRecommendationEvent({
-      action: 'view',
-      recommendationId: recommendation.id,
-    });
-  }, [recommendation.id]);
-
-  return (
-    <div className={styles.card}>
-      <div className={styles.header}>
-        <div className={styles.avatar}>{recommendation.avatar}</div>
-        <div className={styles.info}>
-          <h3 className={styles.name}>{recommendation.name}</h3>
-          <p className={styles.title}>
-            {recommendation.title} @ {recommendation.company}
-          </p>
-        </div>
-      </div>
-
-      <p className={styles.text}>
-        <HighlightedText
-          text={recommendation.content}
-          highlightTerms={highlightedTerms}
-        />
-      </p>
-
-      <div className={styles.skills}>
-        {recommendation.skills.map(skill => (
-          <span
-            key={skill}
-            className={`${styles.skill} ${primarySkills.includes(skill) ? styles.primary : ''}`}
-            onClick={() => {
-              trackRecommendationEvent({
-                action: 'skill_click',
-                recommendationId: recommendation.id,
-                skillTag: skill,
-              });
-            }}
-            style={{ cursor: 'pointer' }}
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
 };

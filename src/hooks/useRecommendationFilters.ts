@@ -14,6 +14,7 @@ import type {
   FilterPredicate
 } from '../types/filtering';
 import { isSkillFilter, isCompanyFilter, isRoleFilter, isDateRangeFilter } from '../types/filtering';
+import { getSkillCategory } from '../data/skills';
 
 // Initial state constants
 const INITIAL_SEARCH = {
@@ -79,12 +80,15 @@ export const useRecommendationFilters = (
       const skillFilters = filterState.activeFilters.filter(isSkillFilter);
       if (skillFilters.length === 0) return true;
       
+      // Check if any of the recommendation's skills match the filter categories
       return skillFilters.some(filter => 
-        filter.keywords.some(keyword => 
-          recommendation.skills.some(skill => 
-            skill.toLowerCase().includes(keyword.toLowerCase())
-          )
-        )
+        recommendation.skills.some(skillName => {
+          const skillCategory = getSkillCategory(skillName);
+          return filter.keywords.some(keyword => 
+            skillCategory === keyword || 
+            skillName.toLowerCase().includes(keyword.toLowerCase())
+          );
+        })
       );
     },
     

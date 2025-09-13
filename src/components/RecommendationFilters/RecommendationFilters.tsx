@@ -6,8 +6,12 @@ import type {
   SearchableField,
   UseFiltersReturn 
 } from '../../types/filtering';
-import { SKILL_CATEGORIES, type SkillCategory } from '../../data/skillCategories';
-import { getSkillsByCategory } from '../../data/skills';
+import {
+  SKILL_CATEGORIES,
+  type SkillCategory,
+  SKILL_TO_CATEGORY_MAP,
+} from '../../data/skills';
+import { recommendations } from '../../data/recommendations';
 import styles from './RecommendationFilters.module.css';
 
 interface RecommendationFiltersProps {
@@ -23,6 +27,23 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
   const [showPerformanceMetrics, setShowPerformanceMetrics] = useState(false);
 
   const { filters: filterState, results, actions, metrics } = filters;
+
+  // Count unique skills that appear in recommendations for each category
+  const getSkillCountForCategory = useCallback(
+    (category: SkillCategory): number => {
+      // Get all unique skills from recommendations
+      const allSkills = recommendations.flatMap(rec => rec.skills);
+      const uniqueSkills = [...new Set(allSkills)];
+
+      // Count how many unique skills belong to this category
+      const count = uniqueSkills.filter(
+        skillName => SKILL_TO_CATEGORY_MAP[skillName] === category
+      ).length;
+
+      return count;
+    },
+    []
+  );
 
   // Search handlers
   const handleSearchChange = useCallback(
@@ -56,7 +77,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
         label: categoryInfo.name,
         description: categoryInfo.description,
         category,
-        keywords: categoryInfo.keywords,
+        keywords: [category], // Use category key for filtering
         priority: 'high',
       };
     },
@@ -248,36 +269,12 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
                         {info.name}
                       </span>
                       <span className={styles.skillCategoryCount}>
-                        {getSkillsByCategory(typedCategory).length} skills
+                        {getSkillCountForCategory(typedCategory)} skills
                       </span>
                     </button>
                   </div>
                 );
               })}
-            </div>
-          </div>
-
-          {/* Sort Section */}
-          <div className={styles.sortSection}>
-            <h3 className={styles.sectionTitle}>Sort By</h3>
-            <div className={styles.sortOptions}>
-              {sortOptions.map(({ value, label, icon }) => (
-                <button
-                  key={value}
-                  onClick={() => handleSortChange(value)}
-                  className={`${styles.sortOption} ${
-                    filterState.sortBy === value ? styles.active : ''
-                  }`}
-                >
-                  <span className={styles.sortIcon}>{icon}</span>
-                  <span>{label}</span>
-                  {filterState.sortBy === value && (
-                    <span className={styles.sortOrder}>
-                      {filterState.sortOrder === 'asc' ? '↑' : '↓'}
-                    </span>
-                  )}
-                </button>
-              ))}
             </div>
           </div>
 
@@ -310,6 +307,30 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
               </div>
             </div>
           )}
+
+          {/* Sort Section */}
+          <div className={styles.sortSection}>
+            <h3 className={styles.sectionTitle}>Sort By</h3>
+            <div className={styles.sortOptions}>
+              {sortOptions.map(({ value, label, icon }) => (
+                <button
+                  key={value}
+                  onClick={() => handleSortChange(value)}
+                  className={`${styles.sortOption} ${
+                    filterState.sortBy === value ? styles.active : ''
+                  }`}
+                >
+                  <span className={styles.sortIcon}>{icon}</span>
+                  <span>{label}</span>
+                  {filterState.sortBy === value && (
+                    <span className={styles.sortOrder}>
+                      {filterState.sortOrder === 'asc' ? '↑' : '↓'}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>

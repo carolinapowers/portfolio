@@ -1,55 +1,50 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
   min-height: 100vh;
 }
 
 .header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-md);
   border-radius: var(--border-radius-lg);
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 .title {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   font-weight: 700;
-  margin-bottom: var(--spacing-sm);
 }
 
 .subtitle {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base);
+  margin-bottom: 4px;
   opacity: 0.9;
 }
 
-.caption {
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-xs);
-}
 
 .description {
-  font-size: var(--font-size-base);
-  margin-top: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   opacity: 0.8;
 }
 
 .techStack {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   flex-wrap: wrap;
 }
 
 .tech {
   background: rgba(255, 255, 255, 0.2);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 2px 6px;
   border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -57,25 +52,25 @@
 .mainContent {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
 }
 
 .section {
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   box-shadow: var(--shadow-sm);
 }
 
 .sectionTitle {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
 .sectionIcon {
@@ -84,19 +79,18 @@
 
 .sectionDescription {
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-lg);
-  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-xs);
 }
 
 .recommendationsIntro {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xs);
 }
 
 .sectionNote {
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   margin-top: var(--spacing-sm);
-  margin-bottom: 0;
   font-style: italic;
 }
 
@@ -115,20 +109,20 @@
 /* Recommendations Layout with Sidebar */
 .recommendationsLayout {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-lg);
+  grid-template-columns: 280px 1fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xs);
 }
 
 .filtersSidebar {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-md);
   height: fit-content;
   position: sticky;
   top: var(--spacing-lg);
-  min-width: 280px;
+  min-width: 260px;
 }
 
 .mainContentArea {
@@ -140,18 +134,18 @@
 
 .contentControls {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 2px;
 }
 
 .recommendationsHeader {
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 2px;
 }
 
 .recommendationsTitle {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text-primary);
   margin: 0;
@@ -159,7 +153,7 @@
 
 .resultsSummary {
   margin-bottom: var(--spacing-xs);
-  padding: var(--spacing-xs) 0;
+  padding: 2px 0;
   border-bottom: 1px solid var(--color-border);
 }
 

@@ -34,7 +34,7 @@ export const SortingControls: React.FC<SortingControlsProps> = ({ filters }) => 
     <div className={styles.sortingCard}>
       <div className={styles.sortingHeader}>
         <div className={styles.sortingTitle}>
-          <ArrowUpDown size={18} />
+          <ArrowUpDown size={14} />
           <span>Sort</span>
         </div>
         <span className={styles.currentSort}>

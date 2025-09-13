@@ -81,20 +81,15 @@ export const RecommendationsSection: React.FC = () => {
       <div className={styles.recommendationsLayout}>
         {/* Sidebar with Filters */}
         <aside className={styles.filtersSidebar}>
-          <RecommendationFilters
-            filters={filters}
-          />
+          <RecommendationFilters filters={filters} />
         </aside>
 
         {/* Main Content Area */}
         <div className={styles.mainContentArea}>
           {/* Search Bar */}
           <SearchBar filters={filters} />
-          
+
           {/* Sorting Controls */}
-          <div className={styles.contentControls}>
-            <SortingControls filters={filters} />
-          </div>
 
           {/* Recommendations Heading */}
           <div className={styles.recommendationsHeader}>
@@ -104,14 +99,20 @@ export const RecommendationsSection: React.FC = () => {
           {/* Results Summary */}
           <div className={styles.resultsSummary}>
             <p>
-              Showing <strong>{filters.results.recommendations.length}</strong> of{' '}
-              <strong>{filters.results.totalMatches}</strong> recommendations
-              {filters.results.totalMatches !== (data?.recommendations?.length || 0) && (
+              Showing <strong>{filters.results.recommendations.length}</strong>{' '}
+              of <strong>{filters.results.totalMatches}</strong> recommendations
+              {filters.results.totalMatches !==
+                (data?.recommendations?.length || 0) && (
                 <span className={styles.filteredNote}>
-                  {' '}(filtered from {data?.recommendations?.length || 0} total)
+                  {' '}
+                  (filtered from {data?.recommendations?.length || 0} total)
                 </span>
               )}
             </p>
+          </div>
+
+          <div className={styles.contentControls}>
+            <SortingControls filters={filters} />
           </div>
 
           {/* Loading state for filtering */}
@@ -144,17 +145,18 @@ export const RecommendationsSection: React.FC = () => {
           </div>
 
           {/* No results state */}
-          {filters.results.recommendations.length === 0 && !filters.isLoading && (
-            <div className={styles.noResults}>
-              <p>No recommendations match your current filters.</p>
-              <button
-                onClick={filters.actions.clearAllFilters}
-                className={styles.clearFiltersButton}
-              >
-                Clear all filters
-              </button>
-            </div>
-          )}
+          {filters.results.recommendations.length === 0 &&
+            !filters.isLoading && (
+              <div className={styles.noResults}>
+                <p>No recommendations match your current filters.</p>
+                <button
+                  onClick={filters.actions.clearAllFilters}
+                  className={styles.clearFiltersButton}
+                >
+                  Clear all filters
+                </button>
+              </div>
+            )}
 
           {/* Pagination */}
           <Pagination

@@ -80,7 +80,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
       {/* Filter Header */}
       <div className={styles.filtersHeader}>
         <div className={styles.filtersTitle}>
-          <Filter size={18} />
+          <Filter size={14} />
           <span>Filters</span>
           {activeFilterCount > 0 && (
             <span className={styles.filterCount}>{activeFilterCount}</span>
@@ -88,11 +88,9 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
         </div>
       </div>
 
-
       <div className={styles.filtersContent}>
         {/* Skill Categories Filter */}
         <div className={styles.skillFiltersSection}>
-          <h3 className={styles.sectionTitle}>By Skills</h3>
           <div className={styles.skillCategories}>
             {Object.entries(SKILL_CATEGORIES).map(([category, info]) => {
               const typedCategory = category as SkillCategory;
@@ -102,7 +100,9 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
 
               return (
                 <div key={category} className={styles.skillCategory}>
-                  <label className={`${styles.skillCategoryLabel} ${isActive ? styles.active : ''}`}>
+                  <label
+                    className={`${styles.skillCategoryLabel} ${isActive ? styles.active : ''}`}
+                  >
                     <div className={styles.skillCategoryInfo}>
                       <input
                         type="checkbox"

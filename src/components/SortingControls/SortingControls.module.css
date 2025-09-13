@@ -2,8 +2,8 @@
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
   box-shadow: var(--shadow-sm);
   width: 100%;
 }
@@ -19,14 +19,14 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
 }
 
 .currentSort {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
 }
 
@@ -39,12 +39,12 @@
 .sortOption {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
+  gap: 4px;
+  padding: 1px 8px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-sm);
+  font-size: 10px;
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -73,7 +73,7 @@
 }
 
 .sortIcon {
-  font-size: var(--font-size-base);
+  font-size: 10px;
 }
 
 .sortLabel {

@@ -67,11 +67,7 @@ export const Layout: React.FC = () => {
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.title}>Interactive Portfolio</h1>
-          <p className={styles.subtitle}>
-            Senior Product Frontend Engineer
-            <br />
-            <span className={styles.caption}>Carolina Powers</span>
-          </p>
+          <p className={styles.subtitle}>Carolina Powers</p>
           <p className={styles.description}>
             Built with modern React patterns and clean design
           </p>

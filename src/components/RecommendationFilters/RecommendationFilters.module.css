@@ -11,16 +11,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 .filtersTitle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--text-primary);
-  font-size: 1rem;
+  color: var(--color-text);
 }
 
 .filterCount {
@@ -145,7 +145,6 @@
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 1rem;
-  padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
 
@@ -153,7 +152,7 @@
 /* Section Titles */
 .sectionTitle {
   margin: 0 0 0.75rem 0;
-  font-size: 0.875rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   color: var(--text-primary);
   text-transform: uppercase;
@@ -164,8 +163,8 @@
 .skillFiltersSection {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
 }
 
 .skillCategories {
@@ -226,7 +225,7 @@
   flex-direction: column;
   gap: 0.25rem;
   font-weight: 500;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text);
 }
 

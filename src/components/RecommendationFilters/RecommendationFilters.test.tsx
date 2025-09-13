@@ -249,40 +249,5 @@ describe('RecommendationFilters', () => {
 
   // Performance metrics functionality has been removed from RecommendationFilters
 
-  describe('Filter count display', () => {
-    it('should show filter count when filters are active', () => {
-      const filtersWithActiveAndSearch = {
-        ...mockFilters,
-        filters: {
-          ...mockFilters.filters,
-          search: { ...mockFilters.filters.search, query: 'React' },
-          activeFilters: [{
-            id: 'skill-frontend',
-            type: 'skill' as const,
-            label: 'Frontend Skills',
-            category: 'technical' as const,
-            keywords: ['React'],
-            priority: 'high' as const,
-          }],
-        },
-      };
-      
-      render(
-        <RecommendationFilters 
-          filters={filtersWithActiveAndSearch} 
-   
-        />
-      );
-      
-      // Should show count of 2 (1 skill filter + 1 search)
-      expect(screen.getByText('2')).toBeInTheDocument();
-    });
-
-    it('should not show filter count when no filters are active', () => {
-      render(<RecommendationFilters filters={mockFilters} />);
-      
-      // Should not show any count badge
-      expect(screen.queryByText('0')).not.toBeInTheDocument();
-    });
-  });
+  // Filter count display functionality has been removed
 });

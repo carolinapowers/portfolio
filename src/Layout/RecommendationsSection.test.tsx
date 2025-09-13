@@ -1,7 +1,40 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { vi } from 'vitest';
 import { RecommendationsSection } from './RecommendationsSection';
 import { GET_RECOMMENDATIONS } from '../apollo/queries';
+
+// Mock the useRecommendationFilters hook to prevent infinite loop
+vi.mock('../hooks/useRecommendationFilters', () => ({
+  useRecommendationFilters: (recommendations = []) => ({
+    filters: {
+      search: { query: '', fields: [], caseSensitive: false, exact: false },
+      activeFilters: [],
+      sortBy: 'date',
+      sortOrder: 'desc',
+    },
+    results: {
+      recommendations,
+      pagination: { currentPage: 1, itemsPerPage: 6, totalItems: recommendations.length, totalPages: 1 },
+      appliedFilters: [],
+      searchQuery: '',
+      totalMatches: recommendations.length,
+      executionTime: 0,
+    },
+    isLoading: false,
+    error: null,
+    actions: {
+      addFilter: vi.fn(),
+      removeFilter: vi.fn(),
+      clearAllFilters: vi.fn(),
+      updateSearch: vi.fn(),
+      updateSort: vi.fn(),
+      updatePagination: vi.fn(),
+      resetFilters: vi.fn(),
+    },
+    metrics: [],
+  })
+}));
 
 const mockRecommendations = [
   {

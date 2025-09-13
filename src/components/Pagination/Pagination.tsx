@@ -86,11 +86,6 @@ export const Pagination: React.FC<PaginationProps> = ({
     pagination.totalItems
   );
 
-  // Don't render if there's only one page
-  if (pagination.totalPages <= 1) {
-    return null;
-  }
-
   return (
     <div className={styles.paginationContainer}>
       {/* Items per page selector */}
@@ -125,8 +120,9 @@ export const Pagination: React.FC<PaginationProps> = ({
         )}
       </div>
 
-      {/* Pagination controls */}
-      <div className={styles.paginationControls}>
+      {/* Pagination controls - only show if more than one page */}
+      {pagination.totalPages > 1 && (
+        <div className={styles.paginationControls}>
         {/* First page button */}
         <button
           onClick={() => actions.updatePagination(1)}
@@ -191,7 +187,8 @@ export const Pagination: React.FC<PaginationProps> = ({
         >
           <ChevronsRight size={16} />
         </button>
-      </div>
+        </div>
+      )}
 
       {/* Quick jump input */}
       {showQuickJumper && pagination.totalPages > 5 && (

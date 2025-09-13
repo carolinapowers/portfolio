@@ -166,7 +166,7 @@ export type GenericFilterFunction<T, F> = (items: readonly T[], filter: F) => re
 export type ExtractFilterType<T extends Filter> = T['type'];
 
 // Type guards for runtime type checking
-export const isSkillFilter = (filter: Filter): filter is SkillFilter => filter.type === 'skill';
-export const isCompanyFilter = (filter: Filter): filter is CompanyFilter => filter.type === 'company';
-export const isRoleFilter = (filter: Filter): filter is RoleFilter => filter.type === 'role';
-export const isDateRangeFilter = (filter: Filter): filter is DateRangeFilter => filter.type === 'dateRange';
+export const isSkillFilter = (filter: Filter | null | undefined): filter is SkillFilter => filter != null && filter.type === 'skill';
+export const isCompanyFilter = (filter: Filter | null | undefined): filter is CompanyFilter => filter != null && filter.type === 'company';
+export const isRoleFilter = (filter: Filter | null | undefined): filter is RoleFilter => filter != null && filter.type === 'role';
+export const isDateRangeFilter = (filter: Filter | null | undefined): filter is DateRangeFilter => filter != null && filter.type === 'dateRange';

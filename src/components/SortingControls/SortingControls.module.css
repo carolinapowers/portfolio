@@ -15,7 +15,10 @@
 }
 
 .sortingTitle {
-  font-size: var(--font-size-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
@@ -64,7 +67,6 @@
 }
 
 .sortOption.active:hover {
-  background: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   color: white;
 }

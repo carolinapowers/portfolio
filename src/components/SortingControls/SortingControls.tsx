@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpDown } from 'lucide-react';
 import type { SortOption, UseFiltersReturn } from '../../types/filtering';
 import styles from './SortingControls.module.css';
 
@@ -32,7 +33,10 @@ export const SortingControls: React.FC<SortingControlsProps> = ({ filters }) => 
   return (
     <div className={styles.sortingCard}>
       <div className={styles.sortingHeader}>
-        <h3 className={styles.sortingTitle}>Sort By</h3>
+        <div className={styles.sortingTitle}>
+          <ArrowUpDown size={18} />
+          <span>Sort Recommendations</span>
+        </div>
         <span className={styles.currentSort}>
           Currently: {sortOptions.find(opt => opt.value === filterState.sortBy)?.label} {filterState.sortOrder === 'asc' ? '↑' : '↓'}
         </span>

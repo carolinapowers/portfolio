@@ -74,6 +74,10 @@ export const SKILL_CATEGORIES: Record<
       'Technical Documentation',
       'Education',
       'Student Success',
+      'Onboarding Excellence',
+      'Technical Leadership',
+      'Team Support',
+      'Advocacy',
     ],
   },
   collaboration: {

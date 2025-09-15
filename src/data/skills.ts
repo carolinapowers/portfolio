@@ -8,45 +8,226 @@ export interface Skill {
   readonly priority: 'high' | 'medium' | 'low'; // For filtering relevance
 }
 
-export type SkillCategory = 
-  | 'frontend'
-  | 'integration'
+export type SkillCategory =
+  | 'engineering'
   | 'process'
   | 'leadership'
   | 'collaboration'
   | 'delivery'
+  | 'learning'
   | 'personality';
 
-export const SKILL_CATEGORIES: Record<SkillCategory, { name: string; description: string }> = {
-  frontend: {
-    name: 'Frontend Excellence',
-    description: 'Modern web development, UI frameworks, and accessibility'
-  },
-  integration: {
-    name: 'API & Integration',
-    description: 'Backend integration, APIs, build tools, and testing'
+export const SKILL_CATEGORIES: Record<
+  SkillCategory,
+  { name: string; description: string; keywords: string[] }
+> = {
+  engineering: {
+    name: 'Engineering Skills',
+    description:
+      'Modern web development, UI frameworks, accessibility, Backend integration, APIs, build tools, and testing',
+    keywords: [
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'AngularJS',
+      'CSS',
+      'HTML',
+      'Web Development',
+      'GraphQL',
+      'Node.js',
+      'SQL',
+      'Testing',
+      'Cypress Testing',
+      'Architecture',
+      'Scalable Solutions',
+      'Developer Experience',
+      'Engineering Innovation',
+      'Software Engineering',
+      'Programming Paradigms',
+      'Languages',
+      'Technical Excellence',
+    ],
   },
   process: {
     name: 'Process Excellence',
-    description: 'Agile development, CI/CD, and engineering practices'
+    description: 'Agile development, CI/CD, and engineering practices',
+    keywords: [
+      'Code Quality',
+      'Clean Code',
+      'Code Reviews',
+      'Quality Delivery',
+      'Consistency',
+      'Documentation Excellence',
+      'Process Improvement',
+      'Developer Tooling',
+      'Workflow Optimization',
+      'Testing Excellence',
+      'Code Craftsmanship',
+      'Process Optimization',
+    ],
   },
   leadership: {
     name: 'Team Leadership',
-    description: 'Mentorship, code reviews, and knowledge sharing'
+    description: 'Mentorship, code reviews, and knowledge sharing',
+    keywords: [
+      'Leadership',
+      'Mentorship',
+      'Knowledge Sharing',
+      'Technical Guidance',
+      'Documentation',
+      'Documentation Excellence',
+      'Education',
+      'Student Success',
+      'Technical Leadership',
+      'Team Support',
+      'Advocacy',
+      'Code Reviews',
+      'Patient Teaching',
+      'Quality Leadership',
+      'Supportive Leadership',
+      'Team Empowerment',
+      'Calm Leadership',
+    ],
   },
   collaboration: {
-    name: 'Cross-functional Collaboration',
-    description: 'Working effectively across teams and disciplines'
+    name: 'Collaboration',
+    description: 'Working effectively across teams and disciplines',
+    keywords: [
+      'Collaboration',
+      'Cross-team Communication',
+      'Team Collaboration',
+      'Team Communication',
+      'Technical Communication',
+      'Design Collaboration',
+      'Instructional Content',
+      'Collaborative Spirit',
+      'Project Collaboration',
+      'Partner Collaboration',
+      'Pair Programming',
+      'Async Collaboration',
+      'Remote Collaboration',
+      'Helpful Support',
+      'Clear Communication',
+      'Cross-team Coordination',
+    ],
   },
   delivery: {
     name: 'Delivery & Quality',
-    description: 'Code quality, maintainability, and consistent delivery'
+    description: 'Code quality, maintainability, and consistent delivery',
+    keywords: [
+      'Problem Solving',
+      'Creative Problem-Solving',
+      'Ownership',
+      'Proactive Mindset',
+      'Initiative',
+      'Integrity',
+      'Resilience',
+      'Engineering Quality',
+      'Customer Focus',
+      'User Research',
+      'Team Support',
+      'Team Contribution',
+      'Teamwork',
+      'Communication',
+      'Dependability',
+      'Problem-Solving Excellence',
+      'Thoughtful Analysis',
+      'Proactive Initiative',
+      'Consistent Quality',
+      'Professional Dedication',
+    ],
+  },
+  learning: {
+    name: 'Growth & Learning',
+    description: 'Continuous learning, growth mindset, curiosity, and drive to expand knowledge',
+    keywords: [
+      'Curiosity',
+      'Quick Learning',
+      'Adaptability',
+      'Knowledge Sharing',
+      'Mentorship',
+      'Technical Guidance',
+      'Education',
+      'Student Success',
+      'Instructional Content',
+      'Programming Paradigms',
+      'Languages',
+      'Developer Experience',
+      'Engineering Innovation',
+      'Initiative',
+      'Growth Mindset',
+      'Continuous Improvement',
+      'Learning Agility',
+      'Self-Development',
+      'Skill Development',
+      'Technical Exploration',
+      'Innovation',
+      'Experimentation',
+      'Knowledge Expansion',
+      'Proactive Learning',
+      'Intellectual Curiosity',
+      'Drive to Learn',
+      'Embracing Challenges',
+      'Learning from Feedback',
+      'Willingness to Learn',
+      'Dedicated Learner',
+      'Technical Curiosity',
+      'Technical Experimentation',
+    ],
   },
   personality: {
     name: 'Personality & Culture',
-    description: 'Positive team impact, kindness, and collaborative spirit'
-  }
+    description: 'Positive team impact, kindness, and collaborative spirit',
+    keywords: [
+      'Empathy',
+      'Kindness',
+      'Positivity',
+      'Passion',
+      'Fun',
+      'Vibrant Energy',
+      'Generous',
+      'Positive Energy',
+      'Calm Leadership',
+    ],
+  },
 } as const;
+
+
+// Generate SKILL_TO_CATEGORY_MAP from SKILL_CATEGORIES keywords
+// This ensures keywords and mapping stay in sync
+export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> =
+  Object.entries(SKILL_CATEGORIES).reduce(
+    (acc, [category, { keywords }]) => {
+      keywords.forEach(keyword => {
+        acc[keyword] = category as SkillCategory;
+      });
+      return acc;
+    },
+    {} as Record<string, SkillCategory>
+  );
+
+// Utility function to get skill category
+export const getSkillCategory = (skillName: string): SkillCategory | undefined =>
+  SKILL_TO_CATEGORY_MAP[skillName];
+
+// Simple interface for recommendation skills (from skillCategories.ts)
+export interface RecommendationSkill {
+  category: SkillCategory;
+  highlight: string; // Key skill or trait highlighted in this recommendation
+}
+
+// Helper to get category info (from skillCategories.ts)
+export const getCategoryInfo = (category: SkillCategory) => SKILL_CATEGORIES[category];
+
+// Helper to get all categories for filtering UI (from skillCategories.ts)
+export const getAllCategories = (): SkillCategory[] => Object.keys(SKILL_CATEGORIES) as SkillCategory[];
+
+// =============================================================================
+// JOB-DESCRIPTION RELATED SKILLS (CURRENTLY UNUSED)
+// =============================================================================
+// The following skills and utilities are organized by job requirements
+// and priorities but are not currently used in the portfolio.
+// They're kept for potential future use or different skill showcasing approaches.
 
 // Skills organized by job-relevant categories
 export const SKILLS: readonly Skill[] = [
@@ -54,109 +235,109 @@ export const SKILLS: readonly Skill[] = [
   {
     id: 'react',
     name: 'React',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Modern frontend framework (3+ years experience)',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'typescript',
     name: 'TypeScript',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Type-safe JavaScript development (3+ years)',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'javascript',
     name: 'JavaScript',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Core web programming language (3+ years)',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'css',
     name: 'CSS',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Modern CSS and styling frameworks',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'html',
     name: 'HTML',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Semantic HTML and web standards',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'web-accessibility',
     name: 'Web Accessibility',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Building accessible web applications',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'tailwind',
     name: 'TailwindCSS',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Utility-first CSS framework',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: 'vuejs',
     name: 'Vue.js',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Progressive frontend framework',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: 'angular',
     name: 'Angular',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Enterprise frontend framework',
-    priority: 'low'
+    priority: 'low',
   },
 
   // API & Integration (High Priority)
   {
     id: 'graphql',
     name: 'GraphQL',
-    category: 'integration',
+    category: 'engineering',
     description: 'Modern API query language and runtime',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'rest-apis',
     name: 'REST APIs',
-    category: 'integration',
+    category: 'engineering',
     description: 'RESTful web services and integration',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'node-js',
     name: 'Node.js',
-    category: 'integration',
+    category: 'engineering',
     description: 'Server-side JavaScript runtime',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'testing',
     name: 'Testing & QA',
-    category: 'integration',
+    category: 'engineering',
     description: 'Client-side and server-side testing',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'build-tools',
     name: 'Build Tools',
-    category: 'integration',
+    category: 'engineering',
     description: 'Webpack, Vite, Bun and modern build systems',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'sql',
     name: 'SQL',
-    category: 'integration',
+    category: 'engineering',
     description: 'Database design and querying',
-    priority: 'medium'
+    priority: 'medium',
   },
 
   // Process Excellence (High Priority)
@@ -165,28 +346,28 @@ export const SKILLS: readonly Skill[] = [
     name: 'Agile Development',
     category: 'process',
     description: 'Agile development methodologies and practices',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'ci-cd',
     name: 'CI/CD',
     category: 'process',
     description: 'Continuous integration and deployment',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'github-actions',
     name: 'GitHub Actions',
     category: 'process',
     description: 'Automated workflows and CI/CD pipelines',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: 'code-quality',
     name: 'Code Quality',
     category: 'process',
     description: 'Maintainable, clean, and documented code',
-    priority: 'high'
+    priority: 'high',
   },
 
   // Team Leadership (High Priority for GolfNow)
@@ -195,203 +376,123 @@ export const SKILLS: readonly Skill[] = [
     name: 'Mentorship',
     category: 'leadership',
     description: 'Mentoring junior team members and sharing best practices',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'code-reviews',
     name: 'Code Reviews',
     category: 'leadership',
     description: 'Peer review and technical documentation',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'technical-leadership',
     name: 'Technical Leadership',
     category: 'leadership',
     description: 'Defining engineering standards and best practices',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'knowledge-sharing',
     name: 'Knowledge Sharing',
     category: 'leadership',
     description: 'Contributing to technical documentation',
-    priority: 'high'
+    priority: 'high',
   },
-  
+
   // Cross-functional Collaboration (High Priority)
   {
     id: 'cross-team-collaboration',
     name: 'Cross-Team Collaboration',
     category: 'collaboration',
     description: 'Working with designers, product managers, and stakeholders',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'technical-communication',
     name: 'Technical Communication',
     category: 'collaboration',
     description: 'Communicating progress and decisions to stakeholders',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'remote-collaboration',
     name: 'Remote & Multicultural Teams',
     category: 'collaboration',
     description: 'Effective collaboration in distributed teams',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'design-collaboration',
     name: 'Design Collaboration',
     category: 'collaboration',
     description: 'Translating design requirements into code',
-    priority: 'medium'
+    priority: 'medium',
   },
-  
+
   // Delivery & Quality (High Priority)
   {
-    id: 'code-quality',
+    id: 'code-quality-delivery',
     name: 'Code Quality & Maintainability',
     category: 'delivery',
     description: 'Focus on maintainable, scalable solutions',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'problem-solving',
     name: 'Problem Solving',
     category: 'delivery',
     description: 'Strong analytical and problem-solving skills',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'ownership',
     name: 'Proactive Ownership',
     category: 'delivery',
     description: 'Proactive mindset with focus on quality',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'continuous-improvement',
     name: 'Continuous Improvement',
     category: 'delivery',
     description: 'Contributing to culture of innovation',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: 'scalable-solutions',
     name: 'Scalable Solutions',
     category: 'delivery',
     description: 'Building high-performance web applications',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: 'user-experience',
     name: 'User Experience Focus',
     category: 'delivery',
     description: 'Delivering rich, interactive user experiences',
-    priority: 'medium'
-  }
+    priority: 'medium',
+  },
 ] as const;
 
-// Utility functions for working with skills
-export const getSkillById = (id: string): Skill | undefined => 
+// Utility functions for working with job-description skills (currently unused)
+export const getSkillById = (id: string): Skill | undefined =>
   SKILLS.find(skill => skill.id === id);
 
-export const getSkillsByCategory = (category: SkillCategory): readonly Skill[] => 
-  SKILLS.filter(skill => skill.category === category);
+export const getSkillsByCategory = (
+  category: SkillCategory
+): readonly Skill[] => SKILLS.filter(skill => skill.category === category);
 
-export const getHighPrioritySkills = (): readonly Skill[] => 
+export const getHighPrioritySkills = (): readonly Skill[] =>
   SKILLS.filter(skill => skill.priority === 'high');
 
-export const getSkillsByPriority = (priority: Skill['priority']): readonly Skill[] => 
-  SKILLS.filter(skill => skill.priority === priority);
+export const getSkillsByPriority = (
+  priority: Skill['priority']
+): readonly Skill[] => SKILLS.filter(skill => skill.priority === priority);
 
-// For UI display and filtering
+// For UI display and filtering (currently unused)
 export const SKILL_MAP = Object.fromEntries(
   SKILLS.map(skill => [skill.id, skill])
 ) as Record<string, Skill>;
 
-export type SkillId = typeof SKILLS[number]['id'];
-
-// Mapping of actual recommendation skills to categories
-export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> = {
-  // Frontend Excellence
-  'React': 'frontend',
-  'TypeScript': 'frontend',
-  'JavaScript': 'frontend',
-  'AngularJS': 'frontend',
-  'Web Development': 'frontend',
-  'CSS': 'frontend',
-  'HTML': 'frontend',
-  
-  // API & Integration
-  'Node.js': 'integration',
-  'SQL': 'integration',
-  'GraphQL': 'integration',
-  'Testing': 'integration',
-  'Cypress Testing': 'integration',
-  'Developer Experience': 'integration',
-  'Engineering Innovation': 'integration',
-  'Architecture': 'integration',
-  'Scalable Solutions': 'integration',
-  'Software Engineering': 'integration',
-  'Programming Paradigms': 'integration',
-  'Languages': 'integration',
-  
-  // Process Excellence
-  'Clean Code': 'process',
-  'Code Reviews': 'process',
-  'Quality Delivery': 'process',
-  'Consistency': 'process',
-  
-  // Team Leadership
-  'Leadership': 'leadership',
-  'Mentorship': 'leadership',
-  'Technical Guidance': 'leadership',
-  'Knowledge Sharing': 'leadership',
-  'Technical Documentation': 'leadership',
-  'Documentation': 'leadership',
-  'Student Success': 'leadership',
-  'Education': 'leadership',
-  
-  // Cross-functional Collaboration
-  'Collaboration': 'collaboration',
-  'Cross-team Communication': 'collaboration',
-  'Team Collaboration': 'collaboration',
-  'Team Communication': 'collaboration',
-  'Technical Communication': 'collaboration',
-  'Design Collaboration': 'collaboration',
-  'Instructional Content': 'collaboration',
-  
-  // Delivery & Quality
-  'Problem Solving': 'delivery',
-  'Creative Problem-Solving': 'delivery',
-  'Ownership': 'delivery',
-  'Initiative': 'delivery',
-  'Adaptability': 'delivery',
-  'Curiosity': 'delivery',
-  'Integrity': 'delivery',
-  'Resilience': 'delivery',
-  'Quick Learning': 'delivery',
-  'Team Contribution': 'delivery',
-  'Customer Focus': 'delivery',
-  'Team Support': 'delivery',
-  'User Research': 'delivery',
-  'Teamwork': 'delivery',
-  'Communication': 'delivery',
-  'Engineering Quality': 'delivery',
-  
-  // Personality & Culture
-  'Empathy': 'personality',
-  'Kindness': 'personality',
-  'Positivity': 'personality',
-  'Fun': 'personality',
-  'Passion': 'personality',
-  'Vibrant Energy': 'personality',
-  'Generous': 'personality',
-};
-
-// Utility function to get skill category
-export const getSkillCategory = (skillName: string): SkillCategory | undefined => 
-  SKILL_TO_CATEGORY_MAP[skillName];
+export type SkillId = (typeof SKILLS)[number]['id'];

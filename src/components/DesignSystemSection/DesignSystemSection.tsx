@@ -9,7 +9,7 @@ export const DesignSystemSection: React.FC = () => {
         <Code className={styles.sectionIcon} size={20} />
         Modern Design System
       </h2>
-      <div className={styles.editorIntro}>
+      <div className={styles.intro}>
         <p className={styles.sectionDescription}>
           Explore my in-progress, open-source design system. Built with Radix UI, TypeScript, and CSS Modules, it provides accessible, reusable components and design tokens for modern product teams.
         </p>

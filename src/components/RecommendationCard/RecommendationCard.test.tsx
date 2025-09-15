@@ -45,22 +45,25 @@ describe('RecommendationCard Component', () => {
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
-  it('renders all skills', () => {
+  it('renders all skills when total is less than minimum display count', () => {
     render(<RecommendationCard recommendation={mockRecommendation} activeFilters={[]} />);
     // Using getByText for skill labels (Priority 1 - non-interactive content)
+    // With new logic, shows at least 6 skills by default - since we only have 3, all show
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
     expect(screen.getByText('GraphQL')).toBeInTheDocument();
   });
 
-  it('highlights primary skills', () => {
+  it('displays skills as interactive elements', () => {
     render(<RecommendationCard recommendation={mockRecommendation} activeFilters={[]} />);
     // Using getByText to find skill elements (Priority 1)
     const reactSkill = screen.getByText('React');
     const typescriptSkill = screen.getByText('TypeScript');
+    const graphqlSkill = screen.getByText('GraphQL');
 
-    // These should be rendered (checking they exist)
+    // All skills should be rendered and interactive
     expect(reactSkill).toBeInTheDocument();
     expect(typescriptSkill).toBeInTheDocument();
+    expect(graphqlSkill).toBeInTheDocument();
   });
 });

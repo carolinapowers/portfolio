@@ -7,9 +7,9 @@ Your portfolio now includes comprehensive visual testing using Playwright's visu
 ### **Desktop Testing** (1280x720)
 - ✅ Full homepage layout
 - ✅ Hero/header section
-- ✅ Rich text editor component
+- ✅ Skill filtering components
 - ✅ Recommendations grid
-- ✅ Brainstorming section
+- ✅ Design system section
 - ✅ Footer with action buttons
 - ✅ Above-the-fold content
 

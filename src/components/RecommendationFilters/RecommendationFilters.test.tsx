@@ -108,11 +108,11 @@ describe('RecommendationFilters', () => {
 
   it('should show filters content without collapsing', async () => {
     render(<RecommendationFilters filters={mockFilters} />);
-    
+
     // RecommendationFilters no longer has collapsible content - filters are always visible
     // Search is now in a separate SearchBar component
     expect(screen.getByText('Filters')).toBeInTheDocument();
-    expect(screen.getByText('Frontend Excellence')).toBeInTheDocument();
+    expect(screen.getByText('Engineering Skills')).toBeInTheDocument();
   });
 
   // Search functionality has been moved to the SearchBar component
@@ -121,25 +121,25 @@ describe('RecommendationFilters', () => {
 
     it('should render skill category buttons', () => {
       render(<RecommendationFilters filters={mockFilters} />);
-      
-      expect(screen.getByText('Frontend Excellence')).toBeInTheDocument();
+
+      expect(screen.getByText('Engineering Skills')).toBeInTheDocument();
       expect(screen.getByText('Team Leadership')).toBeInTheDocument();
-      expect(screen.getByText('Cross-functional Collaboration')).toBeInTheDocument();
+      expect(screen.getByText('Collaboration')).toBeInTheDocument();
     });
 
     it('should toggle skill filters when clicked', async () => {
       const user = userEvent.setup();
       render(<RecommendationFilters filters={mockFilters} />);
-      
-      const technicalButton = screen.getByText('Frontend Excellence');
+
+      const technicalButton = screen.getByText('Engineering Skills');
       await user.click(technicalButton);
-      
+
       expect(mockFilters.actions.addFilter).toHaveBeenCalledWith(
         expect.objectContaining({
-          id: 'skill-frontend',
+          id: 'skill-engineering',
           type: 'skill',
-          label: 'Frontend Excellence',
-          category: 'frontend',
+          label: 'Engineering Skills',
+          category: 'engineering',
         })
       );
     });
@@ -151,10 +151,10 @@ describe('RecommendationFilters', () => {
         filters: {
           ...mockFilters.filters,
           activeFilters: [{
-            id: 'skill-frontend',
+            id: 'skill-engineering',
             type: 'skill' as const,
-            label: 'Frontend Excellence',
-            category: 'frontend' as SkillCategory,
+            label: 'Engineering Skills',
+            category: 'engineering' as SkillCategory,
             keywords: ['React', 'TypeScript'],
             priority: 'high' as const,
           }],
@@ -169,12 +169,12 @@ describe('RecommendationFilters', () => {
       );
       
       // Click the already active filter (from the skill categories section, not active filters)
-      const frontendButtons = screen.getAllByText('Frontend Excellence');
-      const technicalButton = frontendButtons[0]!; // First one is from skill categories
+      const engineeringButtons = screen.getAllByText('Engineering Skills');
+      const technicalButton = engineeringButtons[0]!; // First one is from skill categories
       expect(technicalButton).toBeDefined();
       await user.click(technicalButton);
-      
-      expect(mockFilters.actions.removeFilter).toHaveBeenCalledWith('skill-frontend');
+
+      expect(mockFilters.actions.removeFilter).toHaveBeenCalledWith('skill-engineering');
     });
   });
 
@@ -187,10 +187,10 @@ describe('RecommendationFilters', () => {
         filters: {
           ...mockFilters.filters,
           activeFilters: [{
-            id: 'skill-frontend',
+            id: 'skill-engineering',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'frontend' as const,
+            category: 'engineering' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],
@@ -213,10 +213,10 @@ describe('RecommendationFilters', () => {
         filters: {
           ...mockFilters.filters,
           activeFilters: [{
-            id: 'skill-frontend',
+            id: 'skill-engineering',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'frontend' as const,
+            category: 'engineering' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],
@@ -230,7 +230,7 @@ describe('RecommendationFilters', () => {
       
       if (removeFilterButton) {
         await user.click(removeFilterButton);
-        expect(mockFilters.actions.removeFilter).toHaveBeenCalledWith('skill-frontend');
+        expect(mockFilters.actions.removeFilter).toHaveBeenCalledWith('skill-engineering');
       }
     });
 
@@ -241,10 +241,10 @@ describe('RecommendationFilters', () => {
         filters: {
           ...mockFilters.filters,
           activeFilters: [{
-            id: 'skill-frontend',
+            id: 'skill-engineering',
             type: 'skill' as const,
             label: 'Frontend Skills',
-            category: 'frontend' as const,
+            category: 'engineering' as const,
             keywords: ['React'],
             priority: 'high' as const,
           }],

@@ -23,11 +23,6 @@ test.describe('Visual Testing', () => {
     await expect(header).toHaveScreenshot('hero-section.png');
   });
 
-  test('should match rich text editor @visual', async ({ page }) => {
-    // Rich text editor section
-    const editorSection = page.locator('section').filter({ hasText: 'Rich Text Editor' });
-    await expect(editorSection).toHaveScreenshot('rich-text-editor.png');
-  });
 
   test('should match recommendations section @visual', async ({ page }) => {
     // Recommendations section

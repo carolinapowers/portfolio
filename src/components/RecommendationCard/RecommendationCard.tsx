@@ -6,6 +6,7 @@ import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
 import { HighlightedText } from '../HighlightedText/HighlightedText';
 import styles from './RecommendationCard.module.css';
 import { useHighlightedTerms } from '../../hooks/useHighlightedTerms';
+import { getSkillCategory, type SkillCategory } from '../../data/skills';
 
 interface RecommendationCardProps {
   recommendation: Recommendation;
@@ -29,16 +30,114 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
     hasActiveFilters ||
     isExpanded ||
     recommendation.content.length <= CHARACTER_LIMIT;
-  const primarySkills = [
-    'React',
-    'TypeScript',
-    'JavaScript',
-    'Node.js',
-    'GraphQL',
-    'Mentorship',
-    'Leadership',
-    'Code Reviews',
-  ];
+
+  // Get active skill categories from filters
+  const activeSkillCategories = hasActiveFilters
+    ? activeFilters
+        .filter(filter => filter.type === 'skill')
+        .flatMap(filter => filter.keywords)
+    : [];
+
+  // Organize skills by category
+  const skillsByCategory = recommendation.skills.reduce((acc, skill) => {
+    const category = getSkillCategory(skill);
+    if (category) {
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(skill);
+    } else {
+      // Handle skills without a category (fallback to 'delivery' category)
+      const fallbackCategory = 'delivery' as SkillCategory;
+      if (!acc[fallbackCategory]) {
+        acc[fallbackCategory] = [];
+      }
+      acc[fallbackCategory].push(skill);
+    }
+    return acc;
+  }, {} as Record<SkillCategory, string[]>);
+
+  // Determine which skills to display
+  const getDisplayedSkills = () => {
+    if (!hasActiveFilters) {
+      // Default state: show at least 6 skills, prioritizing category diversity
+      const displayedSkills: string[] = [];
+      const minSkills = 6;
+
+      // First, add one skill from each category to ensure diversity
+      Object.values(skillsByCategory).forEach(skills => {
+        const firstSkill = skills[0];
+        if (firstSkill) {
+          displayedSkills.push(firstSkill);
+        }
+      });
+
+      // If we have fewer than 6 skills, add more skills to reach at least 6
+      if (displayedSkills.length < minSkills) {
+        Object.values(skillsByCategory).forEach(skills => {
+          for (let i = 1; i < skills.length && displayedSkills.length < minSkills; i++) {
+            const skill = skills[i];
+            if (skill) {
+              displayedSkills.push(skill);
+            }
+          }
+        });
+      }
+
+      // If we still don't have enough skills, show what we have
+      return displayedSkills;
+    } else {
+      // Filtered state: show skills based on active filters
+      const availableCategories = Object.keys(skillsByCategory) as SkillCategory[];
+      const allCategoriesActive = availableCategories.every(category =>
+        activeSkillCategories.includes(category)
+      );
+
+      if (allCategoriesActive && availableCategories.length > 0) {
+        // If all available categories are active, show ALL skills
+        return recommendation.skills;
+      } else {
+        // Show all skills from active categories, first skill from others
+        const displayedSkills: string[] = [];
+        Object.entries(skillsByCategory).forEach(([category, skills]) => {
+          if (activeSkillCategories.includes(category as SkillCategory)) {
+            // Show all skills from active categories
+            displayedSkills.push(...skills);
+          } else {
+            // Show only first skill from inactive categories
+            const firstSkill = skills[0];
+            if (firstSkill) {
+              displayedSkills.push(firstSkill);
+            }
+          }
+        });
+        return displayedSkills;
+      }
+    }
+  };
+
+  const displayedSkills = getDisplayedSkills();
+
+  // Determine which skills should be highlighted (active)
+  const getActiveSkills = () => {
+    if (!hasActiveFilters) {
+      return [];
+    }
+
+    const activeSkills: string[] = [];
+    Object.entries(skillsByCategory).forEach(([category, skills]) => {
+      if (activeSkillCategories.includes(category as SkillCategory)) {
+        // First skill from each active category gets highlighted
+        const firstSkill = skills[0];
+        if (firstSkill) {
+          activeSkills.push(firstSkill);
+        }
+      }
+    });
+    return activeSkills;
+  };
+
+  const activeSkills = getActiveSkills();
 
   // Get the sorting icon to display
   const getSortIcon = () => {
@@ -99,10 +198,10 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       </div>
 
       <div className={styles.skills}>
-        {recommendation.skills.map(skill => (
+        {displayedSkills.map(skill => (
           <span
             key={skill}
-            className={`${styles.skill} ${primarySkills.includes(skill) ? styles.active : ''}`}
+            className={`${styles.skill} ${activeSkills.includes(skill) ? styles.active : ''}`}
             onClick={() => {
               trackRecommendationEvent({
                 action: 'skill_click',

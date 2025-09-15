@@ -1,31 +1,7 @@
 // Event helper utilities for consistent event tracking
 
 import { safeTrack } from '../client';
-import { EVENT_NAMES, type EditorEvent, type NavigationEvent, type RecommendationEvent } from '../events';
-
-// Editor event helpers
-export const trackEditorEvent = (eventData: EditorEvent) => {
-  const eventName = (() => {
-    switch (eventData.action) {
-      case 'format':
-        return EVENT_NAMES.EDITOR_TEXT_FORMATTED;
-      case 'input':
-        return EVENT_NAMES.EDITOR_INPUT;
-      case 'save':
-        return EVENT_NAMES.EDITOR_SAVED;
-      case 'clear':
-        return EVENT_NAMES.EDITOR_CLEARED;
-      default:
-        return EVENT_NAMES.EDITOR_INPUT;
-    }
-  })();
-
-  safeTrack(eventName, {
-    ...eventData,
-    timestamp: Date.now(),
-    component: 'RichTextEditor',
-  });
-};
+import { EVENT_NAMES, type NavigationEvent, type RecommendationEvent } from '../events';
 
 
 // Navigation event helpers

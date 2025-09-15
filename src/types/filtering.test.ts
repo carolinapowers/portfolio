@@ -16,7 +16,7 @@ describe('Filter Type Guards', () => {
     id: 'skill-1',
     type: 'skill',
     label: 'Technical Skills',
-    category: 'frontend',
+    category: 'engineering',
     keywords: ['React', 'TypeScript'],
     priority: 'high'
   };
@@ -56,7 +56,7 @@ describe('Filter Type Guards', () => {
 
     it('should provide correct type narrowing', () => {
       if (isSkillFilter(skillFilter)) {
-        expect(skillFilter.category).toBe('frontend');
+        expect(skillFilter.category).toBe('engineering');
         expect(skillFilter.keywords).toEqual(['React', 'TypeScript']);
         expect(skillFilter.priority).toBe('high');
       }

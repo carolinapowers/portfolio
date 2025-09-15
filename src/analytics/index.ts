@@ -5,11 +5,10 @@ export { getAnalytics, initializeAnalytics, analyticsConfig, safeTrack, safeIden
 
 // Event types and names
 export { EVENT_NAMES } from './events';
-export type { EditorEvent, NavigationEvent, RecommendationEvent, SessionEvent, ButtonEvent, EventName } from './events';
+export type { NavigationEvent, RecommendationEvent, SessionEvent, ButtonEvent, EventName } from './events';
 
 // Hooks
 export { usePageTracking } from './hooks/usePageTracking';
-export { useEditorTracking } from './hooks/useEditorTracking';
 export { useGlobalButtonTracking } from './hooks/useGlobalButtonTracking';
 export { useAnalytics } from './hooks/useAnalytics';
 
@@ -17,7 +16,6 @@ export { useAnalytics } from './hooks/useAnalytics';
 export { getUserTraits, getSessionProperties } from './utils/userTraits';
 export type { UserTraits } from './utils/userTraits';
 export {
-  trackEditorEvent,
   trackNavigationEvent,
   trackRecommendationEvent,
   trackPageView,

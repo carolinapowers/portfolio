@@ -26,10 +26,10 @@ This iterative approach reflects real-world development where initial prototypes
 This interactive portfolio demonstrates technical skills through real-world testimonials and recommendations featuring:
 
 - **16+ Real LinkedIn Recommendations** from professional colleagues who have worked with me
-- **Advanced Filter System** to explore recommendations by skill categories (Frontend, Leadership, Collaboration, etc.)
+- **Advanced Skill Categorization** with learning and growth focus, including systematic skill extraction
 - **Smart Search Functionality** to find specific skills, companies, or keywords across all recommendations
 - **Dynamic Sorting Options** by date, name, company, skills, and relevance
-- **Skill Highlighting** with automatic term highlighting based on active filters
+- **Intelligent Skill Display** showing at least 6 skills with category-based prioritization
 - **Responsive Design** optimized for all devices
 
 ## 🚀 Live Demo
@@ -38,10 +38,11 @@ This interactive portfolio demonstrates technical skills through real-world test
 
 ### Key Features Demonstrated
 
-- 🔍 **Advanced Filtering** - Multi-category skill filtering with real-time updates
+- 🔍 **Advanced Skill Categorization** - Multi-category filtering with learning and growth emphasis
 - 🎯 **Smart Search** - Full-text search across names, titles, companies, and recommendation content
 - 📊 **Dynamic Sorting** - Multiple sort options including date, relevance, and alphabetical
 - ✨ **Skill Highlighting** - Automatic highlighting of relevant terms based on active filters
+- 🧠 **Systematic Skill Extraction** - AI-powered extraction of skills from recommendation content
 - 🔄 **Real-time Updates** - Apollo Client with GraphQL for data management
 - 📱 **Responsive Design** - Mobile-first approach with modern CSS
 
@@ -77,11 +78,12 @@ interactive-portfolio/
 ├── src/
 │   ├── components/           # React components
 │   │   ├── RecommendationCard/ # LinkedIn testimonial cards
-│   │   ├── RecommendationFilters/ # Advanced filtering system
+│   │   ├── RecommendationFilters/ # Advanced skill filtering system
 │   │   ├── SearchBar/        # Search functionality
+│   │   ├── DesignSystemSection/ # Design system showcase
 │   │   └── Layout/           # Main application layout
 │   ├── hooks/                # Custom React hooks
-│   │   ├── useFilters.ts     # Filter state management
+│   │   ├── useRecommendationFilters.ts # Filter state management
 │   │   ├── useHighlightedTerms.ts # Term highlighting logic
 │   │   └── useLocalStorage.ts # Persistent storage
 │   ├── apollo/               # GraphQL client setup
@@ -91,6 +93,7 @@ interactive-portfolio/
 │   │   ├── recommendations.ts # LinkedIn recommendations
 │   │   └── skills.ts         # Skill categories and mappings
 │   ├── utils/                # Utility functions
+│   │   ├── skillExtraction.ts # Systematic skill extraction system
 │   │   └── textHighlighting.ts # Text highlighting utilities
 │   ├── styles/               # Global styles and CSS variables
 │   └── test/                 # Test utilities and setup
@@ -153,13 +156,13 @@ npm run test:coverage    # Generate coverage report
 
 ## 💡 Key Features Deep Dive
 
-### Advanced Filtering System
+### Advanced Skill Categorization System
 
-- **Skill Categories** - Filter by Frontend Excellence, Team Leadership, Collaboration, and more
-- **Multi-select Filters** - Combine multiple filters for precise results
-- **Real-time Updates** - Instant filtering as you select/deselect categories
-- **Visual Feedback** - See the number of skills in each category
-- **Persistent State** - Filters maintained during navigation
+- **7 Skill Categories** - Engineering Skills, Process Excellence, Team Leadership, Collaboration, Delivery & Quality, Growth & Learning, and Personality & Culture
+- **Systematic Skill Extraction** - 25+ regex patterns automatically extract skills from recommendation content
+- **Learning & Growth Emphasis** - Special focus on growth mindset, curiosity, and learning abilities
+- **Intelligent Display Logic** - Shows at least 6 skills with category-based prioritization
+- **Content-Driven Mapping** - Skills mapped from actual professional feedback using NLP patterns
 
 ### Smart Search Functionality
 
@@ -299,26 +302,24 @@ type Recommendation {
   relationship: String!
 }
 
-type StickyNote {
-  id: ID!
-  text: String!
-  color: String!
-  x: Float!
-  y: Float!
-  createdAt: String!
+type SkillFilter {
+  category: String!
+  active: Boolean!
+  count: Int!
 }
 ```
 
 ### Local Storage Schema
 
 ```typescript
-interface EditorContent {
-  content: string;
-  timestamp: number;
+interface SkillCategory {
+  name: string;
+  description: string;
+  keywords: string[];
 }
 
-interface BrainstormNotes {
-  notes: StickyNote[];
+interface FilterState {
+  activeFilters: string[];
   lastUpdated: number;
 }
 ```
@@ -336,7 +337,7 @@ interface BrainstormNotes {
 ### Professional Showcase Focus
 
 - **Real-world Validation** - Genuine recommendations from colleagues and leaders
-- **Skill Discovery** - Interactive exploration of professional capabilities
+- **Skill Discovery** - Interactive exploration of professional capabilities through systematic categorization
 - **User Experience** - Intuitive filtering and search for easy navigation
 - **Performance** - Fast, responsive filtering with no lag
 - **Accessibility** - Keyboard navigation and screen reader support
@@ -345,8 +346,9 @@ interface BrainstormNotes {
 
 ### Planned Features
 
-- **AI-Powered Insights** - Extract key themes and patterns from recommendations
+- **AI-Powered Insights** - Extract key themes and patterns from recommendations using advanced NLP
 - **Visual Analytics** - Charts showing skill distribution and expertise areas
+- **Skill Trend Analysis** - Track skill frequency and category distribution over time
 - **Export Functionality** - Generate PDF resume with selected recommendations
 - **Theme Customization** - Dark mode and custom color schemes
 - **Advanced Sorting** - Sort by relationship type, recommendation length, or custom criteria

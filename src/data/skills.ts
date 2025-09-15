@@ -45,6 +45,7 @@ export const SKILL_CATEGORIES: Record<
       'Software Engineering',
       'Programming Paradigms',
       'Languages',
+      'Technical Excellence',
     ],
   },
   process: {
@@ -61,6 +62,8 @@ export const SKILL_CATEGORIES: Record<
       'Developer Tooling',
       'Workflow Optimization',
       'Testing Excellence',
+      'Code Craftsmanship',
+      'Process Optimization',
     ],
   },
   leadership: {
@@ -79,6 +82,11 @@ export const SKILL_CATEGORIES: Record<
       'Team Support',
       'Advocacy',
       'Code Reviews',
+      'Patient Teaching',
+      'Quality Leadership',
+      'Supportive Leadership',
+      'Team Empowerment',
+      'Calm Leadership',
     ],
   },
   collaboration: {
@@ -98,6 +106,9 @@ export const SKILL_CATEGORIES: Record<
       'Pair Programming',
       'Async Collaboration',
       'Remote Collaboration',
+      'Helpful Support',
+      'Clear Communication',
+      'Cross-team Coordination',
     ],
   },
   delivery: {
@@ -118,6 +129,12 @@ export const SKILL_CATEGORIES: Record<
       'Team Contribution',
       'Teamwork',
       'Communication',
+      'Dependability',
+      'Problem-Solving Excellence',
+      'Thoughtful Analysis',
+      'Proactive Initiative',
+      'Consistent Quality',
+      'Professional Dedication',
     ],
   },
   learning: {
@@ -154,6 +171,8 @@ export const SKILL_CATEGORIES: Record<
       'Learning from Feedback',
       'Willingness to Learn',
       'Dedicated Learner',
+      'Technical Curiosity',
+      'Technical Experimentation',
     ],
   },
   personality: {
@@ -167,6 +186,8 @@ export const SKILL_CATEGORIES: Record<
       'Fun',
       'Vibrant Energy',
       'Generous',
+      'Positive Energy',
+      'Calm Leadership',
     ],
   },
 } as const;

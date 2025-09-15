@@ -290,7 +290,6 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
-  margin: var(--spacing-xl) 0;
 }
 
 .techCategories {

@@ -1,19 +1,20 @@
 import React from 'react';
-import { Code } from 'lucide-react';
+import { Palette, ExternalLink, Github } from 'lucide-react';
 import styles from './DesignSystemSection.module.css';
+import layoutStyles from '../../Layout/Layout.module.css';
 
 export const DesignSystemSection: React.FC = () => {
   return (
-    <section className={styles.section}>
-      <h2 className={styles.sectionTitle}>
-        <Code className={styles.sectionIcon} size={20} />
+    <section className={layoutStyles.section}>
+      <h2 className={layoutStyles.sectionTitle}>
+        <Palette className={layoutStyles.sectionIcon} size={20} />
         Modern Design System
       </h2>
       <div className={styles.intro}>
-        <p className={styles.sectionDescription}>
+        <p className={layoutStyles.sectionDescription}>
           Explore my in-progress, open-source design system. Built with Radix UI, TypeScript, and CSS Modules, it provides accessible, reusable components and design tokens for modern product teams.
         </p>
-        <p className={styles.sectionNote + ' ' + 'mb-lg'}>
+        <p className={layoutStyles.sectionNote} style={{ marginBottom: 'var(--spacing-lg)' }}>
           <strong>Features:</strong> Primitives, composite components, design tokens, Storybook docs, and full accessibility support. <br />
           <strong>Tech:</strong> React, Radix UI, TypeScript, Vite, Vitest, Chromatic, and more.
         </p>
@@ -24,7 +25,7 @@ export const DesignSystemSection: React.FC = () => {
             rel="noopener noreferrer"
             className={styles.actionButton}
           >
-            <Code size={16} />
+            <ExternalLink size={16} />
             Storybook Demo
           </a>
           <a
@@ -33,7 +34,7 @@ export const DesignSystemSection: React.FC = () => {
             rel="noopener noreferrer"
             className={styles.actionButton + ' ' + styles.githubBtn}
           >
-            <Code size={16} />
+            <Github size={16} />
             GitHub Repo
           </a>
         </div>

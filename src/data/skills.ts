@@ -91,6 +91,12 @@ export const SKILL_CATEGORIES: Record<
       'Technical Communication',
       'Design Collaboration',
       'Instructional Content',
+      'Collaborative Spirit',
+      'Project Collaboration',
+      'Partner Collaboration',
+      'Pair Programming',
+      'Async Collaboration',
+      'Remote Collaboration',
     ],
   },
   delivery: {

@@ -84,7 +84,7 @@ export const Layout: React.FC = () => {
           <DesignSystemSection />
           <section className={styles.techSection}>
             <h2 className={styles.sectionTitle}>
-              <Code size={20} />
+              <Code className={styles.sectionIcon} size={20} />
               Technical Implementation
             </h2>
             <div className={styles.techIntro}>

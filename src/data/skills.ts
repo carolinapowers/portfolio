@@ -55,6 +55,11 @@ export const SKILL_CATEGORIES: Record<
       'Code Reviews',
       'Quality Delivery',
       'Consistency',
+      'Documentation Excellence',
+      'Process Improvement',
+      'Developer Tooling',
+      'Workflow Optimization',
+      'Testing Excellence',
     ],
   },
   leadership: {

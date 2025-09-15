@@ -38,6 +38,7 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
     'Mentorship',
     'Leadership',
     'Code Reviews',
+    'Collaboration',
   ];
 
   // Get the sorting icon to display

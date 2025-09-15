@@ -26,6 +26,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
     (category: SkillCategory): number => {
       // Get all unique skills from recommendations
       const allSkills = recommendations.flatMap(rec => rec.skills);
+
       const uniqueSkills = [...new Set(allSkills)];
 
       // Count how many unique skills belong to this category

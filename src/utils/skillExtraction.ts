@@ -4,7 +4,7 @@
  */
 
 import type { Recommendation } from '../data/recommendations';
-import { getSkillCategory, type SkillCategory } from '../data/skills';
+import type { SkillCategory } from '../data/skills';
 
 // Skill extraction rules mapping content patterns to skills
 const EXTRACTION_RULES: Array<{

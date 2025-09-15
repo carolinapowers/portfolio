@@ -7,7 +7,6 @@ import { usePageTracking } from '../analytics';
 import styles from './Layout.module.css';
 import { DisplayFlex, DisplayFlexItem } from '../components/DisplayFlex';
 import { DesignSystemSection } from '../components/DesignSystemSection';
-// import { EditorSection } from '../components/EditorSection';
 
 export const Layout: React.FC = () => {
   // Track page views and scroll behavior
@@ -81,7 +80,6 @@ export const Layout: React.FC = () => {
           </div>
         </header>
         <main className={styles.mainContent}>
-          {/* <EditorSection /> */}
           <RecommendationsSection />
           <DesignSystemSection />
         </main>

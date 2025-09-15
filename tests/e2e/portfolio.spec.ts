@@ -27,12 +27,6 @@ test.describe('Portfolio E2E Tests', () => {
     await expect(sourceLink).toHaveAttribute('href', 'https://github.com/carolinapowers/portfolio');
   });
 
-  test('should show rich text editor section', async ({ page }) => {
-    await page.goto('/');
-    
-    await expect(page.getByText('Rich Text Editor - Modern Composer')).toBeVisible();
-    await expect(page.getByText("This interactive rich text editor showcases modern React development patterns and demonstrates how modern content creation tools might be built. Try the formatting controls, keyboard shortcuts, and explore the features.")).toBeVisible();
-  });
 
   test('should show recommendations section', async ({ page }) => {
     await page.goto('/');

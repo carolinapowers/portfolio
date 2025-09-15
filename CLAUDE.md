@@ -10,10 +10,10 @@ A clean, focused portfolio application that showcases frontend engineering skill
 
 ## Key Features
 
-- **Rich Text Editor**: Custom contentEditable with formatting toolbar
-- **Interactive Brainstorming**: Dynamic sticky notes with local state
-- **LinkedIn Recommendations**: Clean display with skill tags
-- **AI-Powered Suggestions**: Mock AI content generation
+- **Skill Categorization**: Dynamic filtering and smart display
+- **Recommendation Analysis**: Professional LinkedIn testimonials
+- **Learning Focus**: Growth mindset and skill development emphasis
+- **Content Extraction**: AI-powered skill extraction from text
 - **Responsive Design**: Mobile-first with modern UI
 
 ## Technology Stack

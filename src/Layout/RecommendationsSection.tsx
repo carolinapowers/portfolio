@@ -67,8 +67,9 @@ export const RecommendationsSection: React.FC = () => {
 
       {/* Main Layout with Sidebar */}
       <div className={styles.recommendationsLayout}>
-        {/* Sidebar with Filters */}
+        {/* Sidebar with Search and Filters */}
         <aside className={styles.filtersSidebar}>
+          <SearchBar filters={filters} />
           <RecommendationFilters filters={filters} />
         </aside>
 
@@ -76,9 +77,6 @@ export const RecommendationsSection: React.FC = () => {
         <div className={styles.mainContentArea}>
           {/* Sticky Controls Header */}
           <div className={styles.stickyControls}>
-            {/* Search Bar */}
-            <SearchBar filters={filters} />
-
             {/* Recommendations Heading */}
             <div className={styles.recommendationsHeader}>
               <h3 className={styles.recommendationsTitle}>Recommendations</h3>

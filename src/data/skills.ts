@@ -128,63 +128,63 @@ export const SKILLS: readonly Skill[] = [
   {
     id: 'react',
     name: 'React',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Modern frontend framework (3+ years experience)',
     priority: 'high',
   },
   {
     id: 'typescript',
     name: 'TypeScript',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Type-safe JavaScript development (3+ years)',
     priority: 'high',
   },
   {
     id: 'javascript',
     name: 'JavaScript',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Core web programming language (3+ years)',
     priority: 'high',
   },
   {
     id: 'css',
     name: 'CSS',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Modern CSS and styling frameworks',
     priority: 'high',
   },
   {
     id: 'html',
     name: 'HTML',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Semantic HTML and web standards',
     priority: 'high',
   },
   {
     id: 'web-accessibility',
     name: 'Web Accessibility',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Building accessible web applications',
     priority: 'high',
   },
   {
     id: 'tailwind',
     name: 'TailwindCSS',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Utility-first CSS framework',
     priority: 'medium',
   },
   {
     id: 'vuejs',
     name: 'Vue.js',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Progressive frontend framework',
     priority: 'medium',
   },
   {
     id: 'angular',
     name: 'Angular',
-    category: 'frontend',
+    category: 'engineering',
     description: 'Enterprise frontend framework',
     priority: 'low',
   },
@@ -193,42 +193,42 @@ export const SKILLS: readonly Skill[] = [
   {
     id: 'graphql',
     name: 'GraphQL',
-    category: 'integration',
+    category: 'engineering',
     description: 'Modern API query language and runtime',
     priority: 'high',
   },
   {
     id: 'rest-apis',
     name: 'REST APIs',
-    category: 'integration',
+    category: 'engineering',
     description: 'RESTful web services and integration',
     priority: 'high',
   },
   {
     id: 'node-js',
     name: 'Node.js',
-    category: 'integration',
+    category: 'engineering',
     description: 'Server-side JavaScript runtime',
     priority: 'high',
   },
   {
     id: 'testing',
     name: 'Testing & QA',
-    category: 'integration',
+    category: 'engineering',
     description: 'Client-side and server-side testing',
     priority: 'high',
   },
   {
     id: 'build-tools',
     name: 'Build Tools',
-    category: 'integration',
+    category: 'engineering',
     description: 'Webpack, Vite, Bun and modern build systems',
     priority: 'high',
   },
   {
     id: 'sql',
     name: 'SQL',
-    category: 'integration',
+    category: 'engineering',
     description: 'Database design and querying',
     priority: 'medium',
   },
@@ -390,87 +390,18 @@ export const SKILL_MAP = Object.fromEntries(
 
 export type SkillId = (typeof SKILLS)[number]['id'];
 
-// Mapping of actual recommendation skills to categories
-export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> = {
-  // Frontend Excellence
-  React: 'engineering',
-  TypeScript: 'engineering',
-  JavaScript: 'engineering',
-  AngularJS: 'engineering',
-  'Web Development': 'engineering',
-  CSS: 'engineering',
-  HTML: 'engineering',
-  'Cypress Testing': 'engineering',
-  Testing: 'engineering',
-
-  // API & Integration
-  'Node.js': 'engineering',
-  SQL: 'engineering',
-  GraphQL: 'engineering',
-  'Developer Experience': 'engineering',
-  'Engineering Innovation': 'engineering',
-  Architecture: 'engineering',
-  'Scalable Solutions': 'engineering',
-  'Software Engineering': 'engineering',
-  'Programming Paradigms': 'engineering',
-  Languages: 'engineering',
-
-  // Process Excellence
-  'Clean Code': 'process',
-  'Code Reviews': 'process',
-  'Quality Delivery': 'process',
-  Consistency: 'process',
-
-  // Team Leadership
-  Leadership: 'leadership',
-  Mentorship: 'leadership',
-  'Technical Guidance': 'leadership',
-  'Knowledge Sharing': 'leadership',
-  'Technical Documentation': 'leadership',
-  Documentation: 'leadership',
-  'Student Success': 'leadership',
-  Education: 'leadership',
-
-  // Cross-functional Collaboration
-  Collaboration: 'collaboration',
-  'Cross-team Communication': 'collaboration',
-  'Team Collaboration': 'collaboration',
-  'Team Communication': 'collaboration',
-  'Technical Communication': 'collaboration',
-  'Design Collaboration': 'collaboration',
-  'Instructional Content': 'collaboration',
-
-  // Delivery & Quality
-  'Problem Solving': 'delivery',
-  'Creative Problem-Solving': 'delivery',
-  Ownership: 'delivery',
-  Initiative: 'delivery',
-  Adaptability: 'delivery',
-  Curiosity: 'delivery',
-  Integrity: 'delivery',
-  Resilience: 'delivery',
-  'Quick Learning': 'delivery',
-  'Team Contribution': 'delivery',
-  'Customer Focus': 'delivery',
-  'Team Support': 'delivery',
-  'User Research': 'delivery',
-  Teamwork: 'delivery',
-  Communication: 'delivery',
-  'Engineering Quality': 'delivery',
-
-  // Personality & Culture
-  Empathy: 'personality',
-  Kindness: 'personality',
-  Positivity: 'personality',
-  Fun: 'personality',
-  Passion: 'personality',
-  'Vibrant Energy': 'personality',
-  Generous: 'personality',
-
-  // Missing skills from recommendations - now properly categorized
-  'Proactive Mindset': 'delivery',
-  'Code Quality': 'process',
-};
+// Generate SKILL_TO_CATEGORY_MAP from SKILL_CATEGORIES keywords
+// This ensures keywords and mapping stay in sync
+export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> =
+  Object.entries(SKILL_CATEGORIES).reduce(
+    (acc, [category, { keywords }]) => {
+      keywords.forEach(keyword => {
+        acc[keyword] = category as SkillCategory;
+      });
+      return acc;
+    },
+    {} as Record<string, SkillCategory>
+  );
 
 // Utility function to get skill category
 export const getSkillCategory = (skillName: string): SkillCategory | undefined =>

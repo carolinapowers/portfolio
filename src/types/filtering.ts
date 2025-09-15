@@ -4,7 +4,7 @@
  */
 
 import type { Recommendation } from '../data/recommendations';
-import type { SkillCategory } from '../data/skillCategories';
+import type { SkillCategory } from '../data/skills';
 
 // Base filter configuration types
 export interface FilterConfig {

@@ -82,40 +82,40 @@ export const Layout: React.FC = () => {
         <main className={styles.mainContent}>
           <RecommendationsSection />
           <DesignSystemSection />
-        </main>
-        <section className={styles.techSection}>
-          <h2 className={styles.sectionTitle}>
-            <Code size={20} />
-            Technical Implementation
-          </h2>
-          <div className={styles.techIntro}>
-            <p className={styles.sectionDescription}>
-              This portfolio is built with modern development practices and
-              tools to showcase the technical skills and attention to detail
-              that would be valuable in a frontend engineering role.
-            </p>
-            <p className={styles.sectionNote}>
-              The implementation demonstrates proficiency with React,
-              TypeScript, GraphQL, and modern build tools, while following
-              accessibility best practices and maintaining clean, testable code
-              architecture.
-            </p>
-          </div>
-          <div className={styles.techCategories}>
-            {techCategories.map(category => (
-              <div className={styles.techCategory} key={category.title}>
-                <h3 className={styles.techCategoryTitle}>{category.title}</h3>
-                <div className={styles.techTags}>
-                  {category.tags.map(tag => (
-                    <span className={styles.techTag} key={tag}>
-                      {tag}
-                    </span>
-                  ))}
+          <section className={styles.techSection}>
+            <h2 className={styles.sectionTitle}>
+              <Code className={styles.sectionIcon} size={20} />
+              Technical Implementation
+            </h2>
+            <div className={styles.techIntro}>
+              <p className={styles.sectionDescription}>
+                This portfolio is built with modern development practices and
+                tools to showcase the technical skills and attention to detail
+                that would be valuable in a frontend engineering role.
+              </p>
+              <p className={styles.sectionNote}>
+                The implementation demonstrates proficiency with React,
+                TypeScript, GraphQL, and modern build tools, while following
+                accessibility best practices and maintaining clean, testable code
+                architecture.
+              </p>
+            </div>
+            <div className={styles.techCategories}>
+              {techCategories.map(category => (
+                <div className={styles.techCategory} key={category.title}>
+                  <h3 className={styles.techCategoryTitle}>{category.title}</h3>
+                  <div className={styles.techTags}>
+                    {category.tags.map(tag => (
+                      <span className={styles.techTag} key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </main>
         <footer className={styles.footer}>
           <h2 className={styles.footerTitle}>
             Why This Portfolio Approach Works

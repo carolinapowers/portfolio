@@ -60,20 +60,8 @@ export const RecommendationsSection: React.FC = () => {
           experience.
         </p>
         <p className={styles.sectionNote}>
-          These recommendations are loaded via <strong>GraphQL</strong> from
-          real LinkedIn testimonials (demonstrating Apollo Client integration).
           Use the search and filters to explore by skills, companies, or
-          keywords. You can find the original recommendations and more
-          information about me on my{' '}
-          <a
-            href="https://www.linkedin.com/in/carolina-p-powers/details/recommendations/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.linkedinLink}
-          >
-            LinkedIn profile
-          </a>
-          .
+          keywords.
         </p>
       </div>
 
@@ -99,8 +87,9 @@ export const RecommendationsSection: React.FC = () => {
             {/* Results Summary */}
             <div className={styles.resultsSummary}>
               <p>
-                Showing <strong>{filters.results.recommendations.length}</strong>{' '}
-                of <strong>{filters.results.totalMatches}</strong> recommendations
+                Showing{' '}
+                <strong>{filters.results.recommendations.length}</strong> of{' '}
+                <strong>{filters.results.totalMatches}</strong> recommendations
                 {filters.results.totalMatches !==
                   (data?.recommendations?.length || 0) && (
                   <span className={styles.filteredNote}>
@@ -168,6 +157,21 @@ export const RecommendationsSection: React.FC = () => {
           />
         </div>
       </div>
+
+      <p className={styles.sectionNote}>
+        These recommendations are loaded via <strong>GraphQL</strong> from real
+        LinkedIn testimonials (demonstrating Apollo Client integration). You can
+        find the original recommendations and more information about me on my{' '}
+        <a
+          href="https://www.linkedin.com/in/carolina-p-powers/details/recommendations/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.linkedinLink}
+        >
+          LinkedIn profile
+        </a>
+        .
+      </p>
     </section>
   );
 };

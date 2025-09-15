@@ -122,6 +122,43 @@ export const SKILL_CATEGORIES: Record<
   },
 } as const;
 
+
+// Generate SKILL_TO_CATEGORY_MAP from SKILL_CATEGORIES keywords
+// This ensures keywords and mapping stay in sync
+export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> =
+  Object.entries(SKILL_CATEGORIES).reduce(
+    (acc, [category, { keywords }]) => {
+      keywords.forEach(keyword => {
+        acc[keyword] = category as SkillCategory;
+      });
+      return acc;
+    },
+    {} as Record<string, SkillCategory>
+  );
+
+// Utility function to get skill category
+export const getSkillCategory = (skillName: string): SkillCategory | undefined =>
+  SKILL_TO_CATEGORY_MAP[skillName];
+
+// Simple interface for recommendation skills (from skillCategories.ts)
+export interface RecommendationSkill {
+  category: SkillCategory;
+  highlight: string; // Key skill or trait highlighted in this recommendation
+}
+
+// Helper to get category info (from skillCategories.ts)
+export const getCategoryInfo = (category: SkillCategory) => SKILL_CATEGORIES[category];
+
+// Helper to get all categories for filtering UI (from skillCategories.ts)
+export const getAllCategories = (): SkillCategory[] => Object.keys(SKILL_CATEGORIES) as SkillCategory[];
+
+// =============================================================================
+// JOB-DESCRIPTION RELATED SKILLS (CURRENTLY UNUSED)
+// =============================================================================
+// The following skills and utilities are organized by job requirements
+// and priorities but are not currently used in the portfolio.
+// They're kept for potential future use or different skill showcasing approaches.
+
 // Skills organized by job-relevant categories
 export const SKILLS: readonly Skill[] = [
   // Frontend Excellence (Highest Priority for GolfNow role)
@@ -325,7 +362,7 @@ export const SKILLS: readonly Skill[] = [
 
   // Delivery & Quality (High Priority)
   {
-    id: 'code-quality',
+    id: 'code-quality-delivery',
     name: 'Code Quality & Maintainability',
     category: 'delivery',
     description: 'Focus on maintainable, scalable solutions',
@@ -368,7 +405,7 @@ export const SKILLS: readonly Skill[] = [
   },
 ] as const;
 
-// Utility functions for working with skills
+// Utility functions for working with job-description skills (currently unused)
 export const getSkillById = (id: string): Skill | undefined =>
   SKILLS.find(skill => skill.id === id);
 
@@ -383,38 +420,9 @@ export const getSkillsByPriority = (
   priority: Skill['priority']
 ): readonly Skill[] => SKILLS.filter(skill => skill.priority === priority);
 
-// For UI display and filtering
+// For UI display and filtering (currently unused)
 export const SKILL_MAP = Object.fromEntries(
   SKILLS.map(skill => [skill.id, skill])
 ) as Record<string, Skill>;
 
 export type SkillId = (typeof SKILLS)[number]['id'];
-
-// Generate SKILL_TO_CATEGORY_MAP from SKILL_CATEGORIES keywords
-// This ensures keywords and mapping stay in sync
-export const SKILL_TO_CATEGORY_MAP: Record<string, SkillCategory> =
-  Object.entries(SKILL_CATEGORIES).reduce(
-    (acc, [category, { keywords }]) => {
-      keywords.forEach(keyword => {
-        acc[keyword] = category as SkillCategory;
-      });
-      return acc;
-    },
-    {} as Record<string, SkillCategory>
-  );
-
-// Utility function to get skill category
-export const getSkillCategory = (skillName: string): SkillCategory | undefined =>
-  SKILL_TO_CATEGORY_MAP[skillName];
-
-// Simple interface for recommendation skills (from skillCategories.ts)
-export interface RecommendationSkill {
-  category: SkillCategory;
-  highlight: string; // Key skill or trait highlighted in this recommendation
-}
-
-// Helper to get category info (from skillCategories.ts)
-export const getCategoryInfo = (category: SkillCategory) => SKILL_CATEGORIES[category];
-
-// Helper to get all categories for filtering UI (from skillCategories.ts)
-export const getAllCategories = (): SkillCategory[] => Object.keys(SKILL_CATEGORIES) as SkillCategory[];

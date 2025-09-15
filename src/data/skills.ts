@@ -14,6 +14,7 @@ export type SkillCategory =
   | 'leadership'
   | 'collaboration'
   | 'delivery'
+  | 'learning'
   | 'personality';
 
 export const SKILL_CATEGORIES: Record<
@@ -71,13 +72,13 @@ export const SKILL_CATEGORIES: Record<
       'Knowledge Sharing',
       'Technical Guidance',
       'Documentation',
-      'Technical Documentation',
+      'Documentation Excellence',
       'Education',
       'Student Success',
-      'Onboarding Excellence',
       'Technical Leadership',
       'Team Support',
       'Advocacy',
+      'Code Reviews',
     ],
   },
   collaboration: {
@@ -108,11 +109,8 @@ export const SKILL_CATEGORIES: Record<
       'Ownership',
       'Proactive Mindset',
       'Initiative',
-      'Adaptability',
-      'Curiosity',
       'Integrity',
       'Resilience',
-      'Quick Learning',
       'Engineering Quality',
       'Customer Focus',
       'User Research',
@@ -120,6 +118,42 @@ export const SKILL_CATEGORIES: Record<
       'Team Contribution',
       'Teamwork',
       'Communication',
+    ],
+  },
+  learning: {
+    name: 'Growth & Learning',
+    description: 'Continuous learning, growth mindset, curiosity, and drive to expand knowledge',
+    keywords: [
+      'Curiosity',
+      'Quick Learning',
+      'Adaptability',
+      'Knowledge Sharing',
+      'Mentorship',
+      'Technical Guidance',
+      'Education',
+      'Student Success',
+      'Instructional Content',
+      'Programming Paradigms',
+      'Languages',
+      'Developer Experience',
+      'Engineering Innovation',
+      'Initiative',
+      'Growth Mindset',
+      'Continuous Improvement',
+      'Learning Agility',
+      'Self-Development',
+      'Skill Development',
+      'Technical Exploration',
+      'Innovation',
+      'Experimentation',
+      'Knowledge Expansion',
+      'Proactive Learning',
+      'Intellectual Curiosity',
+      'Drive to Learn',
+      'Embracing Challenges',
+      'Learning from Feedback',
+      'Willingness to Learn',
+      'Dedicated Learner',
     ],
   },
   personality: {

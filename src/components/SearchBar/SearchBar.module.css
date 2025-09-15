@@ -91,10 +91,11 @@
 }
 
 .searchFieldsGrid {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: var(--spacing-md);
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--spacing-xs) var(--spacing-sm);
+  overflow: visible;
 }
 
 .searchFieldOption {

@@ -117,10 +117,10 @@ describe('useRecommendationFilters', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-frontend',
+      id: 'skill-engineering',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'frontend',
+      category: 'engineering',
       keywords: ['React', 'TypeScript', 'DevOps'],
       priority: 'high'
     };
@@ -131,17 +131,17 @@ describe('useRecommendationFilters', () => {
     
     expect(result.current.results.recommendations).toHaveLength(2);
     expect(result.current.results.appliedFilters).toHaveLength(1);
-    expect(result.current.results.appliedFilters[0]!.id).toBe('skill-frontend');
+    expect(result.current.results.appliedFilters[0]!.id).toBe('skill-engineering');
   });
 
   it('should handle multiple filters (AND logic)', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-frontend',
+      id: 'skill-engineering',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'frontend',
+      category: 'engineering',
       keywords: ['React', 'TypeScript'],
       priority: 'high'
     };
@@ -159,10 +159,10 @@ describe('useRecommendationFilters', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-frontend',
+      id: 'skill-engineering',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'frontend',
+      category: 'engineering',
       keywords: ['React'],
       priority: 'high'
     };
@@ -174,7 +174,7 @@ describe('useRecommendationFilters', () => {
     expect(result.current.results.appliedFilters).toHaveLength(1);
     
     act(() => {
-      result.current.actions.removeFilter('skill-frontend');
+      result.current.actions.removeFilter('skill-engineering');
     });
     
     expect(result.current.results.appliedFilters).toHaveLength(0);
@@ -185,10 +185,10 @@ describe('useRecommendationFilters', () => {
     const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
     
     const skillFilter: SkillFilter = {
-      id: 'skill-frontend',
+      id: 'skill-engineering',
       type: 'skill',
       label: 'Technical Skills',
-      category: 'frontend',
+      category: 'engineering',
       keywords: ['React'],
       priority: 'high'
     };
@@ -383,10 +383,10 @@ describe('useRecommendationFilters', () => {
       const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
       
       const technicalFilter: SkillFilter = {
-        id: 'skill-frontend',
+        id: 'skill-engineering',
         type: 'skill',
         label: 'Technical Skills',
-        category: 'frontend',
+        category: 'engineering',
         keywords: ['React', 'DevOps'],
         priority: 'high'
       };

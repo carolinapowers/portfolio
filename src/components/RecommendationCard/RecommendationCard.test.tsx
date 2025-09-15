@@ -45,12 +45,14 @@ describe('RecommendationCard Component', () => {
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
-  it('renders all skills', () => {
+  it('renders one skill per category by default', () => {
     render(<RecommendationCard recommendation={mockRecommendation} activeFilters={[]} />);
     // Using getByText for skill labels (Priority 1 - non-interactive content)
+    // With new logic, only one skill per category is shown by default
     expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('GraphQL')).toBeInTheDocument();
+    // TypeScript and GraphQL should not be visible since only first from each category shows
+    expect(screen.queryByText('TypeScript')).not.toBeInTheDocument();
+    expect(screen.queryByText('GraphQL')).not.toBeInTheDocument();
   });
 
   it('highlights primary skills', () => {

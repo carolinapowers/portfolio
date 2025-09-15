@@ -72,7 +72,7 @@ export const SKILL_CATEGORIES: Record<
     ],
   },
   collaboration: {
-    name: 'Cross-functional Collaboration',
+    name: 'Collaboration',
     description: 'Working effectively across teams and disciplines',
     keywords: [
       'Collaboration',

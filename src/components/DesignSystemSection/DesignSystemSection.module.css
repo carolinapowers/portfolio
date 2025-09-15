@@ -26,14 +26,14 @@
 }
 
 .sectionDescription {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0 0 var(--spacing-md) 0;
 }
 
 .sectionNote {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-tertiary);
   line-height: var(--line-height-relaxed);
   margin: 0;

@@ -45,7 +45,10 @@ function applySkillExtraction() {
   writeFileSync(filePath, formattedContent);
 
   console.log('\n✅ Successfully updated recommendations.ts');
-  console.log(`📊 Total recommendations enhanced: ${enhancedRecommendations.filter(r => r.skills.length > recommendations.find(orig => orig.id === r.id)?.skills.length || 0).length}`);
+  console.log(`📊 Total recommendations enhanced: ${enhancedRecommendations.filter(r => {
+    const original = recommendations.find(orig => orig.id === r.id);
+    return r.skills.length > (original?.skills.length || 0);
+  }).length}`);
 
   const totalSkillsBefore = recommendations.reduce((sum, r) => sum + r.skills.length, 0);
   const totalSkillsAfter = enhancedRecommendations.reduce((sum, r) => sum + r.skills.length, 0);

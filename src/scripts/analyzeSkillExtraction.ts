@@ -8,7 +8,7 @@ import { analyzeSkillExtractionOpportunities, extractSkillsFromContent } from '.
 function runAnalysis() {
   console.log('🔍 Analyzing skill extraction opportunities...\n');
 
-  const analysis = analyzeSkillExtractionOpportunities(recommendations);
+  const analysis = analyzeSkillExtractionOpportunities([...recommendations]);
 
   console.log('📊 SUMMARY:');
   console.log(`Total recommendations: ${analysis.summary.totalRecommendations}`);

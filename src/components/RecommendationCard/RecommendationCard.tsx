@@ -76,7 +76,10 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       if (displayedSkills.length < minSkills) {
         Object.values(skillsByCategory).forEach(skills => {
           for (let i = 1; i < skills.length && displayedSkills.length < minSkills; i++) {
-            displayedSkills.push(skills[i]);
+            const skill = skills[i];
+            if (skill) {
+              displayedSkills.push(skill);
+            }
           }
         });
       }

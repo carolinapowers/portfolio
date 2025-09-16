@@ -31,7 +31,6 @@ const mockFilters: UseFiltersReturn = {
     appliedFilters: [],
     searchQuery: '',
     totalMatches: 0,
-    executionTime: 10.5,
   },
   isLoading: false,
   error: null,
@@ -44,22 +43,6 @@ const mockFilters: UseFiltersReturn = {
     updatePagination: vi.fn(),
     resetFilters: vi.fn(),
   },
-  metrics: [
-    {
-      filterType: 'search',
-      itemCount: 17,
-      executionTime: 8.2,
-      matchCount: 17,
-      timestamp: new Date('2023-07-01T10:00:00.000Z'),
-    },
-    {
-      filterType: 'skill',
-      itemCount: 17,
-      executionTime: 12.1,
-      matchCount: 5,
-      timestamp: new Date('2023-07-01T10:01:00.000Z'),
-    },
-  ],
 };
 
 describe('RecommendationFilters', () => {

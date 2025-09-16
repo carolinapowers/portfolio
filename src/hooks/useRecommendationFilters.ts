@@ -10,7 +10,6 @@ import type {
   PaginationState,
   UseFiltersReturn,
   FilterActions,
-  FilterPerformanceMetrics,
   FilterPredicate
 } from '../types/filtering';
 import { isSkillFilter, isCompanyFilter, isRoleFilter, isDateRangeFilter } from '../types/filtering';
@@ -54,24 +53,6 @@ export const useRecommendationFilters = (
     itemsPerPage: initialItemsPerPage,
   });
   const [error, setError] = useState<Error | null>(null);
-  const [performanceMetrics, setPerformanceMetrics] = useState<FilterPerformanceMetrics[]>([]);
-
-  // Performance tracking utility
-  const trackPerformance = useCallback((
-    filterType: Filter['type'] | 'search',
-    itemCount: number,
-    executionTime: number,
-    matchCount: number
-  ) => {
-    const metric: FilterPerformanceMetrics = {
-      filterType,
-      itemCount,
-      executionTime,
-      matchCount,
-      timestamp: new Date(),
-    };
-    setPerformanceMetrics(prev => [...prev.slice(-9), metric]); // Keep last 10 metrics
-  }, []);
 
   // Filter predicates for different filter types
   const filterPredicates = useMemo((): Record<string, FilterPredicate> => ({
@@ -227,40 +208,29 @@ export const useRecommendationFilters = (
 
   // Main filtering and sorting logic (without pagination)
   const filteredAndSorted = useMemo(() => {
-    const startTime = performance.now();
-    
     try {
       // Apply all filters
-      const filtered = recommendations.filter(recommendation => 
+      const filtered = recommendations.filter(recommendation =>
         Object.values(filterPredicates).every(predicate => predicate(recommendation))
       );
-      
+
       // Apply sorting
       const sorted = sortRecommendations(filtered, filterState.sortBy, filterState.sortOrder);
-      
-      const executionTime = performance.now() - startTime;
-      
-      // Track performance (skip during testing to avoid infinite loops)
-      if (typeof performance !== 'undefined') {
-        trackPerformance('search', recommendations.length, executionTime, filtered.length);
-      }
-      
+
       return {
         recommendations: sorted,
         totalMatches: filtered.length,
-        executionTime,
       };
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Unknown filtering error');
       setError(error);
-      
+
       return {
         recommendations: [],
         totalMatches: 0,
-        executionTime: 0,
       };
     }
-  }, [recommendations, filterState, filterPredicates, sortRecommendations, trackPerformance]);
+  }, [recommendations, filterState, filterPredicates, sortRecommendations]);
 
   // Calculate pagination separately
   const paginationInfo = useMemo(() => {
@@ -289,7 +259,6 @@ export const useRecommendationFilters = (
         appliedFilters: filterState.activeFilters,
         searchQuery: filterState.search.query,
         totalMatches: filteredAndSorted.totalMatches,
-        executionTime: filteredAndSorted.executionTime,
       };
       
       return result;
@@ -303,7 +272,6 @@ export const useRecommendationFilters = (
         appliedFilters: [],
         searchQuery: '',
         totalMatches: 0,
-        executionTime: 0,
       };
     }
   }, [filteredAndSorted, paginationInfo, filterState.activeFilters, filterState.search.query]);
@@ -377,6 +345,5 @@ export const useRecommendationFilters = (
     isLoading: false, // Simplified - loading state managed externally if needed
     error,
     actions,
-    metrics: performanceMetrics,
   };
 };

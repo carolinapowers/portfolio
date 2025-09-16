@@ -1,13 +1,8 @@
 import { renderHook, act } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { useRecommendationFilters } from './useRecommendationFilters';
 import type { Recommendation } from '../data/recommendations';
 import type { SkillFilter } from '../types/filtering';
-
-// Mock performance.now for consistent testing
-beforeEach(() => {
-  vi.spyOn(performance, 'now').mockReturnValue(100);
-});
 
 // Mock data for testing
 const mockRecommendations: Recommendation[] = [
@@ -329,30 +324,6 @@ describe('useRecommendationFilters', () => {
       });
       
       expect(result.current.results.pagination.currentPage).toBe(1);
-    });
-  });
-
-  describe('performance tracking', () => {
-    it('should track performance metrics', () => {
-      const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
-      
-      expect(result.current.results.executionTime).toBeGreaterThanOrEqual(0);
-      expect(result.current.metrics.length).toBeGreaterThan(0);
-      expect(result.current.metrics[result.current.metrics.length - 1]!.filterType).toBe('search');
-      expect(result.current.metrics[result.current.metrics.length - 1]!.itemCount).toBe(3);
-    });
-
-    it('should track metrics for different operations', () => {
-      const { result } = renderHook(() => useRecommendationFilters(mockRecommendations));
-      const initialMetricsCount = result.current.metrics.length;
-      
-      act(() => {
-        result.current.actions.updateSearch('React');
-      });
-      
-      expect(result.current.metrics.length).toBeGreaterThan(initialMetricsCount);
-      const latestMetric = result.current.metrics[result.current.metrics.length - 1];
-      expect(latestMetric!.matchCount).toBe(1);
     });
   });
 

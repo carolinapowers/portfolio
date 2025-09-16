@@ -94,7 +94,6 @@ export interface FilterResult {
   readonly appliedFilters: readonly Filter[];
   readonly searchQuery: string;
   readonly totalMatches: number;
-  readonly executionTime: number; // in milliseconds for performance tracking
 }
 
 // Advanced filter predicates for complex filtering logic
@@ -108,15 +107,6 @@ export interface FilterPredicateConfig {
   readonly dateRange: FilterPredicate;
 }
 
-// Filter performance tracking
-export interface FilterPerformanceMetrics {
-  readonly filterType: Filter['type'] | 'search';
-  readonly itemCount: number;
-  readonly executionTime: number;
-  readonly matchCount: number;
-  readonly timestamp: Date;
-}
-
 // Hook interfaces for type-safe state management
 export interface UseFiltersReturn {
   readonly filters: FilterState;
@@ -124,7 +114,6 @@ export interface UseFiltersReturn {
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly actions: FilterActions;
-  readonly metrics: FilterPerformanceMetrics[];
 }
 
 export interface FilterActions {

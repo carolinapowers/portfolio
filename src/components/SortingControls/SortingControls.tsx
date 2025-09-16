@@ -31,7 +31,7 @@ export const SortingControls: React.FC<SortingControlsProps> = ({ filters }) => 
   };
 
   return (
-    <div className={styles.sortingCard}>
+    <div className={styles.sortingContainer}>
       <div className={styles.sortingHeader}>
         <div className={styles.sortingTitle}>
           <ArrowUpDown size={14} />
@@ -49,18 +49,17 @@ export const SortingControls: React.FC<SortingControlsProps> = ({ filters }) => 
           <button
             key={value}
             onClick={() => handleSortChange(value)}
-            className={`${styles.sortOption} ${
-              filterState.sortBy === value ? styles.active : ''
-            }`}
+            className={styles.sortOption}
             aria-label={`Sort by ${label}`}
           >
             <span className={styles.sortIcon}>{icon}</span>
             <span className={styles.sortLabel}>{label}</span>
-            {filterState.sortBy === value && (
-              <span className={styles.sortOrder}>
-                {filterState.sortOrder === 'asc' ? '↑' : '↓'}
-              </span>
-            )}
+            <span className={styles.sortOrder}>
+              {filterState.sortBy === value
+                ? (filterState.sortOrder === 'asc' ? '↑' : '↓')
+                : ''
+              }
+            </span>
           </button>
         ))}
       </div>

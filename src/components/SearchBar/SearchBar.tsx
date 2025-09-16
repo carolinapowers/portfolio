@@ -68,7 +68,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ filters }) => {
             onClick={() => actions.updateSearch('')}
             className={styles.clearSearch}
           >
-            <X size={16} />
+            <X size={12} />
           </button>
         )}
       </div>

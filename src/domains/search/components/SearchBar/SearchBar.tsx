@@ -3,7 +3,7 @@ import { Search, X } from 'lucide-react';
 import type { 
   SearchableField,
   UseFiltersReturn 
-} from '../../types/filtering';
+} from '../../../recommendations/types/filtering';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {

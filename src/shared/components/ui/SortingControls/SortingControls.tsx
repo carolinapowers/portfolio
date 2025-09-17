@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpDown } from 'lucide-react';
-import type { SortOption, UseFiltersReturn } from '../../types/filtering';
+import type { SortOption, UseFiltersReturn } from '../../../../domains/recommendations/types/filtering';
 import styles from './SortingControls.module.css';
 
 interface SortingControlsProps {

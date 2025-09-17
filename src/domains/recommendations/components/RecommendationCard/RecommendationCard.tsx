@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import type { Recommendation } from '../../data/recommendations';
 import type { Filter, SortOption, SortOrder } from '../../types/filtering';
-import { trackRecommendationEvent } from '../../analytics/utils/eventHelpers';
+import { trackRecommendationEvent } from '../../../analytics/utils/eventHelpers';
 
-import { HighlightedText } from '../HighlightedText/HighlightedText';
+import { HighlightedText } from '../../../search/components/HighlightedText/HighlightedText';
 import styles from './RecommendationCard.module.css';
 import { useHighlightedTerms } from '../../hooks/useHighlightedTerms';
 import { getSkillCategory, type SkillCategory } from '../../data/skills';

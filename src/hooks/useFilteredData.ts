@@ -12,16 +12,16 @@ interface UseFilteredDataReturn<T> {
   applySingleFilter: (data: T[], filter: Filter) => T[];
 }
 
-interface FilterOptions {
+interface FilterOptions<T extends Recommendation> {
   filters: Filter[];
   sortBy?: SortOption;
   sortOrder?: SortOrder;
-  searchPredicate?: (item: any) => boolean;
+  searchPredicate?: (item: T) => boolean;
 }
 
 export const useFilteredData = <T extends Recommendation>(
   data: readonly T[],
-  options: FilterOptions
+  options: FilterOptions<T>
 ): UseFilteredDataReturn<T> => {
   const { filters, sortBy = 'date', sortOrder = 'desc', searchPredicate } = options;
 

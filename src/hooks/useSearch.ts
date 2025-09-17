@@ -12,7 +12,7 @@ interface UseSearchReturn {
   searchState: SearchState;
   updateSearch: (query: string, fields?: SearchableField[]) => void;
   clearSearch: () => void;
-  matchesSearch: <T extends Record<string, any>>(
+  matchesSearch: <T extends Record<string, string | string[] | unknown>>(
     item: T,
     fieldMapping?: Partial<Record<SearchableField, keyof T | ((item: T) => string)>>
   ) => boolean;
@@ -52,7 +52,7 @@ export const useSearch = (
     }));
   }, []);
 
-  const matchesSearch = useCallback(<T extends Record<string, any>>(
+  const matchesSearch = useCallback(<T extends Record<string, string | string[] | unknown>>(
     item: T,
     fieldMapping?: Partial<Record<SearchableField, keyof T | ((item: T) => string)>>
   ): boolean => {

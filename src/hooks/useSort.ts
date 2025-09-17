@@ -11,7 +11,7 @@ interface UseSortReturn {
   updateSort: (sortBy: SortOption, sortOrder?: SortOrder) => void;
   toggleSortOrder: () => void;
   resetSort: (defaultSort?: SortOption, defaultOrder?: SortOrder) => void;
-  getSortComparator: <T>(accessor: (item: T) => any) => (a: T, b: T) => number;
+  getSortComparator: <T>(accessor: (item: T) => string | number | Date | null | undefined) => (a: T, b: T) => number;
 }
 
 const DEFAULT_SORT: SortState = {
@@ -53,7 +53,7 @@ export const useSort = (
   }, []);
 
   const getSortComparator = useCallback(<T,>(
-    accessor: (item: T) => any
+    accessor: (item: T) => string | number | Date | null | undefined
   ): ((a: T, b: T) => number) => {
     return (a: T, b: T): number => {
       const valueA = accessor(a);

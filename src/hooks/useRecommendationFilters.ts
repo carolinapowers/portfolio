@@ -32,12 +32,15 @@ export const useRecommendationFilters = (
   // Create search predicate for filtered data hook
   const searchPredicate = useCallback(
     (item: Recommendation) => {
-      return matchesSearch(item, {
+      return matchesSearch(item as unknown as Record<string, unknown>, {
         name: 'name',
         title: 'title',
         company: 'company',
         content: 'content',
-        skills: item => item.skills.join(' '),
+        skills: (item: Record<string, unknown>) => {
+          const skills = item.skills;
+          return Array.isArray(skills) ? skills.join(' ') : '';
+        },
         summary: 'summary',
       });
     },

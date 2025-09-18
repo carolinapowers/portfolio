@@ -7,7 +7,7 @@ import {
   DisplayFlexItem,
 } from '../../shared/components/ui/DisplayFlex';
 import { usePageTracking } from '../analytics';
-import { RecommendationsSection } from './Recommendations/components/RecommendationsSection';
+import { RecommendationsSection } from './Recommendations';
 import { DesignSystemSection } from './DesignSystem';
 import { TechnicalImplementationSection } from './TechnicalImplementation';
 import styles from './component.module.css';

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { vi } from 'vitest';
-import { RecommendationsSection } from './RecommendationsSection';
-import { GET_RECOMMENDATIONS } from '../../../../apollo/queries';
+import { RecommendationsSection } from './component';
+import { GET_RECOMMENDATIONS } from '../../../apollo/queries';
 
 // Mock the useRecommendationFilters hook to prevent infinite loop
-vi.mock('../hooks/useRecommendationFilters', () => ({
+vi.mock('./hooks/useRecommendationFilters', () => ({
   useRecommendationFilters: (recommendations = []) => ({
     filters: {
       search: { query: '', fields: [], caseSensitive: false, exact: false },

@@ -3,14 +3,14 @@ import {
   Filter,
   X,
 } from 'lucide-react';
-import type { SkillFilter, UseFiltersReturn } from '../../types/filtering';
 import {
   SKILL_CATEGORIES,
   type SkillCategory,
   SKILL_TO_CATEGORY_MAP,
-} from '../../../../../data/skills';
-import { recommendations } from '../../../../../data/recommendations';
-import styles from './RecommendationFilters.module.css';
+} from '../../../../data/skills';
+import { recommendations } from '../../../../data/recommendations';
+import styles from './component.module.css';
+import type { SkillFilter, UseFiltersReturn } from '../types/filtering';
 
 interface RecommendationFiltersProps {
   filters: UseFiltersReturn;

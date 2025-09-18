@@ -1,0 +1,1 @@
+export { RecommendationsSection } from './component';

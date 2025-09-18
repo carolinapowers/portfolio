@@ -1,14 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Users } from 'lucide-react';
-import { GET_RECOMMENDATIONS } from '../../../apollo/queries';
+import { GET_RECOMMENDATIONS } from '../../apollo/queries';
 import { RecommendationCard } from './RecommendationCard';
 import { RecommendationFilters } from './RecommendationFilters';
 import { SearchBar } from '../../search/components/SearchBar/SearchBar';
-import { SortingControls } from '../../../shared/components/ui/SortingControls/SortingControls';
-import { Pagination } from '../../../shared/components/ui/Pagination/Pagination';
+import { SortingControls } from '../../shared/components/ui/SortingControls/SortingControls';
+import { Pagination } from '../../shared/components/ui/Pagination/Pagination';
 import { useRecommendationFilters } from './hooks/useRecommendationFilters';
-import type { Recommendation } from '../../../data/recommendations';
+import type { Recommendation } from '../../data/recommendations';
 import styles from '../component.module.css';
 
 export const RecommendationsSection: React.FC = () => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Code } from 'lucide-react';
-import { client } from '../../apollo/client';
+import { client } from '../apollo/client';
 import {
   DisplayFlex,
   DisplayFlexItem,
-} from '../../shared/components/ui/DisplayFlex';
+} from '../shared/components/ui/DisplayFlex';
 import { usePageTracking } from '../analytics';
 import { RecommendationsSection } from './Recommendations';
 import { DesignSystemSection } from './DesignSystem';

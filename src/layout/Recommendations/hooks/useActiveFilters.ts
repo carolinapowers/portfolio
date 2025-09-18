@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { Filter, SkillFilter, CompanyFilter, RoleFilter, DateRangeFilter } from '../types/filtering';
 import { isSkillFilter, isCompanyFilter, isRoleFilter, isDateRangeFilter } from '../types/filtering';
-import type { SkillCategory } from '../../../../data/skills';
+import type { SkillCategory } from '../../../data/skills';
 
 interface FilterCounts {
   total: number;

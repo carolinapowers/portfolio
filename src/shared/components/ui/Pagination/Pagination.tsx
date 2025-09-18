@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
-import type { UseFiltersReturn } from '../../../../domains/layout/Recommendations/types/filtering';
+import type { UseFiltersReturn } from '../../../../layout/Recommendations/types/filtering';
 import styles from './Pagination.module.css';
 
 interface PaginationProps {

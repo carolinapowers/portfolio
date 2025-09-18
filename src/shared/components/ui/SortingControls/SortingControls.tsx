@@ -3,7 +3,7 @@ import { ArrowUpDown } from 'lucide-react';
 import type {
   SortOption,
   UseFiltersReturn,
-} from '../../../../domains/layout/Recommendations/types/filtering';
+} from '../../../../layout/Recommendations/types/filtering';
 import styles from './SortingControls.module.css';
 
 interface SortingControlsProps {

@@ -1,5 +1,5 @@
 import { useMemo, useCallback, useState } from 'react';
-import type { Recommendation } from '../../../../data/recommendations';
+import type { Recommendation } from '../../../data/recommendations';
 import type {
   FilterState,
   FilterResult,

@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { RecommendationCard } from './component';
-import type { Recommendation } from '../../../../data/recommendations';
+import type { Recommendation } from '../../../data/recommendations';
 import type { Filter, SkillFilter } from '../types/filtering';
 
 

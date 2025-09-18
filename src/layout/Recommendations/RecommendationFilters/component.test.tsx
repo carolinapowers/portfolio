@@ -3,8 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { RecommendationFilters } from './component';
 import type { UseFiltersReturn } from '../types/filtering';
-import type { Recommendation } from '../../../../data/recommendations';
-import type { SkillCategory } from '../../../../data/skills';
+import type { Recommendation } from '../../../data/recommendations';
+import type { SkillCategory } from '../../../data/skills';
 
 // Mock the useRecommendationFilters hook behavior
 const mockFilters: UseFiltersReturn = {

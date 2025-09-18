@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import type { Recommendation } from '../../../../data/recommendations';
+import type { Recommendation } from '../../../data/recommendations';
 import { trackRecommendationEvent } from '../../../analytics/utils/eventHelpers';
 
 import { HighlightedText } from '../../../search/components/HighlightedText/HighlightedText';
 import { SkillTags } from './Skills/Tags';
 import styles from './component.module.css';
 
-import type { SkillCategory } from '../../../../data/skills';
+import type { SkillCategory } from '../../../data/skills';
 import type { Filter, SortOption, SortOrder } from '../types/filtering';
 import { useHighlightedTerms } from '../hooks';
 

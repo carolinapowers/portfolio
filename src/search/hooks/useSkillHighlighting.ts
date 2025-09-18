@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { highlightText } from '../utils/textHighlighting';
-import { SKILL_TO_CATEGORY_MAP } from '../../../data/skills';
+import { SKILL_TO_CATEGORY_MAP } from '../../data/skills';
 import styles from '../utils/textHighlighting.module.css';
 
 export interface UseSkillHighlightingProps {

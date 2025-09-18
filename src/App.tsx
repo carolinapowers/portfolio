@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { Layout } from './domains/layout/component';
+import { Layout } from './layout/component';
 import { AnalyticsProvider } from './shared/components/layout/AnalyticsWrapper';
-import { safeIdentify, trackSessionStart } from './domains/analytics';
-import { getUserTraits, getSessionProperties } from './domains/analytics/utils/userTraits';
-import { useGlobalButtonTracking } from './domains/analytics/hooks/useGlobalButtonTracking';
+import { safeIdentify, trackSessionStart } from './analytics';
+import { getUserTraits, getSessionProperties } from './analytics/utils/userTraits';
+import { useGlobalButtonTracking } from './analytics/hooks/useGlobalButtonTracking';
 import './styles/globals.css';
 
 function AppContent() {

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { Filter } from '../types/filtering';
-import { SKILL_TO_CATEGORY_MAP } from '../../../../data/skills';
+import { SKILL_TO_CATEGORY_MAP } from '../../../data/skills';
 
 /**
  * Custom hook to get terms that should be highlighted based on active skill filters and search query

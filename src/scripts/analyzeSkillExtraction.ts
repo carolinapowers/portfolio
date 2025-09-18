@@ -2,7 +2,7 @@
  * Script to analyze and preview skill extraction opportunities
  */
 
-import { recommendations } from '../domains/recommendations/data/recommendations';
+import { recommendations } from '../data/recommendations';
 import {
   analyzeSkillExtractionOpportunities,
   extractSkillsFromContent,

@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { useRecommendationFilters } from './useRecommendationFilters';
-import type { Recommendation } from '../data/recommendations';
+import type { Recommendation } from '../../../../data/recommendations';
 import type { SkillFilter } from '../types/filtering';
 
 // Mock data for testing

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { Search, X } from 'lucide-react';
-import type { 
+import type {
   SearchableField,
-  UseFiltersReturn 
-} from '../../../recommendations/types/filtering';
+  UseFiltersReturn,
+} from '../../../layout/recommendations/types/filtering';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {

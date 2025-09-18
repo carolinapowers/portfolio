@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import type { Recommendation } from '../../data/recommendations';
+import type { Recommendation } from '../../../../../data/recommendations';
 import type { Filter, SortOption, SortOrder } from '../../types/filtering';
-import { trackRecommendationEvent } from '../../../analytics/utils/eventHelpers';
+import { trackRecommendationEvent } from '../../../../analytics/utils/eventHelpers';
 
-import { HighlightedText } from '../../../search/components/HighlightedText/HighlightedText';
-import { SkillTags } from '../../../../shared/components/ui/SkillTags';
+import { HighlightedText } from '../../../../search/components/HighlightedText/HighlightedText';
+import { SkillTags } from '../../../../../shared/components/ui/SkillTags';
 import styles from './RecommendationCard.module.css';
 import { useHighlightedTerms } from '../../hooks/useHighlightedTerms';
-import type { SkillCategory } from '../../data/skills';
+import type { SkillCategory } from '../../../../../data/skills';
 
 interface RecommendationCardProps {
   recommendation: Recommendation;

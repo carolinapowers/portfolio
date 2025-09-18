@@ -8,8 +8,8 @@ import {
   SKILL_CATEGORIES,
   type SkillCategory,
   SKILL_TO_CATEGORY_MAP,
-} from '../../data/skills';
-import { recommendations } from '../../data/recommendations';
+} from '../../../../../data/skills';
+import { recommendations } from '../../../../../data/recommendations';
 import styles from './RecommendationFilters.module.css';
 
 interface RecommendationFiltersProps {

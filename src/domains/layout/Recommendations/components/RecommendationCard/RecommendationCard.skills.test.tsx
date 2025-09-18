@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { RecommendationCard } from './RecommendationCard';
-import type { Recommendation } from '../../data/recommendations';
+import type { Recommendation } from '../../../../../data/recommendations';
 import type { Filter, SkillFilter } from '../../types/filtering';
 
 // Mock recommendation with diverse skills across actual categories from the system

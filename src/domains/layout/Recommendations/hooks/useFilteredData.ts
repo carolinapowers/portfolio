@@ -1,8 +1,8 @@
 import { useMemo, useCallback } from 'react';
 import type { Filter, SortOption, SortOrder, FilterPredicate } from '../types/filtering';
 import { isSkillFilter, isCompanyFilter, isRoleFilter, isDateRangeFilter } from '../types/filtering';
-import type { Recommendation } from '../data/recommendations';
-import { getSkillCategory } from '../data/skills';
+import type { Recommendation } from '../../../../data/recommendations';
+import { getSkillCategory } from '../../../../data/skills';
 
 interface UseFilteredDataReturn<T> {
   filteredData: T[];

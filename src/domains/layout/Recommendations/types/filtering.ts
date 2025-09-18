@@ -3,8 +3,8 @@
  * Demonstrates advanced TypeScript patterns for interview preparation
  */
 
-import type { Recommendation } from '../data/recommendations';
-import type { SkillCategory } from '../data/skills';
+import type { Recommendation } from '../../../../data/recommendations';
+import type { SkillCategory } from '../../../../data/skills';
 
 // Base filter configuration types
 export interface FilterConfig {

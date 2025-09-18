@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { recommendations } from '../domains/recommendations/data/recommendations';
+import { recommendations } from '../data/recommendations';
 import { enhanceRecommendationWithExtractedSkills } from './skillExtraction';
 
 function applySkillExtraction() {

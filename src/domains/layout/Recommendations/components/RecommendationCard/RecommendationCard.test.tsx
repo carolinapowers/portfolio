@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { RecommendationCard } from './RecommendationCard';
-import type { Recommendation } from '../../data/recommendations';
+import type { Recommendation } from '../../../../../data/recommendations';
 
 const mockRecommendation: Recommendation = {
   id: '1',

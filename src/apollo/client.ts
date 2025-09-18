@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { recommendations } from '../domains/recommendations/data/recommendations';
+import { recommendations } from '../data/recommendations';
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),

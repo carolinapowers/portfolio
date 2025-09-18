@@ -125,7 +125,7 @@
   font-weight: 500;
 }
 
-.skill.active {  
+.skill.active {
   background: color-mix(in srgb, var(--color-info) 10%, white);
   border: 1px solid var(--color-info);
   color: var(--color-info);

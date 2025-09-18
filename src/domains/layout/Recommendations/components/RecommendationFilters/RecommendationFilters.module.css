@@ -148,7 +148,6 @@
   border-top: 1px solid var(--border);
 }
 
-
 /* Section Titles */
 .sectionTitle {
   margin: 0;
@@ -354,34 +353,34 @@
   .filtersContainer {
     padding: 0.75rem;
   }
-  
+
   .skillCategories {
     flex-direction: column;
   }
-  
+
   .sortOptions {
     flex-direction: column;
   }
-  
+
   .sortOption {
     justify-content: center;
   }
-  
+
   .searchFields {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .metricsGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .resultsSummary {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .executionTime {
     margin-left: 0;
   }
@@ -393,17 +392,17 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .filtersActions {
     align-self: flex-end;
   }
-  
+
   .activeFiltersHeader {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .clearAllButton {
     align-self: flex-start;
   }

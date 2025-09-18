@@ -348,9 +348,9 @@
 }
 
 .errorState {
-  color: var(--error);
-  border-color: var(--error-border);
-  background: var(--error-light);
+  color: var(--color-error);
+  border-color: var(--color-error);
+  background: var(--color-surface);
 }
 
 .noResults {

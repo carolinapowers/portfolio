@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { SkillTags } from './SkillTags';
-import type { Recommendation } from '../../../data/recommendations';
-import type { SkillCategory } from '../../../data/skills';
+import { SkillTags } from './Tags';
+import type { Recommendation } from '../../../../../data/recommendations';
+import type { SkillCategory } from '../../../../../data/skills';
 
 // Mock recommendation with diverse skills across actual categories from the system
 const mockRecommendationWithCategorizedSkills: Recommendation = {

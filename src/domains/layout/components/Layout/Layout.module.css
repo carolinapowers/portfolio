@@ -25,7 +25,6 @@
   opacity: 0.9;
 }
 
-
 .description {
   font-size: var(--font-size-xs);
   margin-top: var(--spacing-md);
@@ -284,7 +283,6 @@
   border-color: #24292f;
 }
 
-
 /* New states for filtering */
 .loadingState,
 .errorState,
@@ -356,7 +354,6 @@
   .contentControls {
     justify-content: flex-start;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -381,7 +378,6 @@
   .filtersSidebar {
     padding: var(--spacing-md);
   }
-
 
   .contentControls {
     flex-direction: column;

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Layout } from './domains/portfolio/components/Layout/Layout';
+import { Layout } from './domains/layout/components/Layout/Layout';
 import { AnalyticsProvider } from './shared/components/layout/AnalyticsWrapper';
 import { safeIdentify, trackSessionStart } from './domains/analytics';
 import { getUserTraits, getSessionProperties } from './domains/analytics/utils/userTraits';

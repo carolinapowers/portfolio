@@ -77,11 +77,11 @@
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
   }
-  
+
   .sectionTitle {
     font-size: var(--font-size-lg);
   }
-  
+
   .actionButton {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-xs);

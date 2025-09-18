@@ -26,8 +26,8 @@
 .filterCount {
   background: var(--color-primary);
   color: white;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xxs) var(--spacing-xsm);
   border-radius: 12px;
   font-weight: 500;
   min-width: 20px;
@@ -346,7 +346,6 @@
 }
 
 .removeFilterButton:hover {
-  background: var(--color-surface);
   color: var(--color-primary-hover);
 }
 

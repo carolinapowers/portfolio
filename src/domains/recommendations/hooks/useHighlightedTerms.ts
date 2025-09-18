@@ -3,18 +3,27 @@ import type { Filter } from '../types/filtering';
 import { SKILL_TO_CATEGORY_MAP } from '../data/skills';
 
 /**
- * Custom hook to get terms that should be highlighted based on active skill filters
+ * Custom hook to get terms that should be highlighted based on active skill filters and search query
  */
-export const useHighlightedTerms = (activeFilters: Filter[] = []): string[] => {
+export const useHighlightedTerms = (activeFilters: Filter[] = [], searchQuery: string = ''): string[] => {
   return useMemo(() => {
-    if (!activeFilters || activeFilters.length === 0) return [];
+    const termsToHighlight: string[] = [];
 
+    // Add search query terms (split by spaces for individual words)
+    if (searchQuery && searchQuery.trim()) {
+      const searchWords = searchQuery.trim().split(/\s+/);
+      termsToHighlight.push(...searchWords);
+    }
+
+    // Add skill filter terms only if there are active skill filters
     const skillFilters = activeFilters.filter(
       filter => filter.type === 'skill'
     );
-    if (skillFilters.length === 0) return [];
 
-    const termsToHighlight: string[] = [];
+    if (skillFilters.length === 0) {
+      // If no skill filters but we have search query, return search terms
+      return [...new Set(termsToHighlight.filter(term => term && term.length > 0))];
+    }
 
     // Get all active categories from filters
     const activeCategories = skillFilters.flatMap(filter => filter.keywords);
@@ -296,5 +305,5 @@ export const useHighlightedTerms = (activeFilters: Filter[] = []): string[] => {
     return [
       ...new Set(termsToHighlight.filter(term => term && term.length > 0)),
     ];
-  }, [activeFilters]);
+  }, [activeFilters, searchQuery]);
 };

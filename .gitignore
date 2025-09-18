@@ -99,3 +99,6 @@ temp/
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Bundle analysis
+bundle-stats/

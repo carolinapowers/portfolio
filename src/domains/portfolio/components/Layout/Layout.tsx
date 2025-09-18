@@ -1,12 +1,12 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Code } from 'lucide-react';
-import { client } from '../apollo/client';
-import { RecommendationsSection } from './RecommendationsSection';
-import { usePageTracking } from '../analytics';
+import { client } from '../../../../apollo/client';
+import { RecommendationsSection } from '../../../recommendations/components/RecommendationsSection';
+import { usePageTracking } from '../../../analytics';
 import styles from './Layout.module.css';
-import { DisplayFlex, DisplayFlexItem } from '../components/DisplayFlex';
-import { DesignSystemSection } from '../components/DesignSystemSection';
+import { DisplayFlex, DisplayFlexItem } from '../../../../shared/components/ui/DisplayFlex';
+import { DesignSystemSection } from '../DesignSystemSection';
 
 export const Layout: React.FC = () => {
   // Track page views and scroll behavior

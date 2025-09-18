@@ -65,6 +65,7 @@ This interactive portfolio demonstrates technical skills through real-world test
 
 ### Architecture Highlights
 
+- **Domain-Driven Design** - Organized by business domains for better scalability
 - **Component-based** - Modular, reusable React components
 - **Type-safe** - Comprehensive TypeScript interfaces
 - **Performant** - Optimized bundle size and lazy loading
@@ -73,28 +74,36 @@ This interactive portfolio demonstrates technical skills through real-world test
 
 ## 🏗️ Project Structure
 
+Built with a **domain-driven architecture** for better organization and scalability:
+
 ```
 interactive-portfolio/
 ├── src/
-│   ├── components/           # React components
-│   │   ├── RecommendationCard/ # LinkedIn testimonial cards
-│   │   ├── RecommendationFilters/ # Advanced skill filtering system
-│   │   ├── SearchBar/        # Search functionality
-│   │   ├── DesignSystemSection/ # Design system showcase
-│   │   └── Layout/           # Main application layout
-│   ├── hooks/                # Custom React hooks
-│   │   ├── useRecommendationFilters.ts # Filter state management
-│   │   ├── useHighlightedTerms.ts # Term highlighting logic
-│   │   └── useLocalStorage.ts # Persistent storage
+│   ├── domains/              # Business domains
+│   │   ├── recommendations/  # 📊 Recommendation browsing & filtering
+│   │   │   ├── components/   # RecommendationCard, Filters, Section
+│   │   │   ├── hooks/        # useRecommendationFilters, useHighlightedTerms
+│   │   │   ├── types/        # filtering.ts
+│   │   │   └── data/         # recommendations.ts, skills.ts
+│   │   ├── search/           # 🔍 Search functionality
+│   │   │   ├── components/   # SearchBar, HighlightedText
+│   │   │   ├── hooks/        # useSkillHighlighting
+│   │   │   └── utils/        # textHighlighting
+│   │   ├── analytics/        # 📈 User tracking & events
+│   │   │   ├── hooks/        # usePageTracking, useGlobalButtonTracking
+│   │   │   ├── utils/        # eventHelpers, userTraits
+│   │   │   └── context/      # AnalyticsContext
+│   │   └── portfolio/        # 🎨 Portfolio presentation
+│   │       ├── components/   # Layout, DesignSystemSection
+│   │       └── utils/        # skillExtraction
+│   ├── shared/               # Reusable across domains
+│   │   ├── components/
+│   │   │   ├── ui/           # DisplayFlex, Pagination, SortingControls
+│   │   │   └── layout/       # AnalyticsWrapper
+│   │   └── hooks/            # useLocalStorage
 │   ├── apollo/               # GraphQL client setup
 │   │   ├── client.ts         # Apollo Client configuration
 │   │   └── queries.ts        # GraphQL queries & mutations
-│   ├── data/                 # Static data and types
-│   │   ├── recommendations.ts # LinkedIn recommendations
-│   │   └── skills.ts         # Skill categories and mappings
-│   ├── utils/                # Utility functions
-│   │   ├── skillExtraction.ts # Systematic skill extraction system
-│   │   └── textHighlighting.ts # Text highlighting utilities
 │   ├── styles/               # Global styles and CSS variables
 │   └── test/                 # Test utilities and setup
 ├── public/                   # Static assets

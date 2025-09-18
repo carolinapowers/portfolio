@@ -1,6 +1,6 @@
 // Core hooks
-export { useLocalStorage } from './useLocalStorage';
 export { useRecommendationFilters } from './useRecommendationFilters';
+export { useHighlightedTerms } from './useHighlightedTerms';
 
 // Individual filter hooks
 export { useSearch } from './useSearch';

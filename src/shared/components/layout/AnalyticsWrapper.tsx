@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import { Analytics } from '@segment/analytics-next';
-import { initializeAnalytics } from '../analytics/client';
-import { AnalyticsContext } from '../analytics/context/AnalyticsContext';
-import type { AnalyticsContextType } from '../analytics/context/AnalyticsContext';
+import { initializeAnalytics } from '../../../domains/analytics/client';
+import { AnalyticsContext } from '../../../domains/analytics/context/AnalyticsContext';
+import type { AnalyticsContextType } from '../../../domains/analytics/context/AnalyticsContext';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;

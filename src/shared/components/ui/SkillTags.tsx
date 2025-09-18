@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import type { Recommendation } from '../data/recommendations';
-import { getSkillCategory, type SkillCategory } from '../data/skills';
-import styles from '../components/RecommendationCard/RecommendationCard.module.css';
+import type { Recommendation } from '../../../domains/recommendations/data/recommendations';
+import { getSkillCategory, type SkillCategory } from '../../../domains/recommendations/data/skills';
+import styles from '../../../domains/recommendations/components/RecommendationCard/RecommendationCard.module.css';
 
 interface SkillTagsProps {
   recommendation: Recommendation;

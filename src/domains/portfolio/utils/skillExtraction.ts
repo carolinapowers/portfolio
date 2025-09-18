@@ -3,8 +3,8 @@
  * Extracts additional skills from recommendation content that aren't explicitly listed
  */
 
-import type { Recommendation } from '../data/recommendations';
-import type { SkillCategory } from '../data/skills';
+import type { Recommendation } from '../../recommendations/data/recommendations';
+import type { SkillCategory } from '../../recommendations/data/skills';
 
 // Skill extraction rules mapping content patterns to skills
 const EXTRACTION_RULES: Array<{

@@ -1,15 +1,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Users } from 'lucide-react';
-import { GET_RECOMMENDATIONS } from '../apollo/queries';
-import { RecommendationCard } from '../components/RecommendationCard/RecommendationCard';
-import { RecommendationFilters } from '../components/RecommendationFilters/RecommendationFilters';
-import { SearchBar } from '../components/SearchBar/SearchBar';
-import { SortingControls } from '../components/SortingControls/SortingControls';
-import { Pagination } from '../components/Pagination/Pagination';
+import { GET_RECOMMENDATIONS } from '../../../apollo/queries';
+import { RecommendationCard } from './RecommendationCard/RecommendationCard';
+import { RecommendationFilters } from './RecommendationFilters/RecommendationFilters';
+import { SearchBar } from '../../search/components/SearchBar/SearchBar';
+import { SortingControls } from '../../../shared/components/ui/SortingControls/SortingControls';
+import { Pagination } from '../../../shared/components/ui/Pagination/Pagination';
 import { useRecommendationFilters } from '../hooks/useRecommendationFilters';
 import type { Recommendation } from '../data/recommendations';
-import styles from './Layout.module.css';
+import styles from '../../portfolio/components/Layout/Layout.module.css';
 
 export const RecommendationsSection: React.FC = () => {
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS);

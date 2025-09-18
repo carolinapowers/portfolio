@@ -9,7 +9,7 @@ import { SortingControls } from '../../../shared/components/ui/SortingControls/S
 import { Pagination } from '../../../shared/components/ui/Pagination/Pagination';
 import { useRecommendationFilters } from '../hooks/useRecommendationFilters';
 import type { Recommendation } from '../data/recommendations';
-import styles from '../../layout/components/Layout/Layout.module.css';
+import styles from '../../layout/component.module.css';
 
 export const RecommendationsSection: React.FC = () => {
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS);

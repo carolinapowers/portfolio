@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { recommendations } from '../domains/recommendations/data/recommendations';
-import { enhanceRecommendationWithExtractedSkills } from '../domains/layout/utils/skillExtraction';
+import { enhanceRecommendationWithExtractedSkills } from './skillExtraction';
 
 function applySkillExtraction() {
   console.log('🚀 Applying skill extraction to all recommendations...\n');

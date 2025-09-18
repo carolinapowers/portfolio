@@ -3,7 +3,10 @@
  */
 
 import { recommendations } from '../domains/recommendations/data/recommendations';
-import { analyzeSkillExtractionOpportunities, extractSkillsFromContent } from '../domains/layout/utils/skillExtraction';
+import {
+  analyzeSkillExtractionOpportunities,
+  extractSkillsFromContent,
+} from './skillExtraction';
 
 function runAnalysis() {
   console.log('🔍 Analyzing skill extraction opportunities...\n');

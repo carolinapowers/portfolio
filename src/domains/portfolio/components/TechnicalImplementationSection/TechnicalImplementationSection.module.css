@@ -52,7 +52,7 @@
 }
 
 .techCategoryTitle {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text);
   margin: 0 0 var(--spacing-md) 0;
@@ -67,11 +67,12 @@
 }
 
 .techTag {
-  background: var(--color-primary);
-  color: white;
+  background: rgba(102, 126, 234, 0.1);
+  color: var(--color-text);
+  border: none;
+  font-weight: 400;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   font-size: var(--font-size-sm);
-  font-weight: 500;
   white-space: nowrap;
 }

@@ -1,0 +1,1 @@
+export { RecommendationFilters } from './component';

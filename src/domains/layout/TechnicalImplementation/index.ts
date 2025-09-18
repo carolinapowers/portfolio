@@ -1,0 +1,1 @@
+export { TechnicalImplementationSection } from './component';

@@ -2,8 +2,11 @@
  * Script to analyze and preview skill extraction opportunities
  */
 
-import { recommendations } from '../domains/recommendations/data/recommendations';
-import { analyzeSkillExtractionOpportunities, extractSkillsFromContent } from '../domains/portfolio/utils/skillExtraction';
+import { recommendations } from '../data/recommendations';
+import {
+  analyzeSkillExtractionOpportunities,
+  extractSkillsFromContent,
+} from './skillExtraction';
 
 function runAnalysis() {
   console.log('🔍 Analyzing skill extraction opportunities...\n');

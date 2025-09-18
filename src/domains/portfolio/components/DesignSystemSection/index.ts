@@ -1,1 +1,0 @@
-export { DesignSystemSection } from './DesignSystemSection';

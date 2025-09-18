@@ -1,6 +1,6 @@
 import React from 'react';
 import { Code } from 'lucide-react';
-import styles from './TechnicalImplementationSection.module.css';
+import styles from './component.module.css';
 
 type TechTitle =
   | 'Frontend & Build'

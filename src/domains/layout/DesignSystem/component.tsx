@@ -1,6 +1,6 @@
 import React from 'react';
 import { Palette, ExternalLink, Github } from 'lucide-react';
-import styles from './DesignSystemSection.module.css';
+import styles from './component.module.css';
 import layoutStyles from '../component.module.css';
 
 export const DesignSystemSection: React.FC = () => {

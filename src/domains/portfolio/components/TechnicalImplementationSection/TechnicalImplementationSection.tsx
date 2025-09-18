@@ -2,10 +2,18 @@ import React from 'react';
 import { Code } from 'lucide-react';
 import styles from './TechnicalImplementationSection.module.css';
 
-interface TechCategory {
-  title: string;
+type TechTitle =
+  | 'Frontend & Build'
+  | 'Data & State'
+  | 'UI & Design'
+  | 'Testing & Quality'
+  | 'DevOps & Deployment'
+  | 'Workflow & AI';
+
+type TechCategory = {
+  title: TechTitle;
   tags: string[];
-}
+};
 
 const techCategories: TechCategory[] = [
   {

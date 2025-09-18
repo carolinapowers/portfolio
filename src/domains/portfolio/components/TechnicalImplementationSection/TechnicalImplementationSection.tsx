@@ -62,7 +62,6 @@ const techCategories: TechCategory[] = [
 ];
 
 export const TechnicalImplementationSection: React.FC = () => {
-  // Test comment to trigger pre-commit hook
   return (
     <section className={styles.techSection}>
       <h2 className={styles.sectionTitle}>

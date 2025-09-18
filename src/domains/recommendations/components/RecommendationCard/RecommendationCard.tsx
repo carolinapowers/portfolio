@@ -14,21 +14,26 @@ interface RecommendationCardProps {
   activeFilters?: Filter[];
   sortBy?: SortOption;
   sortOrder?: SortOrder;
+  searchQuery?: string;
 }
 
 export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   recommendation,
   activeFilters = [],
   sortBy = 'date',
+  searchQuery = '',
 }) => {
-  const highlightedTerms = useHighlightedTerms(activeFilters);
+  const highlightedTerms = useHighlightedTerms(activeFilters, searchQuery);
   const [isExpanded, setIsExpanded] = useState(false);
   const CHARACTER_LIMIT = 300;
 
-  // Show full content if there are active filters (user is searching for specific content)
+  // Show full content if there are active filters or search query matches content
   const hasActiveFilters = activeFilters && activeFilters.length > 0;
+  const hasSearchMatch = searchQuery &&
+    recommendation.content.toLowerCase().includes(searchQuery.toLowerCase());
   const shouldShowFullContent =
     hasActiveFilters ||
+    hasSearchMatch ||
     isExpanded ||
     recommendation.content.length <= CHARACTER_LIMIT;
 
@@ -91,7 +96,8 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
           />
         </p>
         {recommendation.content.length > CHARACTER_LIMIT &&
-          !hasActiveFilters && (
+          !hasActiveFilters &&
+          !hasSearchMatch && (
             <button
               className={styles.readMoreBtn}
               onClick={() => setIsExpanded(!isExpanded)}

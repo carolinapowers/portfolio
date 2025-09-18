@@ -127,6 +127,7 @@ export const RecommendationsSection: React.FC = () => {
                   activeFilters={[...filters.filters.activeFilters]}
                   sortBy={filters.filters.sortBy}
                   sortOrder={filters.filters.sortOrder}
+                  searchQuery={filters.filters.search.query}
                 />
               )
             )}

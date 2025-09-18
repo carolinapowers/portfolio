@@ -1,8 +1,9 @@
 .highlight {
-  background-color: #ffeb3b;
-  color: #1a1a1a;
-  padding: 2px 3px;
-  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-info) 10%, white);
+  color: var(--color-info);
+  padding: var(--spacing-xxs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
+  font-size: inherit;
   font-weight: 500;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;

@@ -348,9 +348,9 @@
 }
 
 .errorState {
-  color: var(--error);
-  border-color: var(--error-border);
-  background: var(--error-light);
+  color: var(--color-error);
+  border-color: var(--color-error);
+  background: var(--color-surface);
 }
 
 .noResults {
@@ -361,16 +361,16 @@
   background: var(--color-primary);
   color: white;
   border: none;
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-weight: 600;
   margin-top: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .clearFiltersButton:hover {
-  background: var(--color-primary-dark);
   transform: translateY(-1px);
 }
 

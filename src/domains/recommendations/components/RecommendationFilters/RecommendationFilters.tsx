@@ -147,7 +147,7 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
                     onClick={() => actions.removeFilter(filter.id)}
                     className={styles.removeFilterButton}
                   >
-                    <X size={14} />
+                    <X size={12} />
                   </button>
                 </div>
               ))}

@@ -60,7 +60,6 @@
 }
 
 .actionButton:hover {
-  background: var(--color-primary-dark);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }

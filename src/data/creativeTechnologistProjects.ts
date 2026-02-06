@@ -179,6 +179,30 @@ export const creativeTechnologistProjects: Project[] = [
     githubUrl: 'https://github.com/carolinapowers/portfolio',
   },
   {
+    id: 'vue-tdd-automation',
+    title: 'Vue TDD Automation - npm Package for Testing Workflows',
+    category: 'developer-experience',
+    story:
+      'Developed npm package automating test-driven development workflows for Vue.js applications with GitHub integration. Interactive CLI streamlines component creation, test generation, and issue-driven development following RED → GREEN → REFACTOR pattern. Enforces 80% code coverage thresholds and accessibility-first testing practices through pre-configured Vitest setup, Testing Library utilities, and GitHub Actions workflows. GitHub Copilot instructions enable AI-assisted test authoring while maintaining TDD methodology and Vue.js testing standards',
+    projectDetails:
+      'npm package provides comprehensive CLI tool for automated TDD workflows in Vue.js 3 projects. Interactive prompts guide developers through component creation, composable generation, and accessibility-focused test scaffolding. Vitest configuration includes coverage thresholds, watch mode, and UI integration for optimal developer experience.\n\nGitHub Actions integration enables issue-driven development with automatic branch creation and test generation from issue requirements. Pre-configured Copilot instructions assist developers in writing tests that follow Testing Library best practices and accessibility patterns. Templates enforce structured feature requests maintaining consistency across development teams.\n\nTesting utilities cover components, composables, and accessibility scenarios with built-in helpers for Vue Test Utils and Testing Library patterns. Enforces 80% code coverage across statements, branches, functions, and lines. Documentation includes Vue.js testing standards compliance guide and TDD methodology training resources demonstrating systematic approach to quality assurance.',
+    technologies: [
+      'Vue.js',
+      'Vitest',
+      'Testing Library',
+      'TypeScript',
+      'GitHub Actions',
+      'npm',
+      'CLI Development',
+      'TDD',
+      'Accessibility Testing',
+      'GitHub Copilot',
+    ],
+    featured: true,
+    order: 8,
+    githubUrl: 'https://github.com/carolinapowers/vue-tdd-automation',
+  },
+  {
     id: 'custom-eslint-rules',
     title: 'Custom ESLint Rules (AST Parsing) at Articulate',
     category: 'internal-tools',
@@ -186,7 +210,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Engineered custom ESLint rules at Articulate using Abstract Syntax Tree parsing to codify team learnings and prevent recurring code quality issues at scale - leveraging AST parsing expertise developed through Interactive Courses at Code School and Code Lab authoring at Pluralsight. Rules detect anti-patterns, enforce architecture decisions, and validate implementation standards specific to learning platform requirements. Automated detection of high-risk patterns reduces code review overhead while maintaining consistent quality standards across multiple development teams. Integrated rules into CI/CD pipeline to provide immediate feedback and prevent problematic code from reaching production',
     technologies: ['ESLint', 'AST Parsing', 'JavaScript', 'TypeScript'],
     featured: false,
-    order: 8,
+    order: 9,
   },
   {
     id: 'articulate-testing-modernization',
@@ -205,6 +229,6 @@ export const creativeTechnologistProjects: Project[] = [
       'Testing Strategy',
     ],
     featured: false,
-    order: 9,
+    order: 10,
   },
 ];

@@ -56,9 +56,9 @@
 }
 
 .buttonFilter.active {
-  background: var(--color-purple);
-  color: white;
-  border-color: var(--color-purple);
+  background: white;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 /* Primary variant */

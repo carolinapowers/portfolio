@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A clean, focused portfolio application that showcases frontend engineering skills through an interactive content creation experience. Built to demonstrate React expertise, modern development practices, and attention to detail.
+A clean, focused portfolio application that showcases software engineering skills through an interactive content creation experience. Built to demonstrate React expertise, modern development practices, and attention to detail.
 
 ## Key Features
 

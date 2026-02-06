@@ -31,7 +31,7 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
       variant="filter"
       size="md"
       onClick={handleClick}
-      className={isSelected ? 'active' : ''}
+      active={isSelected}
     >
       {displayName}
     </Button>
@@ -65,8 +65,9 @@ const ProjectCardWrapper: React.FC<ProjectCardWrapperProps> = ({
 };
 
 export const ProjectGrid: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] =
-    useState<ProjectCategory | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<
+    ProjectCategory | null | undefined
+  >(undefined);
   const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
 
@@ -149,7 +150,7 @@ export const ProjectGrid: React.FC = () => {
             variant="filter"
             size="md"
             onClick={handleShowAll}
-            className={selectedCategory === null ? 'active' : ''}
+            active={selectedCategory === null && selectedCategory !== undefined}
           >
             All Projects
           </Button>

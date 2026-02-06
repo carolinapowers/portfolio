@@ -296,3 +296,166 @@ describe('ProjectGrid - Filter Integration with Expansion', () => {
     expect(screen.getByText(/details for first project/i)).toBeInTheDocument();
   });
 });
+
+describe('ProjectGrid - Filter Button Active States', () => {
+  it('shows no button as active on initial render', () => {
+    render(<ProjectGrid />);
+
+    const allProjectsButton = screen.getByRole('button', {
+      name: /all projects/i,
+    });
+    const aiButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+
+    // No button should be active initially
+    expect(allProjectsButton.className).not.toContain('active');
+    expect(aiButton.className).not.toContain('active');
+  });
+
+  it('changes active state when category filter is clicked', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    // Get the "All Projects" button
+    const allProjectsButton = screen.getByRole('button', {
+      name: /all projects/i,
+    });
+
+    // Initially "All Projects" should NOT be active
+    expect(allProjectsButton.className).not.toContain('active');
+
+    // Click on "AI & Emerging Tech" category button
+    const aiCategoryButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+
+    // Initially should not be active
+    expect(aiCategoryButton.className).not.toContain('active');
+
+    // Click the AI category button
+    await user.click(aiCategoryButton);
+
+    // Now AI category button should be active
+    expect(aiCategoryButton.className).toContain('active');
+
+    // "All Projects" should no longer be active
+    expect(allProjectsButton.className).not.toContain('active');
+  });
+
+  it('maintains active state when clicking the same category button', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    const aiCategoryButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+
+    // Click once
+    await user.click(aiCategoryButton);
+    expect(aiCategoryButton.className).toContain('active');
+
+    // Click again - should remain active
+    await user.click(aiCategoryButton);
+    expect(aiCategoryButton.className).toContain('active');
+  });
+
+  it('switches active state between different category buttons', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    const aiCategoryButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+    const learningButton = screen.getByRole('button', {
+      name: /learning experiences/i,
+    });
+
+    // Click AI category
+    await user.click(aiCategoryButton);
+    expect(aiCategoryButton.className).toContain('active');
+    expect(learningButton.className).not.toContain('active');
+
+    // Click Learning Experiences category
+    await user.click(learningButton);
+    expect(learningButton.className).toContain('active');
+    expect(aiCategoryButton.className).not.toContain('active');
+  });
+
+  it('returns to "All Projects" active state when clicked after selecting a category', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    const allProjectsButton = screen.getByRole('button', {
+      name: /all projects/i,
+    });
+    const aiCategoryButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+
+    // Click AI category
+    await user.click(aiCategoryButton);
+    expect(aiCategoryButton.className).toContain('active');
+    expect(allProjectsButton.className).not.toContain('active');
+
+    // Click "All Projects" again
+    await user.click(allProjectsButton);
+    expect(allProjectsButton.className).toContain('active');
+    expect(aiCategoryButton.className).not.toContain('active');
+  });
+
+  it('maintains active state after featured checkbox is toggled', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    const aiCategoryButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+    const featuredCheckbox = screen.getByRole('checkbox', {
+      name: /show featured only/i,
+    });
+
+    // Click AI category
+    await user.click(aiCategoryButton);
+    expect(aiCategoryButton.className).toContain('active');
+
+    // Toggle featured checkbox
+    await user.click(featuredCheckbox);
+
+    // AI category button should still be active
+    expect(aiCategoryButton.className).toContain('active');
+    expect(featuredCheckbox).toBeChecked();
+  });
+
+  it('ensures only one filter button has active state at a time', async () => {
+    const user = userEvent.setup();
+    render(<ProjectGrid />);
+
+    // Get all filter buttons (excluding Learn More buttons)
+    const allProjectsButton = screen.getByRole('button', {
+      name: /all projects/i,
+    });
+    const aiButton = screen.getByRole('button', {
+      name: /ai & emerging tech/i,
+    });
+    const learningButton = screen.getByRole('button', {
+      name: /learning experiences/i,
+    });
+    const internalButton = screen.getByRole('button', {
+      name: /internal tools & automation/i,
+    });
+
+    // Initially no button should be active
+    expect(allProjectsButton.className).not.toContain('active');
+    expect(aiButton.className).not.toContain('active');
+    expect(learningButton.className).not.toContain('active');
+    expect(internalButton.className).not.toContain('active');
+
+    // Click AI button
+    await user.click(aiButton);
+    expect(allProjectsButton.className).not.toContain('active');
+    expect(aiButton.className).toContain('active');
+    expect(learningButton.className).not.toContain('active');
+    expect(internalButton.className).not.toContain('active');
+  });
+});

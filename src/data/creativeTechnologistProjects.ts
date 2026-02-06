@@ -102,8 +102,8 @@ export const creativeTechnologistProjects: Project[] = [
   {
     id: 'typescript-barrel-files-codelab',
     title:
-      'Structure TypeScript Applications with Barrel Files and Module Re-exports',
-    category: 'ai-emerging-tech',
+      'Structure TypeScript Applications with Barrel Files and Module Re-exports Code Lab',
+    category: 'learning-experiences',
     story:
       'Pluralsight Code Lab teaching TypeScript module organization patterns and barrel file architecture. Created custom Claude Code slash commands orchestrating complete Code Lab creation workflow - automating step branch generation, markdown content authoring, and test file scaffolding from approved curriculum outlines. Developed AST-based unit tests using TSQuery providing immediate, actionable learner feedback validating code structure and implementation patterns. Configured claude.md file encoding personal workflow guidelines and Pluralsight content standards, ensuring AI consistently followed instructional design best practices throughout iterative development',
     projectDetails:

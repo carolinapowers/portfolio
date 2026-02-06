@@ -49,6 +49,31 @@ export const creativeTechnologistProjects: Project[] = [
     liveUrl: 'https://picklebrasil.vercel.app/',
   },
   {
+    id: 'bolt-rapid-prototypes',
+    title: 'Bolt Rapid Prototyping Portfolio',
+    category: 'ai-emerging-tech',
+    story:
+      'Validated diverse application concepts using Bolt AI for rapid full-stack prototyping. CodeCraft Academy AI created for Bolt Coding Challenge demonstrates educational platform features including curriculum management, student progress tracking, and interactive coding lessons for after-school programs. QuestAied addresses accessibility needs with gamified task management for children ages 10-13 with ADHD featuring quest spinner mechanics, XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence',
+    projectDetails:
+      'CodeCraft Academy AI serves educators teaching Coding and AI fundamentals in after-school club settings. Platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.\n\nQuestAied gamifies daily tasks through quest spinner assigning chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. Parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.\n\nBoth prototypes demonstrate ability to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Bolt',
+      'Supabase',
+      'Tailwind CSS',
+      'Vite',
+      'Framer Motion',
+      'Rapid Prototyping',
+      'UX Design',
+      'Accessibility',
+    ],
+    featured: true,
+    order: 4,
+    githubUrl: 'https://github.com/carolinapowers/QuestAied',
+    liveUrl: 'https://questaied-app-duplic-5upw.bolt.host/',
+  },
+  {
     id: 'mcp-server',
     title: 'Model Context Protocol (MCP) Server for Code Lab Generation',
     category: 'ai-emerging-tech',
@@ -111,7 +136,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 5,
+    order: 6,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/62a6025c-17b3-4d79-a28b-7ac116e8f038/learn',
   },
@@ -129,7 +154,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 6,
+    order: 7,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/a39a4529-3ae5-4b45-a086-80a456350717/learn',
   },
@@ -150,7 +175,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Component Architecture',
     ],
     featured: true,
-    order: 4,
+    order: 5,
     githubUrl: 'https://github.com/carolinapowers/portfolio',
   },
   {
@@ -161,7 +186,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Engineered custom ESLint rules at Articulate using Abstract Syntax Tree parsing to codify team learnings and prevent recurring code quality issues at scale - leveraging AST parsing expertise developed through Interactive Courses at Code School and Code Lab authoring at Pluralsight. Rules detect anti-patterns, enforce architecture decisions, and validate implementation standards specific to learning platform requirements. Automated detection of high-risk patterns reduces code review overhead while maintaining consistent quality standards across multiple development teams. Integrated rules into CI/CD pipeline to provide immediate feedback and prevent problematic code from reaching production',
     technologies: ['ESLint', 'AST Parsing', 'JavaScript', 'TypeScript'],
     featured: false,
-    order: 7,
+    order: 8,
   },
   {
     id: 'articulate-testing-modernization',
@@ -180,6 +205,6 @@ export const creativeTechnologistProjects: Project[] = [
       'Testing Strategy',
     ],
     featured: false,
-    order: 8,
+    order: 9,
   },
 ];

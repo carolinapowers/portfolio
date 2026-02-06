@@ -29,7 +29,7 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'PickleBrasil - Pickleball Community Platform',
     category: 'ai-emerging-tech',
     story:
-      'Rapid prototyping with Bolt to validate concept, then migrated to Vercel and Supabase for production deployment, leveraging Claude Code for iterative development of a full-stack social platform connecting pickleball players across Brazil',
+      'Rapid prototyping with Bolt AI to validate product-market fit, then migrated to production infrastructure with Vercel and Supabase for scalability. Leveraged Claude Code for iterative development of full-stack social platform features including court discovery, game organization, and multilingual support (Portuguese, English, Spanish). Implemented authentication, real-time data sync, and responsive design using Radix UI components - demonstrating AI-assisted development workflow from concept to production deployment',
     technologies: [
       'React',
       'TypeScript',
@@ -43,7 +43,7 @@ export const creativeTechnologistProjects: Project[] = [
       'i18next',
     ],
     featured: true,
-    order: 1,
+    order: 3,
     // githubUrl: 'https://github.com/carolinapowers/PickleBrasil',
     liveUrl: 'https://picklebrasil.vercel.app/',
   },
@@ -52,7 +52,7 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'Model Context Protocol (MCP) Server for Code Lab Generation',
     category: 'ai-emerging-tech',
     story:
-      'Evolved from custom Claude commands workflow into production-ready MCP server supporting multi-language Code Lab development. Implements language adapter pattern for JavaScript/TypeScript (complete) and C# (in development, Go planned next). Automates brainstorming, project scaffolding, step generation, and AST-based test creation—reducing Code Lab development time from days to hours',
+      'Evolved from custom Claude commands workflow into production-ready MCP server supporting multi-language Code Lab development. Implements language adapter pattern for JavaScript/TypeScript (complete) and C# (in development, Go planned next). Automates brainstorming, project scaffolding, step generation, and AST-based test creation - reducing Code Lab development time from days to hours',
     technologies: [
       'TypeScript',
       'Model Context Protocol',
@@ -87,7 +87,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Module Architecture',
     ],
     featured: true,
-    order: 3,
+    order: 1,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/03dc3a20-f895-432d-8fc5-f9bb1f66a224/learn',
   },
@@ -96,7 +96,7 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'React Testing Hands-on Code Lab',
     category: 'learning-experiences',
     story:
-      'Designed scaffolded exercises that help learners build confidence in testing strategies, assertions, and component behavior',
+      'Developed comprehensive hands-on Code Lab guiding learners through React Testing Library best practices using accessibility-first query strategies. Progressive exercises cover component rendering, user event simulation, async operations, and accessibility validation - emphasizing testing user behavior over implementation details. Incorporates real-world testing scenarios with form interactions, API mocking, and state management validation to build practical testing confidence',
     technologies: [
       'React',
       'TypeScript',
@@ -115,7 +115,7 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'Vue.js Guided Project: Reading List Application with Forms',
     category: 'learning-experiences',
     story:
-      'Created Vue.js Guided Project teaching forms and user interaction through a practical reading list application, later converted to Code Lab format by Pluralsight',
+      'Designed comprehensive Guided Project teaching Vue.js fundamentals through practical reading list application development. Progressive curriculum covers component composition, form handling with v-model, user input validation, and list manipulation patterns. Emphasized test-driven development approach using Vue Testing Library to build learner confidence in component testing strategies. Content later converted to interactive Code Lab format by Pluralsight, demonstrating ability to create engaging, production-ready educational content that scales across learning formats',
     technologies: [
       'Vue.js',
       'Forms',
@@ -133,7 +133,7 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'AST-Based Validation System',
     category: 'internal-tools',
     story:
-      'Implemented AST-based validation to provide immediate, meaningful learner feedback and enforce learning standards at scale',
+      'Built sophisticated validation infrastructure using Abstract Syntax Tree parsing to automatically assess learner code submissions in real-time. Leveraged TSQuery for pattern matching to validate code structure, implementation patterns, and best practices compliance. System provides immediate, actionable feedback messages that guide learners toward correct solutions while enforcing curriculum standards at scale. Integrated with Vitest testing framework to create robust validation pipelines that maintain consistency across thousands of learner submissions',
     technologies: [
       'TypeScript',
       'AST Parsing',
@@ -149,17 +149,17 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'Custom ESLint Rules (AST Parsing)',
     category: 'internal-tools',
     story:
-      'Designed custom ESLint rules using AST parsing to encode learnings into reusable tooling and prevent high-risk patterns at scale',
+      'Engineered custom ESLint rules using Abstract Syntax Tree parsing to codify team learnings and prevent recurring code quality issues at scale. Rules detect anti-patterns, enforce architecture decisions, and validate implementation standards specific to learning platform requirements. Automated detection of high-risk patterns reduces code review overhead while maintaining consistent quality standards across multiple development teams. Integrated rules into CI/CD pipeline to provide immediate feedback and prevent problematic code from reaching production',
     technologies: ['ESLint', 'AST Parsing', 'JavaScript', 'TypeScript'],
     featured: false,
     order: 7,
   },
   {
     id: 'enzyme-rtl-migration',
-    title: 'Enzyme → React Testing Library Migration',
+    title: 'Enzyme to React Testing Library Migration',
     category: 'developer-experience',
     story:
-      'Led migration from Enzyme to React Testing Library and Jest, documenting findings and best practices to improve reliability and shared understanding',
+      'Led comprehensive migration from Enzyme to React Testing Library and Jest across large-scale codebase, addressing breaking changes and updating test patterns to align with modern accessibility-first testing practices. Created detailed migration guides and best practices documentation to accelerate team adoption and ensure consistent implementation patterns. Established shared testing utilities and patterns that improved test reliability while reducing maintenance overhead - resulting in faster CI/CD pipelines and increased developer confidence in test suite coverage',
     technologies: [
       'React Testing Library',
       'Jest',

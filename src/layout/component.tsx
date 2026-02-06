@@ -7,6 +7,7 @@ import {
   DisplayFlexItem,
 } from '../shared/components/ui/DisplayFlex';
 import { usePageTracking } from '../analytics';
+import { AboutMeSection } from './AboutMe';
 import { RecommendationsSection } from './Recommendations';
 // import { DesignSystemSection } from './DesignSystem';
 
@@ -41,6 +42,7 @@ export const Layout: React.FC = () => {
         </header>
         <main className={styles.mainContent}>
           {/* <Hero /> */}
+          <AboutMeSection />
           <RecommendationsSection />
           <CreativeTechnologistSection />
           {/* <DesignSystemSection /> */}

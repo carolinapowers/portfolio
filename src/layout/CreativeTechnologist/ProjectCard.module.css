@@ -65,7 +65,6 @@
   line-height: 1.6;
   color: #4b5563;
   margin: 0 0 1rem 0;
-  flex-grow: 1;
 }
 
 .links {
@@ -153,8 +152,8 @@
 }
 
 .expandedContent {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0;
   border-top: 1px solid #e5e7eb;
   animation: fadeIn 0.3s ease;
 }

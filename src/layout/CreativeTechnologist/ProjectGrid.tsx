@@ -111,25 +111,28 @@ export const ProjectGrid: React.FC = () => {
         const newSet = new Set(prev);
         const isExpanding = !prev.has(projectId);
 
+        // Determine pair partner: cards are paired as (0,1), (2,3), (4,5), etc.
+        // If index is even (0,2,4...), partner is index+1
+        // If index is odd (1,3,5...), partner is index-1
+        const isEvenIndex = index % 2 === 0;
+        const partnerIndex = isEvenIndex ? index + 1 : index - 1;
+        const partnerProject = filteredProjects[partnerIndex];
+
         if (isExpanding) {
           // Add the clicked card
           newSet.add(projectId);
 
-          // Add the adjacent card (next card in the grid)
-          const adjacentIndex = index + 1;
-          const adjacentProject = filteredProjects[adjacentIndex];
-          if (adjacentProject) {
-            newSet.add(adjacentProject.id);
+          // Add the partner card
+          if (partnerProject) {
+            newSet.add(partnerProject.id);
           }
         } else {
           // Remove the clicked card
           newSet.delete(projectId);
 
-          // Remove the adjacent card
-          const adjacentIndex = index + 1;
-          const adjacentProject = filteredProjects[adjacentIndex];
-          if (adjacentProject) {
-            newSet.delete(adjacentProject.id);
+          // Remove the partner card
+          if (partnerProject) {
+            newSet.delete(partnerProject.id);
           }
         }
 

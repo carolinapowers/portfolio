@@ -55,7 +55,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Click "Learn More" on the first card
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     // First card should show expanded content
     expect(screen.getByText(/details for first project/i)).toBeInTheDocument();
@@ -81,7 +81,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Expand first card (and its adjacent card)
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     // Verify both are expanded
     expect(screen.getByText(/details for first project/i)).toBeInTheDocument();
@@ -93,7 +93,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     const showLessButtons = screen.getAllByRole('button', {
       name: /show less/i,
     });
-    await user.click(showLessButtons[0]);
+    await user.click(showLessButtons[0]!);
 
     // Both cards should be collapsed (details hidden)
     expect(
@@ -113,15 +113,16 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Click "Learn More" on the last card (third card, index 2)
-    await user.click(learnMoreButtons[2]);
+    await user.click(learnMoreButtons[2]!);
 
     // Last card should be expanded
     expect(screen.getByText(/details for third project/i)).toBeInTheDocument();
 
     // Should not throw error even though there's no adjacent card
-    expect(
-      screen.getByRole('button', { name: /show less/i, exact: false })
-    ).toBeInTheDocument();
+    const showLessButton = screen.getByRole('button', {
+      name: /show less/i,
+    });
+    expect(showLessButton).toBeInTheDocument();
   });
 
   it('expands middle card and its adjacent card correctly', async () => {
@@ -133,7 +134,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Click "Learn More" on the second card (middle card)
-    await user.click(learnMoreButtons[1]);
+    await user.click(learnMoreButtons[1]!);
 
     // Second card should be expanded
     expect(
@@ -158,7 +159,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Expand first card pair (cards 1 and 2)
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     expect(screen.getByText(/details for first project/i)).toBeInTheDocument();
     expect(
@@ -169,7 +170,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     const showLessButtons = screen.getAllByRole('button', {
       name: /show less/i,
     });
-    await user.click(showLessButtons[0]);
+    await user.click(showLessButtons[0]!);
 
     // Verify they're collapsed
     expect(
@@ -183,7 +184,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     const learnMoreButtonsAfter = screen.getAllByRole('button', {
       name: /learn more/i,
     });
-    await user.click(learnMoreButtonsAfter[2]);
+    await user.click(learnMoreButtonsAfter[2]!);
 
     expect(screen.getByText(/details for third project/i)).toBeInTheDocument();
   });
@@ -202,7 +203,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Expand first card
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     // Get updated buttons
     const buttons = screen.getAllByRole('button', {
@@ -228,7 +229,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     expect(initialButtons).toHaveLength(3);
 
     // Click first button
-    await user.click(initialButtons[0]);
+    await user.click(initialButtons[0]!);
 
     // First two buttons should now say "Show Less"
     const showLessButtons = screen.getAllByRole('button', {
@@ -252,7 +253,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     });
 
     // Expand first card
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     // Check for section headings (using heading role)
     const projectDetailsHeadings = screen.getAllByRole('heading', {
@@ -278,7 +279,7 @@ describe('ProjectGrid - Filter Integration with Expansion', () => {
     const learnMoreButtons = screen.getAllByRole('button', {
       name: /learn more/i,
     });
-    await user.click(learnMoreButtons[0]);
+    await user.click(learnMoreButtons[0]!);
 
     // Verify expansion
     expect(screen.getByText(/details for first project/i)).toBeInTheDocument();

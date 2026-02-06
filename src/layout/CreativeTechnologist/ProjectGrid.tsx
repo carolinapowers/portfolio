@@ -117,8 +117,9 @@ export const ProjectGrid: React.FC = () => {
 
           // Add the adjacent card (next card in the grid)
           const adjacentIndex = index + 1;
-          if (adjacentIndex < filteredProjects.length) {
-            newSet.add(filteredProjects[adjacentIndex].id);
+          const adjacentProject = filteredProjects[adjacentIndex];
+          if (adjacentProject) {
+            newSet.add(adjacentProject.id);
           }
         } else {
           // Remove the clicked card
@@ -126,8 +127,9 @@ export const ProjectGrid: React.FC = () => {
 
           // Remove the adjacent card
           const adjacentIndex = index + 1;
-          if (adjacentIndex < filteredProjects.length) {
-            newSet.delete(filteredProjects[adjacentIndex].id);
+          const adjacentProject = filteredProjects[adjacentIndex];
+          if (adjacentProject) {
+            newSet.delete(adjacentProject.id);
           }
         }
 

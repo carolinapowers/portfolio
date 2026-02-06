@@ -1,5 +1,9 @@
 .projectSection {
   margin-bottom: 4rem;
+  background: #f9fafb;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  margin-top: 1rem;
 }
 
 .controls {
@@ -69,6 +73,10 @@
 }
 
 @media (max-width: 768px) {
+  .projectSection {
+    padding: 1.5rem;
+  }
+
   .filters {
     flex-direction: column;
   }
@@ -82,5 +90,6 @@
 @media (max-width: 480px) {
   .projectSection {
     margin-bottom: 3rem;
+    padding: 1rem;
   }
 }

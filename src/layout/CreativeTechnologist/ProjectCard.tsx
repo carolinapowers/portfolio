@@ -57,13 +57,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       )}
 
-      <div className={styles.technologies}>
-        {project.technologies.map((tech) => (
-          <span key={tech} className={styles.tech}>
-            {tech}
-          </span>
-        ))}
-      </div>
+      {!isExpanded && (
+        <div className={styles.technologies}>
+          {project.technologies.map((tech) => (
+            <span key={tech} className={styles.tech}>
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
 
       {isExpanded && (
         <div className={styles.expandedContent}>

@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import type { Project } from '../../data/creativeTechnologistProjects';
 import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
   project: Project;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  isExpanded,
+  onToggleExpand,
+}) => {
 
   return (
     <article className={styles.card}>
@@ -86,7 +91,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       <button
         className={styles.expandButton}
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={onToggleExpand}
         aria-expanded={isExpanded}
       >
         {isExpanded ? 'Show Less' : 'Learn More'}

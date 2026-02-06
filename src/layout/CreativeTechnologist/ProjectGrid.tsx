@@ -3,6 +3,7 @@ import {
   creativeTechnologistProjects,
   categoryDisplayNames,
   type ProjectCategory,
+  type Project,
 } from '../../data/creativeTechnologistProjects';
 import { Button } from '../../shared/components/ui/Button';
 import { ProjectCard } from './ProjectCard';
@@ -37,10 +38,37 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
   );
 };
 
+interface ProjectCardWrapperProps {
+  project: Project;
+  index: number;
+  isExpanded: boolean;
+  onToggleExpand: (projectId: string, index: number) => void;
+}
+
+const ProjectCardWrapper: React.FC<ProjectCardWrapperProps> = ({
+  project,
+  index,
+  isExpanded,
+  onToggleExpand,
+}) => {
+  const handleToggle = useCallback(() => {
+    onToggleExpand(project.id, index);
+  }, [project.id, index, onToggleExpand]);
+
+  return (
+    <ProjectCard
+      project={project}
+      isExpanded={isExpanded}
+      onToggleExpand={handleToggle}
+    />
+  );
+};
+
 export const ProjectGrid: React.FC = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<ProjectCategory | null>(null);
   const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
 
   const filteredProjects = useMemo(() => {
     return creativeTechnologistProjects
@@ -75,6 +103,38 @@ export const ProjectGrid: React.FC = () => {
     setSelectedCategory(null);
     setShowFeaturedOnly(false);
   }, []);
+
+  const handleToggleExpand = useCallback(
+    (projectId: string, index: number) => {
+      setExpandedCards((prev) => {
+        const newSet = new Set(prev);
+        const isExpanding = !prev.has(projectId);
+
+        if (isExpanding) {
+          // Add the clicked card
+          newSet.add(projectId);
+
+          // Add the adjacent card (next card in the grid)
+          const adjacentIndex = index + 1;
+          if (adjacentIndex < filteredProjects.length) {
+            newSet.add(filteredProjects[adjacentIndex].id);
+          }
+        } else {
+          // Remove the clicked card
+          newSet.delete(projectId);
+
+          // Remove the adjacent card
+          const adjacentIndex = index + 1;
+          if (adjacentIndex < filteredProjects.length) {
+            newSet.delete(filteredProjects[adjacentIndex].id);
+          }
+        }
+
+        return newSet;
+      });
+    },
+    [filteredProjects]
+  );
 
   const categories = Object.entries(categoryDisplayNames) as [
     ProjectCategory,
@@ -122,8 +182,14 @@ export const ProjectGrid: React.FC = () => {
 
       {filteredProjects.length > 0 ? (
         <div className={styles.grid}>
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {filteredProjects.map((project, index) => (
+            <ProjectCardWrapper
+              key={project.id}
+              project={project}
+              index={index}
+              isExpanded={expandedCards.has(project.id)}
+              onToggleExpand={handleToggleExpand}
+            />
           ))}
         </div>
       ) : (

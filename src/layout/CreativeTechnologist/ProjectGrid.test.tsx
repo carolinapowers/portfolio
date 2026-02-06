@@ -125,7 +125,7 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
     expect(showLessButton).toBeInTheDocument();
   });
 
-  it('expands middle card and its adjacent card correctly', async () => {
+  it('expands middle card and its paired card correctly', async () => {
     const user = userEvent.setup();
     render(<ProjectGrid />);
 
@@ -133,7 +133,8 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
       name: /learn more/i,
     });
 
-    // Click "Learn More" on the second card (middle card)
+    // Click "Learn More" on the second card (index 1)
+    // With even/odd pairing, card 1 pairs with card 0
     await user.click(learnMoreButtons[1]!);
 
     // Second card should be expanded
@@ -141,12 +142,14 @@ describe('ProjectGrid - Adjacent Card Expansion', () => {
       screen.getByText(/details for second project/i)
     ).toBeInTheDocument();
 
-    // Third card (adjacent to second) should also be expanded
-    expect(screen.getByText(/details for third project/i)).toBeInTheDocument();
-
-    // First card should NOT be expanded
+    // First card (paired with second, indices 0-1) should also be expanded
     expect(
-      screen.queryByText(/details for first project/i)
+      screen.getByText(/details for first project/i)
+    ).toBeInTheDocument();
+
+    // Third card should NOT be expanded (different pair)
+    expect(
+      screen.queryByText(/details for third project/i)
     ).not.toBeInTheDocument();
   });
 

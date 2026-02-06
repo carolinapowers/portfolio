@@ -14,7 +14,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   isExpanded,
   onToggleExpand,
 }) => {
-
   return (
     <article className={styles.card}>
       <div className={styles.header}>
@@ -59,7 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {!isExpanded && (
         <div className={styles.technologies}>
-          {project.technologies.map((tech) => (
+          {project.technologies.map(tech => (
             <span key={tech} className={styles.tech}>
               {tech}
             </span>
@@ -72,9 +71,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className={styles.section}>
             <h4>Project Details</h4>
             {project.projectDetails ? (
-              project.projectDetails.split('\n\n').map((paragraph) => (
-                <p key={paragraph.slice(0, 50)}>{paragraph}</p>
-              ))
+              project.projectDetails
+                .split('\n\n')
+                .map(paragraph => (
+                  <p key={paragraph.slice(0, 50)}>{paragraph}</p>
+                ))
             ) : (
               <p>{project.story}</p>
             )}
@@ -83,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className={styles.section}>
             <h4>Technologies Used</h4>
             <ul className={styles.detailsList}>
-              {project.technologies.map((tech) => (
+              {project.technologies.map(tech => (
                 <li key={tech}>{tech}</li>
               ))}
             </ul>

@@ -63,13 +63,13 @@
 }
 
 .sectionTitle {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-sm);
 }
 
 .sectionIcon {
@@ -79,7 +79,7 @@
 .sectionDescription {
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xs);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
 }
 
 .recommendationsIntro {
@@ -88,7 +88,7 @@
 
 .sectionNote {
   color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   margin-top: var(--spacing-sm);
   font-style: italic;
 }

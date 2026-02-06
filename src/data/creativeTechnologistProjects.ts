@@ -9,6 +9,7 @@ export interface Project {
   title: string;
   category: ProjectCategory;
   story: string;
+  projectDetails?: string;
   technologies: string[];
   featured: boolean;
   order: number;
@@ -52,7 +53,9 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'Model Context Protocol (MCP) Server for Code Lab Generation',
     category: 'ai-emerging-tech',
     story:
-      'Evolved from custom Claude commands workflow into production-ready MCP server supporting multi-language Code Lab development. Implements language adapter pattern for JavaScript/TypeScript (complete) and C# (in development, Go planned next). Automates brainstorming, project scaffolding, step generation, and AST-based test creation - reducing Code Lab development time from days to hours',
+      'Evolved custom Claude Code commands into production MCP server automating Pluralsight Code Lab creation across multiple languages. Architected language adapter pattern supporting TypeScript/JavaScript (Vitest, TSQuery) and C#/.NET (xUnit, Roslyn) with expansion planned for Python, Go, and Java. Automates complete workflow from brainstorming learning objectives and scaffolding project infrastructure to generating validated exercises with AST-based tests. Reduces development time from days to hours',
+    projectDetails:
+      'Server exposes seven MCP tools providing end-to-end automation. brainstorm_lab_opportunity generates structured LAB_OPPORTUNITY.md from learning objectives. scaffold_react_project and scaffold_csharp_project create complete projects with test infrastructure, custom reporters, and task runners.\n\nLanguage adapter pattern enables automatic detection and framework selection. TypeScript projects receive Vitest setup with TSQuery for AST validation. C# projects get xUnit with Roslyn-based code analysis through custom CodeLab.Validator tool.\n\ncreate_lab_from_opportunity bulk generates all steps with markdown content, test files, and solution templates. Each step includes validation tests that provide actionable feedback messages to learners. Comprehensive test suite covers unit, integration, and E2E scenarios ensuring reliability across languages.',
     technologies: [
       'TypeScript',
       'Model Context Protocol',
@@ -75,7 +78,9 @@ export const creativeTechnologistProjects: Project[] = [
       'Structure TypeScript Applications with Barrel Files and Module Re-exports',
     category: 'ai-emerging-tech',
     story:
-      'Showcased AI-assisted development by creating custom Claude Code commands to generate Code Lab steps from approved curriculum outline and AST-based unit tests for guided feedback, using claude.md to enforce personal workflow guidelines and Pluralsight standards throughout the development process',
+      'Demonstrated AI-assisted development workflow by creating custom Claude Code slash commands that automated Code Lab step generation from approved curriculum outlines. Developed AST-based unit tests using TSQuery to provide immediate, actionable learner feedback validating code structure and implementation patterns. Configured claude.md file to encode personal workflow guidelines and Pluralsight content standards, ensuring AI consistently followed instructional design best practices throughout iterative development process',
+    projectDetails:
+      'Custom slash commands automated creation of step branches, markdown content generation, and test file scaffolding. Each command integrated with curriculum outline to maintain consistency with approved learning objectives while adhering to Pluralsight style guidelines.\n\nAST-based validation using TSQuery enabled precise code pattern matching. Tests verified barrel file structure, export syntax, and import path optimization without relying on brittle string matching. Clear error messages guided learners toward correct implementation patterns.\n\nclaude.md configuration file served as persistent context ensuring Claude Code followed specific workflow patterns, naming conventions, and quality standards. This approach demonstrated how AI tools can be effectively constrained to maintain consistency across multi-step content development while accelerating production timelines.',
     technologies: [
       'TypeScript',
       'Claude Code',

@@ -64,7 +64,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <div className={styles.expandedContent}>
           <div className={styles.section}>
             <h4>Project Details</h4>
-            <p>{project.story}</p>
+            {project.projectDetails ? (
+              project.projectDetails.split('\n\n').map((paragraph) => (
+                <p key={paragraph.slice(0, 50)}>{paragraph}</p>
+              ))
+            ) : (
+              <p>{project.story}</p>
+            )}
           </div>
 
           <div className={styles.section}>

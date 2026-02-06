@@ -295,20 +295,6 @@
   align-items: center;
 }
 
-.clearAllButton {
-  background: none;
-  border: none;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.clearAllButton:hover {
-  font-weight: 600;
-}
-
 .activeFilters {
   display: flex;
   flex-wrap: wrap;

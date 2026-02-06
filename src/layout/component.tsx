@@ -8,8 +8,10 @@ import {
 } from '../shared/components/ui/DisplayFlex';
 import { usePageTracking } from '../analytics';
 import { RecommendationsSection } from './Recommendations';
-import { DesignSystemSection } from './DesignSystem';
+// import { DesignSystemSection } from './DesignSystem';
+
 import { TechnicalImplementationSection } from './TechnicalImplementation';
+import { CreativeTechnologistSection } from './CreativeTechnologist';
 import styles from './component.module.css';
 
 export const Layout: React.FC = () => {
@@ -38,8 +40,10 @@ export const Layout: React.FC = () => {
           </div>
         </header>
         <main className={styles.mainContent}>
+          {/* <Hero /> */}
           <RecommendationsSection />
-          <DesignSystemSection />
+          <CreativeTechnologistSection />
+          {/* <DesignSystemSection /> */}
           <TechnicalImplementationSection />
         </main>
         <footer className={styles.footer}>

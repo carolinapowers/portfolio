@@ -9,6 +9,7 @@ import {
   SKILL_TO_CATEGORY_MAP,
 } from '../../../data/skills';
 import { recommendations } from '../../../data/recommendations';
+import { Button } from '../../../shared/components/ui/Button';
 import styles from './component.module.css';
 import type { SkillFilter, UseFiltersReturn } from '../types/filtering';
 
@@ -130,12 +131,13 @@ export const RecommendationFilters: React.FC<RecommendationFiltersProps> = ({
           <div className={styles.activeFiltersSection}>
             <div className={styles.activeFiltersHeader}>
               <h3 className={styles.sectionTitle}>Active Filters</h3>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={actions.clearAllFilters}
-                className={styles.clearAllButton}
               >
                 Clear All
-              </button>
+              </Button>
             </div>
             <div className={styles.activeFilters}>
               {filterState.activeFilters.map(filter => (

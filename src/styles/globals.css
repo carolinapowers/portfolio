@@ -14,6 +14,11 @@
   --color-danger: #ef4444;
   --color-info: #0ea5e9;
 
+  /* Purple theme colors */
+  --color-purple: #667eea;
+  --color-purple-light: #f5f3ff;
+  --color-purple-border: #e9e5ff;
+
   --font-family-base:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;

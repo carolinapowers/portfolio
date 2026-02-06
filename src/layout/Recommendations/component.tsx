@@ -10,24 +10,28 @@ import { Pagination } from '../../shared/components/ui/Pagination/Pagination';
 import { useRecommendationFilters } from './hooks/useRecommendationFilters';
 import type { Recommendation } from '../../data/recommendations';
 import styles from '../component.module.css';
+import { Card } from '../../shared/components/ui/Card';
+import { Button } from '../../shared/components/ui/Button';
 
 export const RecommendationsSection: React.FC = () => {
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS);
-  
+
   // Initialize filtering hook with recommendations data
   const filters = useRecommendationFilters(data?.recommendations || [], 3);
 
   if (loading) {
     return (
-      <section className={styles.section}>
+      <Card as="section" role="region">
         <h2 className={styles.sectionTitle}>
           <Users className={styles.sectionIcon} size={20} />
           What It's Like to Work With Me
         </h2>
         <div className={styles.recommendationsIntro}>
-          <p className={styles.sectionDescription}>Loading recommendations...</p>
+          <p className={styles.sectionDescription}>
+            Loading recommendations...
+          </p>
         </div>
-      </section>
+      </Card>
     );
   }
 
@@ -138,12 +142,13 @@ export const RecommendationsSection: React.FC = () => {
             !filters.isLoading && (
               <div className={styles.noResults}>
                 <p>No recommendations match your current filters.</p>
-                <button
+                <Button
+                  variant="primary"
+                  size="md"
                   onClick={filters.actions.clearAllFilters}
-                  className={styles.clearFiltersButton}
                 >
                   Clear all filters
-                </button>
+                </Button>
               </div>
             )}
 

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   creativeTechnologistProjects,
   categoryDisplayNames,
@@ -7,6 +7,35 @@ import {
 import { Button } from '../../shared/components/ui/Button';
 import { ProjectCard } from './ProjectCard';
 import styles from './ProjectGrid.module.css';
+
+interface CategoryButtonProps {
+  category: ProjectCategory;
+  displayName: string;
+  isSelected: boolean;
+  onClick: (category: ProjectCategory) => void;
+}
+
+const CategoryButton: React.FC<CategoryButtonProps> = ({
+  category,
+  displayName,
+  isSelected,
+  onClick,
+}) => {
+  const handleClick = useCallback(() => {
+    onClick(category);
+  }, [category, onClick]);
+
+  return (
+    <Button
+      variant="filter"
+      size="md"
+      onClick={handleClick}
+      className={isSelected ? 'active' : ''}
+    >
+      {displayName}
+    </Button>
+  );
+};
 
 export const ProjectGrid: React.FC = () => {
   const [selectedCategory, setSelectedCategory] =
@@ -27,6 +56,26 @@ export const ProjectGrid: React.FC = () => {
       .sort((a, b) => a.order - b.order);
   }, [selectedCategory, showFeaturedOnly]);
 
+  const handleShowAll = useCallback(() => {
+    setSelectedCategory(null);
+  }, []);
+
+  const handleCategoryClick = useCallback((category: ProjectCategory) => {
+    setSelectedCategory(category);
+  }, []);
+
+  const handleFeaturedChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setShowFeaturedOnly(e.target.checked);
+    },
+    []
+  );
+
+  const handleClearFilters = useCallback(() => {
+    setSelectedCategory(null);
+    setShowFeaturedOnly(false);
+  }, []);
+
   const categories = Object.entries(categoryDisplayNames) as [
     ProjectCategory,
     string,
@@ -39,21 +88,19 @@ export const ProjectGrid: React.FC = () => {
           <Button
             variant="filter"
             size="md"
-            onClick={() => setSelectedCategory(null)}
+            onClick={handleShowAll}
             className={selectedCategory === null ? 'active' : ''}
           >
             All Projects
           </Button>
           {categories.map(([category, displayName]) => (
-            <Button
+            <CategoryButton
               key={category}
-              variant="filter"
-              size="md"
-              onClick={() => setSelectedCategory(category)}
-              className={selectedCategory === category ? 'active' : ''}
-            >
-              {displayName}
-            </Button>
+              category={category}
+              displayName={displayName}
+              isSelected={selectedCategory === category}
+              onClick={handleCategoryClick}
+            />
           ))}
         </div>
 
@@ -62,7 +109,7 @@ export const ProjectGrid: React.FC = () => {
             type="checkbox"
             className={styles.checkbox}
             checked={showFeaturedOnly}
-            onChange={(e) => setShowFeaturedOnly(e.target.checked)}
+            onChange={handleFeaturedChange}
           />
           Show Featured Only
         </label>
@@ -82,14 +129,7 @@ export const ProjectGrid: React.FC = () => {
       ) : (
         <div className={styles.emptyState}>
           <p>No projects match your current filters.</p>
-          <Button
-            variant="secondary"
-            size="md"
-            onClick={() => {
-              setSelectedCategory(null);
-              setShowFeaturedOnly(false);
-            }}
-          >
+          <Button variant="secondary" size="md" onClick={handleClearFilters}>
             Clear Filters
           </Button>
         </div>

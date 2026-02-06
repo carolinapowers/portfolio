@@ -50,6 +50,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <Component
       className={`${styles.card} ${variantClass} ${className}`}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...ariaProps}
     >
       {children}

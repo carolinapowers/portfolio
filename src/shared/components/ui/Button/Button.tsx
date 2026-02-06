@@ -40,6 +40,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       className={`${styles.button} ${variantClass} ${sizeClass} ${activeClass} ${className}`}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

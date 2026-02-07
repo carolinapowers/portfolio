@@ -4,6 +4,12 @@ export type ProjectCategory =
   | 'internal-tools'
   | 'developer-experience';
 
+export interface ProjectLink {
+  name: string;
+  githubUrl?: string;
+  liveUrl?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -15,6 +21,7 @@ export interface Project {
   order: number;
   githubUrl?: string;
   liveUrl?: string;
+  projectLinks?: ProjectLink[];
 }
 
 export const categoryDisplayNames: Record<ProjectCategory, string> = {
@@ -72,8 +79,18 @@ export const creativeTechnologistProjects: Project[] = [
     ],
     featured: true,
     order: 4,
-    githubUrl: 'https://github.com/carolinapowers/QuestAied',
-    liveUrl: 'https://questaied-app-duplic-5upw.bolt.host/',
+    projectLinks: [
+      {
+        name: 'CodeCraft Academy AI',
+        githubUrl: 'https://github.com/carolinapowers/code-craft',
+        liveUrl: 'https://codecraft-academy-ai-duff.bolt.host/',
+      },
+      {
+        name: 'QuestAied',
+        githubUrl: 'https://github.com/carolinapowers/QuestAied',
+        liveUrl: 'https://questaied-app-duplic-5upw.bolt.host/',
+      },
+    ],
   },
   {
     id: 'mcp-server',

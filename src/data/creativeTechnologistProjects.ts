@@ -113,7 +113,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 2,
+    order: 1,
     githubUrl: 'https://github.com/carolinapowers/code-lab-mcp-server',
   },
   {
@@ -136,7 +136,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Module Architecture',
     ],
     featured: true,
-    order: 1,
+    order: 2,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/03dc3a20-f895-432d-8fc5-f9bb1f66a224/learn',
   },

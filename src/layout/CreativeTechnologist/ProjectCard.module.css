@@ -69,37 +69,73 @@
 
 .links {
   display: flex;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
-  min-height: 2.5rem;
   align-items: flex-start;
+  width: 100%;
+}
+
+.projectLinkRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.projectLinkRow:first-child {
+  padding-top: 0.5rem;
+}
+
+.projectLinkRow:not(:last-child) {
+  border-bottom: 1px solid #f0f1f7;
+}
+
+.projectName {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #5568d3;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.linkGroup {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: #667eea;
+  color: #6366f1;
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #667eea;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid #e0e7ff;
   border-radius: 6px;
+  background: #fafbff;
   transition: all 0.2s ease;
 }
 
 .link:hover {
-  background: #667eea;
+  background: #6366f1;
+  border-color: #6366f1;
   color: white;
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
 }
 
 .link:focus-visible {
-  outline: 2px solid #667eea;
+  outline: 2px solid #6366f1;
   outline-offset: 2px;
+  background: white;
+  border-color: #6366f1;
 }
 
 .technologies {
@@ -206,6 +242,24 @@
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* Responsive styles for project links */
+@media (max-width: 768px) {
+  .projectName {
+    font-size: 0.875rem;
+  }
+
+  .linkGroup {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .link {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .detailsList li {

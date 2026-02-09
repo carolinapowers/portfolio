@@ -46,57 +46,62 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       {project.projectLinks ? (
         <div className={styles.links}>
           {project.projectLinks.map(link => (
-            <React.Fragment key={link.name}>
-              {link.githubUrl && (
-                <a
-                  href={link.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  <Github size={16} />
-                  <span>{link.name}: View Code</span>
-                </a>
-              )}
-              {link.liveUrl && (
-                <a
-                  href={link.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  <ExternalLink size={16} />
-                  <span>{link.name}: Live Demo</span>
-                </a>
-              )}
-            </React.Fragment>
+            <div key={link.name} className={styles.projectLinkRow}>
+              <div className={styles.projectName}>{link.name}</div>
+              <div className={styles.linkGroup}>
+                {link.githubUrl && (
+                  <a
+                    href={link.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.link}
+                  >
+                    <Github size={16} />
+                    <span>View Code</span>
+                  </a>
+                )}
+                {link.liveUrl && (
+                  <a
+                    href={link.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.link}
+                  >
+                    <ExternalLink size={16} />
+                    <span>Live Demo</span>
+                  </a>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       ) : (
         (project.githubUrl || project.liveUrl) && (
           <div className={styles.links}>
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                <Github size={16} />
-                <span>View Code</span>
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                <ExternalLink size={16} />
-                <span>Live Demo</span>
-              </a>
-            )}
+            <div className={styles.linkGroup}>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  <Github size={16} />
+                  <span>View Code</span>
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  <ExternalLink size={16} />
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
           </div>
         )
       )}

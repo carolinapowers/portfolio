@@ -62,9 +62,9 @@ export const creativeTechnologistProjects: Project[] = [
     title: 'Bolt Rapid Prototyping Portfolio',
     category: 'ai-emerging-tech',
     story:
-      'Leveraged Bolt AI to rapidly validate two distinct full-stack concepts: CodeCraft Academy AI, an educational platform for after-school coding instructions with curriculum management and student progress tracking, and QuestAied a gameified tasks management app addressing ADHD support for children ages 10-13. QuestAied features XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence',
+      'Leveraged Bolt AI to rapidly validate two distinct full-stack concepts: CodeCraft Academy, an educational platform for after-school coding instructions with curriculum management and student progress tracking, and QuestAied a gameified tasks management app addressing ADHD support for children ages 10-13. QuestAied features XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence',
     projectDetails:
-      '**CodeCraft Academy AI: EdTech for After-School Programs:** CodeCraft Academy AI serves educators teaching Coding and AI fundamentals in after-school club settings. The platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.\n\n **QuestAied: Gamified Task Management for ADHD Support:** QuestAied gamifies daily tasks through gamifying the assigning of chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. A parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.\n\n**Rapid Prototyping Methodology:** Both prototypes demonstrate the ability to leverage AI to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.',
+      '**CodeCraft Academy: EdTech for After-School Programs:** CodeCraft Academy serves educators teaching Coding and AI fundamentals in after-school club settings. The platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.\n\n **QuestAied: Gamified Task Management for ADHD Support:** QuestAied gamifies daily tasks through gamifying the assigning of chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. A parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.\n\n**Rapid Prototyping Methodology:** Both prototypes demonstrate the ability to leverage AI to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.',
     technologies: [
       'React',
       'TypeScript',
@@ -81,7 +81,7 @@ export const creativeTechnologistProjects: Project[] = [
     order: 4,
     projectLinks: [
       {
-        name: 'CodeCraft Academy AI',
+        name: 'CodeCraft Academy',
         githubUrl: 'https://github.com/carolinapowers/code-craft',
         liveUrl: 'https://codecraft-academy-ai-duff.bolt.host/',
       },

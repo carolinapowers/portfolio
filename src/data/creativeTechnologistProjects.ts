@@ -33,6 +33,30 @@ export const categoryDisplayNames: Record<ProjectCategory, string> = {
 
 export const creativeTechnologistProjects: Project[] = [
   {
+    id: 'typescript-barrel-files-codelab',
+    title:
+      'Structure TypeScript Applications with Barrel Files and Module Re-exports Code Lab',
+    category: 'learning-experiences',
+    story:
+      'Created a Pluralsight Code Lab that teaches TypeScript module organization patterns and barrel file architecture. Built custom Claude Code commands that orchestrated the complete Code Lab creation workflow, generating step branches, markdown content, and test scaffolding while maintaining curriculum alignment. Implemented AST-based unit tests using TSQuery providing precise feedback on implementation patterns, with CLAUDE.md ensuring AI consistency across development iterations.',
+    projectDetails:
+      '**Custom Claude Code Commands & Automation:** The custom slash commands automated creation of step branches, markdown content generation, and test file scaffolding. Each command integrated with curriculum outline to maintain consistency with approved learning objectives while adhering to Pluralsight style guidelines.\n\n**AST-Based Code Validation:** AST-based validation using TSQuery enabled precise code pattern matching. Tests verified barrel file structure, export syntax, and import path optimization without relying on brittle string matching. Clear error messages guided learners toward correct implementation patterns.\n\n **AI Consistency Through Configuration:** The CLAUDE.md configuration file served as persistent context ensuring Claude Code followed specific workflow patterns, naming conventions, and quality standards. This approach demonstrated how AI tools can be effectively constrained to maintain consistency across multi-step content development while accelerating production timelines.',
+    technologies: [
+      'TypeScript',
+      'Claude Code',
+      'AST Parsing',
+      'Vite',
+      'Custom Commands',
+      'Instructional Design',
+      'Design Systems',
+      'Module Architecture',
+    ],
+    featured: true,
+    order: 1,
+    liveUrl:
+      'https://app.pluralsight.com/code-labs/contents/03dc3a20-f895-432d-8fc5-f9bb1f66a224/learn',
+  },
+  {
     id: 'mcp-server',
     title: 'Model Context Protocol (MCP) Server for Code Lab Generation',
     category: 'ai-emerging-tech',
@@ -53,32 +77,8 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 1,
-    githubUrl: 'https://github.com/carolinapowers/code-lab-mcp-server',
-  },
-  {
-    id: 'typescript-barrel-files-codelab',
-    title:
-      'Structure TypeScript Applications with Barrel Files and Module Re-exports Code Lab',
-    category: 'learning-experiences',
-    story:
-      'Created a Pluralsight Code Lab that teaches TypeScript module organization patterns and barrel file architecture. Built custom Claude Code commands that orchestrated the complete Code Lab creation workflow, generating step branches, markdown content, and test scaffolding while maintaining curriculum alignment. Implemented AST-based unit tests using TSQuery providing precise feedback on implementation patterns, with CLAUDE.md ensuring AI consistency across development iterations.',
-    projectDetails:
-      '**Custom Claude Code Commands & Automation:** The custom slash commands automated creation of step branches, markdown content generation, and test file scaffolding. Each command integrated with curriculum outline to maintain consistency with approved learning objectives while adhering to Pluralsight style guidelines.\n\n**AST-Based Code Validation:** AST-based validation using TSQuery enabled precise code pattern matching. Tests verified barrel file structure, export syntax, and import path optimization without relying on brittle string matching. Clear error messages guided learners toward correct implementation patterns.\n\n **AI Consistency Through Configuration:** The CLAUDE.md configuration file served as persistent context ensuring Claude Code followed specific workflow patterns, naming conventions, and quality standards. This approach demonstrated how AI tools can be effectively constrained to maintain consistency across multi-step content development while accelerating production timelines.',
-    technologies: [
-      'TypeScript',
-      'Claude Code',
-      'AST Parsing',
-      'Vite',
-      'Custom Commands',
-      'Instructional Design',
-      'Design Systems',
-      'Module Architecture',
-    ],
-    featured: true,
     order: 2,
-    liveUrl:
-      'https://app.pluralsight.com/code-labs/contents/03dc3a20-f895-432d-8fc5-f9bb1f66a224/learn',
+    githubUrl: 'https://github.com/carolinapowers/code-lab-mcp-server',
   },
   {
     id: 'picklebrasil',

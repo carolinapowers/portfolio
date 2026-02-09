@@ -52,7 +52,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Radix UI',
       'i18next',
     ],
-    featured: true,
+    featured: false,
     order: 3,
     // githubUrl: 'https://github.com/carolinapowers/PickleBrasil',
     liveUrl: 'https://picklebrasil.vercel.app/',
@@ -77,7 +77,7 @@ export const creativeTechnologistProjects: Project[] = [
       'UX Design',
       'Accessibility',
     ],
-    featured: true,
+    featured: false,
     order: 4,
     projectLinks: [
       {
@@ -157,7 +157,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 6,
+    order: 3,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/62a6025c-17b3-4d79-a28b-7ac116e8f038/learn',
   },
@@ -177,7 +177,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 7,
+    order: 4,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/a39a4529-3ae5-4b45-a086-80a456350717/learn',
   },
@@ -199,7 +199,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Agentic Development',
       'Component Architecture',
     ],
-    featured: true,
+    featured: false,
     order: 5,
     githubUrl: 'https://github.com/carolinapowers/portfolio',
   },
@@ -224,7 +224,7 @@ export const creativeTechnologistProjects: Project[] = [
       'GitHub Copilot',
     ],
     featured: true,
-    order: 8,
+    order: 5,
     liveUrl:
       'https://www.npmjs.com/package/@carolinappowers/vue-tdd-automation',
   },

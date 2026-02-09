@@ -3,6 +3,20 @@ import { Github, ExternalLink } from 'lucide-react';
 import type { Project } from '../../data/creativeTechnologistProjects';
 import styles from './ProjectCard.module.css';
 
+// Helper function to parse markdown-style bold text
+const parseMarkdownBold = (text: string): React.ReactNode[] => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/);
+
+  return parts.map(part => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      // Remove the ** markers and render as bold
+      const boldText = part.slice(2, -2);
+      return <strong key={part}>{boldText}</strong>;
+    }
+    return part;
+  });
+};
+
 interface ProjectCardProps {
   project: Project;
   isExpanded: boolean;
@@ -102,11 +116,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className={styles.section}>
             <h4>Project Details</h4>
             {project.projectDetails ? (
-              project.projectDetails
-                .split('\n\n')
-                .map(paragraph => (
-                  <p key={paragraph.slice(0, 50)}>{paragraph}</p>
-                ))
+              project.projectDetails.split('\n\n').map(paragraph => (
+                <p key={paragraph.slice(0, 50).replace(/[^a-zA-Z0-9]/g, '')}>
+                  {parseMarkdownBold(paragraph)}
+                </p>
+              ))
             ) : (
               <p>{project.story}</p>
             )}
@@ -124,6 +138,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       )}
 
       <button
+        type="button"
         className={styles.expandButton}
         onClick={onToggleExpand}
         aria-expanded={isExpanded}

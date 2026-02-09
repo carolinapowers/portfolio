@@ -177,7 +177,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Instructional Design',
     ],
     featured: true,
-    order: 4,
+    order: 5,
     liveUrl:
       'https://app.pluralsight.com/code-labs/contents/a39a4529-3ae5-4b45-a086-80a456350717/learn',
   },
@@ -199,8 +199,8 @@ export const creativeTechnologistProjects: Project[] = [
       'Agentic Development',
       'Component Architecture',
     ],
-    featured: false,
-    order: 5,
+    featured: true,
+    order: 4,
     githubUrl: 'https://github.com/carolinapowers/portfolio',
   },
   {
@@ -223,7 +223,7 @@ export const creativeTechnologistProjects: Project[] = [
       'Accessibility Testing',
       'GitHub Copilot',
     ],
-    featured: true,
+    featured: false,
     order: 5,
     liveUrl:
       'https://www.npmjs.com/package/@carolinappowers/vue-tdd-automation',

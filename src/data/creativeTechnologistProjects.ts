@@ -33,66 +33,6 @@ export const categoryDisplayNames: Record<ProjectCategory, string> = {
 
 export const creativeTechnologistProjects: Project[] = [
   {
-    id: 'picklebrasil',
-    title: 'PickleBrasil - Pickleball Community Platform',
-    category: 'ai-emerging-tech',
-    story:
-      'Validate product-market fit for a Brazilian pickleball community platform using Bolt AI rapid prototyping then migrated to production infrastructure with Vercel and Supabase for scalability. Leveraged Claude Code for iterative development of the full-stack social platform featuring court discovery, game organization, and multilingual support (Portuguese, English, Spanish). This project demonstrated AI-assisted development from prototype validation to production deployment with authentication, real-time data updates, and responsive design.',
-    projectDetails:
-      '**Community-Driven Platform Architecture:** PickleBrasil connects Brazil’s growing pickleball community through a full-stack social platform. Core features include court discovery with map and real-time availability, game organization tools, and player profiles with skill levels and multilingual interface supports Portuguese, English, and Spanish using i18next internationalization, enabling accessibility across a diverse user base.\n\n **Scalable Backend & Frontend Infrastructure:** Supabase backend provides PostgreSQL database with Row Level Security policies, real-time subscriptions for live game updates, and authentication including social login providers. Radix UI component library ensures accessibility compliance with ARIA attributes and keyboard navigation, while Tailwind CSS enables rapid UI iteration without sacrificing design consistency. Vercel’s edge network deployment provides global CDN distribution with automatic HTTPS and preview deployments for each git push.\n\n **AI-Assisted Development Workflow:** The development lifecycle demonstrates modern AI prototyping methodology: rapid validation in Bolt AI proved core feature viability within days, then Claude Code accelerated the migration to production infrastructure through iterative prompting and code generation. GitHub integration provides an immediate feedback loop from development to production, showcasing transition from prototype to scalable product.',
-    technologies: [
-      'React',
-      'TypeScript',
-      'Vite',
-      'Supabase',
-      'Tailwind CSS',
-      'Bolt',
-      'Claude Code',
-      'Vercel',
-      'Radix UI',
-      'i18next',
-    ],
-    featured: false,
-    order: 3,
-    // githubUrl: 'https://github.com/carolinapowers/PickleBrasil',
-    liveUrl: 'https://picklebrasil.vercel.app/',
-  },
-  {
-    id: 'bolt-rapid-prototypes',
-    title: 'Bolt Rapid Prototyping Portfolio',
-    category: 'ai-emerging-tech',
-    story:
-      'Leveraged Bolt AI to rapidly validate two distinct full-stack concepts: CodeCraft Academy, an educational platform for after-school coding instructions with curriculum management and student progress tracking, and QuestAied a gameified tasks management app addressing ADHD support for children ages 10-13. QuestAied features XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence',
-    projectDetails:
-      '**CodeCraft Academy: EdTech for After-School Programs:** CodeCraft Academy serves educators teaching Coding and AI fundamentals in after-school club settings. The platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.\n\n **QuestAied: Gamified Task Management for ADHD Support:** QuestAied gamifies daily tasks through gamifying the assigning of chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. A parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.\n\n**Rapid Prototyping Methodology:** Both prototypes demonstrate the ability to leverage AI to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.',
-    technologies: [
-      'React',
-      'TypeScript',
-      'Bolt',
-      'Supabase',
-      'Tailwind CSS',
-      'Vite',
-      'Framer Motion',
-      'Rapid Prototyping',
-      'UX Design',
-      'Accessibility',
-    ],
-    featured: false,
-    order: 4,
-    projectLinks: [
-      {
-        name: 'CodeCraft Academy',
-        githubUrl: 'https://github.com/carolinapowers/code-craft',
-        liveUrl: 'https://codecraft-academy-ai-duff.bolt.host/',
-      },
-      {
-        name: 'QuestAied',
-        githubUrl: 'https://github.com/carolinapowers/QuestAied',
-        liveUrl: 'https://questaied-app-duplic-5upw.bolt.host/',
-      },
-    ],
-  },
-  {
     id: 'mcp-server',
     title: 'Model Context Protocol (MCP) Server for Code Lab Generation',
     category: 'ai-emerging-tech',
@@ -141,6 +81,31 @@ export const creativeTechnologistProjects: Project[] = [
       'https://app.pluralsight.com/code-labs/contents/03dc3a20-f895-432d-8fc5-f9bb1f66a224/learn',
   },
   {
+    id: 'picklebrasil',
+    title: 'PickleBrasil - Pickleball Community Platform',
+    category: 'ai-emerging-tech',
+    story:
+      'Validate product-market fit for a Brazilian pickleball community platform using Bolt AI rapid prototyping then migrated to production infrastructure with Vercel and Supabase for scalability. Leveraged Claude Code for iterative development of the full-stack social platform featuring court discovery, game organization, and multilingual support (Portuguese, English, Spanish). This project demonstrated AI-assisted development from prototype validation to production deployment with authentication, real-time data updates, and responsive design.',
+    projectDetails:
+      "**Community-Driven Platform Architecture:** PickleBrasil connects Brazil's growing pickleball community through a full-stack social platform. Core features include court discovery with map and real-time availability, game organization tools, and player profiles with skill levels and multilingual interface supports Portuguese, English, and Spanish using i18next internationalization, enabling accessibility across a diverse user base.\n\n **Scalable Backend & Frontend Infrastructure:** Supabase backend provides PostgreSQL database with Row Level Security policies, real-time subscriptions for live game updates, and authentication including social login providers. Radix UI component library ensures accessibility compliance with ARIA attributes and keyboard navigation, while Tailwind CSS enables rapid UI iteration without sacrificing design consistency. Vercel's edge network deployment provides global CDN distribution with automatic HTTPS and preview deployments for each git push.\n\n **AI-Assisted Development Workflow:** The development lifecycle demonstrates modern AI prototyping methodology: rapid validation in Bolt AI proved core feature viability within days, then Claude Code accelerated the migration to production infrastructure through iterative prompting and code generation. GitHub integration provides an immediate feedback loop from development to production, showcasing transition from prototype to scalable product.",
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Supabase',
+      'Tailwind CSS',
+      'Bolt',
+      'Claude Code',
+      'Vercel',
+      'Radix UI',
+      'i18next',
+    ],
+    featured: false,
+    order: 3,
+    // githubUrl: 'https://github.com/carolinapowers/PickleBrasil',
+    liveUrl: 'https://picklebrasil.vercel.app/',
+  },
+  {
     id: 'react-testing-lab',
     title: 'React Testing Hands-on Code Lab',
     category: 'learning-experiences',
@@ -162,24 +127,39 @@ export const creativeTechnologistProjects: Project[] = [
       'https://app.pluralsight.com/code-labs/contents/62a6025c-17b3-4d79-a28b-7ac116e8f038/learn',
   },
   {
-    id: 'vue-reading-list',
-    title: 'Vue.js Guided Project: Reading List Application with Forms',
-    category: 'learning-experiences',
+    id: 'bolt-rapid-prototypes',
+    title: 'Bolt Rapid Prototyping Portfolio',
+    category: 'ai-emerging-tech',
     story:
-      'Designed a comprehensive Guided Project that builds upon introductory Vue.js concepts to teach advanced form handling through a practical reading list application. The progressive curriculum focuses on form composition, v-model two-way binding, user input validation, and list manipulation patterns. Content later converted to interactive Code Lab format by Pluralsight, demonstrating ability to create engaging, production-ready educational content that scales across learning formats',
+      'Leveraged Bolt AI to rapidly validate two distinct full-stack concepts: CodeCraft Academy, an educational platform for after-school coding instructions with curriculum management and student progress tracking, and QuestAied a gameified tasks management app addressing ADHD support for children ages 10-13. QuestAied features XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence',
     projectDetails:
-      "**Progressive Curriculum Scaffolding**: Building on an introductory Guided Project where Vue.js fundamentals were established, this project expands learner knowledge through form-focused feature development. Learners build reading list applications managing book entries with title, author, and rating fields. Component composition lessons demonstrate single-file component architecture, reactive data management with Vue's data properties and methods, and computed properties for derived state calculations like filtered book lists and reading statistics.\n\n**Building Interactive Forms with Reactive Patterns**: Form handling curriculum covers v-model two-way binding patterns for text inputs, number inputs, and select dropdowns. Validation logic includes required field checks, input length constraints, and rating range validation with real-time user feedback. Event handling lessons teach form submission, list item deletion, and editing existing entries. State management patterns demonstrate lifting state up to parent components and props/events communication between child components maintaining unidirectional data flow.",
+      '**CodeCraft Academy: EdTech for After-School Programs:** CodeCraft Academy serves educators teaching Coding and AI fundamentals in after-school club settings. The platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.\n\n **QuestAied: Gamified Task Management for ADHD Support:** QuestAied gamifies daily tasks through gamifying the assigning of chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. A parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.\n\n**Rapid Prototyping Methodology:** Both prototypes demonstrate the ability to leverage AI to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.',
     technologies: [
-      'Vue.js',
-      'Forms',
-      'TDD',
-      'Testing Library',
-      'Instructional Design',
+      'React',
+      'TypeScript',
+      'Bolt',
+      'Supabase',
+      'Tailwind CSS',
+      'Vite',
+      'Framer Motion',
+      'Rapid Prototyping',
+      'UX Design',
+      'Accessibility',
     ],
-    featured: true,
-    order: 5,
-    liveUrl:
-      'https://app.pluralsight.com/code-labs/contents/a39a4529-3ae5-4b45-a086-80a456350717/learn',
+    featured: false,
+    order: 4,
+    projectLinks: [
+      {
+        name: 'CodeCraft Academy',
+        githubUrl: 'https://github.com/carolinapowers/code-craft',
+        liveUrl: 'https://codecraft-academy-ai-duff.bolt.host/',
+      },
+      {
+        name: 'QuestAied',
+        githubUrl: 'https://github.com/carolinapowers/QuestAied',
+        liveUrl: 'https://questaied-app-duplic-5upw.bolt.host/',
+      },
+    ],
   },
   {
     id: 'interactive-portfolio',
@@ -202,6 +182,26 @@ export const creativeTechnologistProjects: Project[] = [
     featured: true,
     order: 4,
     githubUrl: 'https://github.com/carolinapowers/portfolio',
+  },
+  {
+    id: 'vue-reading-list',
+    title: 'Vue.js Guided Project: Reading List Application with Forms',
+    category: 'learning-experiences',
+    story:
+      'Designed a comprehensive Guided Project that builds upon introductory Vue.js concepts to teach advanced form handling through a practical reading list application. The progressive curriculum focuses on form composition, v-model two-way binding, user input validation, and list manipulation patterns. Content later converted to interactive Code Lab format by Pluralsight, demonstrating ability to create engaging, production-ready educational content that scales across learning formats',
+    projectDetails:
+      "**Progressive Curriculum Scaffolding**: Building on an introductory Guided Project where Vue.js fundamentals were established, this project expands learner knowledge through form-focused feature development. Learners build reading list applications managing book entries with title, author, and rating fields. Component composition lessons demonstrate single-file component architecture, reactive data management with Vue's data properties and methods, and computed properties for derived state calculations like filtered book lists and reading statistics.\n\n**Building Interactive Forms with Reactive Patterns**: Form handling curriculum covers v-model two-way binding patterns for text inputs, number inputs, and select dropdowns. Validation logic includes required field checks, input length constraints, and rating range validation with real-time user feedback. Event handling lessons teach form submission, list item deletion, and editing existing entries. State management patterns demonstrate lifting state up to parent components and props/events communication between child components maintaining unidirectional data flow.",
+    technologies: [
+      'Vue.js',
+      'Forms',
+      'TDD',
+      'Testing Library',
+      'Instructional Design',
+    ],
+    featured: true,
+    order: 5,
+    liveUrl:
+      'https://app.pluralsight.com/code-labs/contents/a39a4529-3ae5-4b45-a086-80a456350717/learn',
   },
   {
     id: 'vue-tdd-automation',

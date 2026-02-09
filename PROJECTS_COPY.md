@@ -20,7 +20,7 @@ Custom slash commands automated creation of step branches, markdown content gene
 
 AST-based validation using TSQuery enabled precise code pattern matching. Tests verified barrel file structure, export syntax, and import path optimization without relying on brittle string matching. Clear error messages guided learners toward correct implementation patterns.
 
-claude.md configuration file served as persistent context ensuring Claude Code followed specific workflow patterns, naming conventions, and quality standards. This approach demonstrated how AI tools can be effectively constrained to maintain consistency across multi-step content development while accelerating production timelines.
+CLAUDE.md configuration file served as persistent context ensuring Claude Code followed specific workflow patterns, naming conventions, and quality standards. This approach demonstrated how AI tools can be effectively constrained to maintain consistency across multi-step content development while accelerating production timelines.
 
 ---
 
@@ -32,15 +32,15 @@ claude.md configuration file served as persistent context ensuring Claude Code f
 
 ### Story (Brief Description)
 
-Evolved custom Claude Code commands into production MCP server automating Pluralsight Code Lab creation across multiple languages. Architected language adapter pattern supporting TypeScript/JavaScript (Vitest, TSQuery) and C#/.NET (xUnit, Roslyn) with expansion planned for Python, Go, and Java. Automates complete workflow from brainstorming learning objectives and scaffolding project infrastructure to generating validated exercises with AST-based tests. Reduces development time from days to hours
+Evolved custom Claude Code commands into a MCP server automating Pluralsight Code Lab creation across multiple languages. Architected language adapter pattern supporting TypeScript/JavaScript (Vitest, TSQuery) and C#/.NET (xUnit, Roslyn) with expansion planned for Python, Go, and Java. The system automates the complete workflow from brainstorming learning objectives and scaffolding project infrastructure to generating validated exercises with AST-based tests, reducing development time from days to hours.',
 
 ### Project Details (Extended Description)
 
-Server exposes seven MCP tools providing end-to-end automation. brainstorm_lab_opportunity generates structured LAB_OPPORTUNITY.md from learning objectives. scaffold_react_project and scaffold_csharp_project create complete projects with test infrastructure, custom reporters, and task runners.
+The MCP Server exposes seven tools providing end-to-end Code Lab creation automation. The system generates structured LAB_OPPORTUNITY.md from learning objectives, scaffolds complete project infrastructure with test runners and customer reporters, and produces validated exercises with comprehensive test coverage. The modular approach enables rapid iteration across multiple instructional design phases.
 
-Language adapter pattern enables automatic detection and framework selection. TypeScript projects receive Vitest setup with TSQuery for AST validation. C# projects get xUnit with Roslyn-based code analysis through custom CodeLab.Validator tool.
+A language adapter pattern enables automatic detection and framework selection. TypeScript projects automatically receive Vitest setup with TSQuery for AST validation. C\# projects get xUnit with Roslyn-based code analysis through custom CodeLab.Validator tool. This architecture supports current languages (TypeScript, C\#) while remaining extensible for Python, Go, and Java.
 
-create_lab_from_opportunity bulk generates all steps with markdown content, test files, and solution templates. Each step includes validation tests that provide actionable feedback messages to learners. Comprehensive test suite covers unit, integration, and E2E scenarios ensuring reliability across languages.
+The create_lab_from_opportunity tool bulk-generates all steps with markdown content, test files, and solution templates. Each validation step provides actionable feedback messages to learners, with a comprehensive test suite covering unit, integration, and E2E scenarios. This ensures consistent quality and learner experience across all supported languages.
 
 ---
 
@@ -52,15 +52,15 @@ create_lab_from_opportunity bulk generates all steps with markdown content, test
 
 ### Story (Brief Description)
 
-Rapid prototyping with Bolt AI to validate product-market fit, then migrated to production infrastructure with Vercel and Supabase for scalability. Leveraged Claude Code for iterative development of full-stack social platform features including court discovery, game organization, and multilingual support (Portuguese, English, Spanish). Implemented authentication, real-time data sync, and responsive design using Radix UI components - demonstrating AI-assisted development workflow from concept to production deployment
+Validate product-market fit for a Brazilian pickleball community platform using Bolt AI rapid prototyping then migrated to production infrastructure with Vercel and Supabase for scalability. Leveraged Claude Code for iterative development of the full-stack social platform featuring court discovery, game organization, and multilingual support (Portuguese, English, Spanish). This project demonstrated AI-assisted development from prototype validation to production deployment with authentication, real-time data updates, and responsive design.
 
 ### Project Details (Extended Description)
 
-Full-stack social platform connecting Brazilian pickleball community through court discovery map integration, game organization tools, and player profiles. Users create and join games, track skill levels, discover nearby courts with availability schedules, and connect with local players. Multilingual interface supports Portuguese, English, and Spanish using i18next internationalization enabling accessibility across diverse user base. Responsive design ensures seamless experience across mobile and desktop devices.
+**Community-Driven Platform Architecture**: PickleBrasil connects Brazil’s growing pickleball community through a full-stack social platform. Core features include court discovery with map and real-time availability, game organization tools, and player profiles with skill levels and multilingual interface supports Portuguese, English, and Spanish using i18next internationalization, enabling accessibility across a diverse user base.\n\n
 
-Supabase backend provides PostgreSQL database with Row Level Security policies, real-time subscriptions for live game updates, and authentication including social login providers. Radix UI component library ensures accessibility compliance with ARIA attributes and keyboard navigation. Tailwind CSS utility-first approach enables rapid UI iteration while maintaining design consistency. Vercel edge network deployment provides global CDN distribution with automatic HTTPS and preview deployments for each git push.
+**Scalable Backend & Frontend Infrastructure**: Supabase backend provides PostgreSQL database with Row Level Security policies, real-time subscriptions for live game updates, and authentication including social login providers. Radix UI component library ensures accessibility compliance with ARIA attributes and keyboard navigation, while Tailwind CSS enables rapid UI iteration without sacrificing design consistency. Vercel’s edge network deployment provides global CDN distribution with automatic HTTPS and preview deployments for each git push.\n\n
 
-Development workflow demonstrates modern AI-assisted prototyping methodology. Initial rapid validation in Bolt AI proved core feature viability within days. Migration to production codebase using Claude Code enabled systematic feature expansion through iterative prompting and code generation. Continuous deployment pipeline with GitHub integration provides immediate feedback loop from development to production, showcasing transition from prototype to scalable product.
+**AI-Assisted Development Workflow**: The development lifecycle demonstrates modern AI prototyping methodology: rapid validation in Bolt AI proved core feature viability within days, then Claude Code accelerated the migration to production infrastructure through iterative prompting and code generation. GitHub integration provides an immediate feedback loop from development to production, showcasing transition from prototype to scalable product.
 
 ---
 
@@ -75,15 +75,15 @@ Development workflow demonstrates modern AI-assisted prototyping methodology. In
 
 ### Story (Brief Description)
 
-Validated diverse application concepts using Bolt AI for rapid full-stack prototyping. CodeCraft Academy AI created for Bolt Coding Challenge demonstrates educational platform features including curriculum management, student progress tracking, and interactive coding lessons for after-school programs. QuestAied addresses accessibility needs with gamified task management for children ages 10-13 with ADHD featuring quest spinner mechanics, XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence
+Leveraged Bolt AI to rapidly validate two distinct full-stack concepts: CodeCraft Academy AI, an educational platform for after-school coding instructions with curriculum management and student progress tracking, and QuestAied a gameified tasks management app addressing ADHD support for children ages 10-13. QuestAied features XP progression system, rewards store with parental approval workflow, and streak tracking to improve executive function and daily routine adherence.
 
 ### Project Details (Extended Description)
 
-CodeCraft Academy AI serves educators teaching Coding and AI fundamentals in after-school club settings. Platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.
+**CodeCraft Academy AI: EdTech for After-School Programs**: CodeCraft Academy AI serves educators teaching Coding and AI fundamentals in after-school club settings. The platform includes lesson planning tools, student activity tracking, and curriculum resources designed for K-12 audiences. Built for Bolt Coding Challenge showcasing rapid concept-to-prototype workflow.
 
-QuestAied gamifies daily tasks through quest spinner assigning chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. Parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.
+**QuestAied: Gamified Task Management for ADHD Support**: QuestAied gamifies daily tasks through gamifying the assigning of chores across six categories (Cleanup, Hygiene, School, Helping Out, Self-Care, Surprise) with three difficulty levels. React and Supabase backend enables real-time XP tracking, level progression, and daily streak calculations. A parent dashboard with PIN protection allows reward approval management while maintaining child autonomy. Framer Motion animations provide engaging visual feedback optimized for neurodivergent users.
 
-Both prototypes demonstrate ability to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.
+**Rapid Prototyping Methodology**: Both prototypes demonstrate the ability to leverage AI to rapidly validate product-market fit across different domains (EdTech and Accessibility) while implementing sophisticated full-stack features including authentication, database design, responsive UI, and domain-specific workflows.
 
 ---
 
@@ -95,7 +95,7 @@ Both prototypes demonstrate ability to rapidly validate product-market fit acros
 
 ### Story (Brief Description)
 
-Rapidly prototyped professional portfolio using agentic coding practices with Claude Code to demonstrate modern development workflows and AI-assisted development capabilities. Built full-stack React application featuring dynamic filtering, professional recommendation showcase, and responsive design - all developed through iterative AI collaboration. Implemented comprehensive testing strategy, component-driven architecture, and accessibility-first patterns. Project serves dual purpose as both portfolio presentation and proof of concept for AI-assisted rapid application development
+Rapidly prototyped professional portfolio using agentic coding practices with Claude Code to demonstrate modern development workflows and AI-assisted development capabilities. Built full-stack React application featuring dynamic filtering, professional recommendation showcase, and responsive design - all developed through iterative AI collaboration. Implemented comprehensive testing strategy, component-driven architecture, and accessibility-first patterns. Project serves dual purpose as both portfolio presentation and proof of concept for AI-assisted rapid application development.
 
 ### Project Details (Extended Description)
 
